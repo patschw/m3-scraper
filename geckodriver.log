@@ -658,3 +658,356 @@ console.warn: LoginRecipes: "Falling back to a synchronous message for: https://
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
 JavaScript error: https://www.spiegel.de/ line 12801 > injectedScript, line 10: TypeError: _satellite.logger is not a function
 1725370068026	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1725377385610	geckodriver	INFO	Listening on 127.0.0.1:50626
+1725377388614	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilenm7OZG"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725377388981	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725377389206	Marionette	INFO	Listening on port 50640
+Read port: 50640
+1725377389402	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13032 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/ line 13032 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 350: TypeError: can't access dead object
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: https://www.spiegel.de/fuermich/ line 3359 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15946 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/spiegel/print/index-2024-36.html line 13 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/audio/ line 5343 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4754 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8324 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16061 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5343 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5343 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5363 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5363 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5363 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5363 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/plus/ line 5363 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/politik/ line 4821 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725377419104	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4754 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4848 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8324 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15946 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/plus/ line 5363 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5148 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5119 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4754 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/audio/ line 5343 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 7003 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://assets.adobedtm.com/cc10f7b4369d/32ae8c3350c5/launch-8a2e39fde471.min.js, line 9: Error: Identity cookie not found.
+JavaScript error: https://assets.adobedtm.com/cc10f7b4369d/32ae8c3350c5/launch-8a2e39fde471.min.js, line 9: Error: Identity cookie not found.
+1725380133328	geckodriver	INFO	Listening on 127.0.0.1:56425
+1725380136391	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilelSB4hP"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725380136785	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725380136992	Marionette	INFO	Listening on port 56435
+Read port: 56435
+1725380137191	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13742 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 13742 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16267 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/spiegel/print/index-2024-36.html line 13 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/fuermich/ line 3359 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: uncaught exception: undefined
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16267 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5363 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5165 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 350: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5244 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4754 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/geschichte/ line 8321 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13398 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16267 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/video/ line 13398 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/video/ line 13398 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/politik/ line 4801 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5165 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4754 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8321 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725380166869	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16267 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/ausland/ line 5165 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5244 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/geschichte/ line 8321 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5319 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13398 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/backstage/ line 4779 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 7370 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725380499562	geckodriver	INFO	Listening on 127.0.0.1:56771
+1725380502628	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileMQrZdp"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725380502923	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725380503117	Marionette	INFO	Listening on port 56783
+Read port: 56783
+1725380503276	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 565))
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 565))
+JavaScript error: resource:///modules/FaviconLoader.sys.mjs, line 581: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: resource:///modules/FaviconLoader.sys.mjs, line 581: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: https://www.spiegel.de/ line 13740 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/ausland/ line 5165 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5244 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4754 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8321 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 565))
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 565))
+JavaScript error: resource:///modules/FaviconLoader.sys.mjs, line 581: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: resource:///modules/FaviconLoader.sys.mjs, line 581: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16274 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+1725380533060	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript error: https://www.spiegel.de/video/ line 13398 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/video/ line 13398 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/politik/ line 4801 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5165 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4761 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5244 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/kultur/ line 4907 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8321 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16274 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/plus/ line 5360 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5165 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4754 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8321 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/backstage/ line 4779 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 7410 > injectedScript, line 10: TypeError: _satellite.logger is not a function

@@ -60,7 +60,7 @@ class DataDownloader:
         """Sends a GET request to the specified endpoint and returns only the status code."""
         url = f'{self.base_url}{endpoint}'
         try:
-            response = requests.get(url, params=params, stream=True, timeout=5)
+            response = requests.get(url, headers=self.headers, params=params, stream=False, timeout=1)
             return response.status_code
         except requests.exceptions.RequestException as e:
             logger.error(f"An error occurred while checking {url}: {e}")
@@ -98,16 +98,25 @@ class DataDownloader:
 
     def get_content_rehydrate_status_code_only(self, **params):
         """
-        Sends a HEAD request to the content rehydrate API with optional filters.
+        Sends a GET request to the content rehydrate API with optional filters and returns only the status code.
     
         Parameters:
-        - base_url: The base URL of the API (e.g., 'http://localhost:5000')
         - **params: Optional query parameters to be included in the request.
     
         Returns:
-        - Response object from the HEAD request.
+        - The status code of the response (e.g., 200, 404, 500).
         """
-        return self._get_data_status_code_only("api/v1/content/rehydrate/", **params)
+        status_code = self._get_data_status_code_only("api/v1/content/rehydrate/", **params)
+        return status_code
+
+        # Note: This method doesn't only produce a 200 status code. It can return various status codes
+        # depending on the server's response. For example:
+        # - 200: Successful request
+        # - 400: Bad request
+        # - 401: Unauthorized
+        # - 404: Not found
+        # - 500: Internal server error
+        # The actual status code returned depends on the server's response to the request.
 
     def get_content_entity(self):
         """Gets content entity."""

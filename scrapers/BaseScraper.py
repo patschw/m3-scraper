@@ -283,44 +283,90 @@ class BaseScraper:
                 time.sleep(delay)
         raise RequestException(f"Failed to fetch {url} after {retries} attempts")
 
-    def patch_last_online_verification_date(self, auth_token: str, scraped_urls_already_in_db: List[str]) -> List[requests.Response]:
-        """Update the last online verification date in a content_dict"""
-        data_uploader = DataUploader(auth_token)
-
-        responses = []
-
+    def patch_last_online_verification_date(self, data_uploader: DataUploader, urls: List[str]) -> List[requests.Response]:
+        """Update the last online verification date for multiple URLs"""
+        start_time = datetime.now()
+        logger.info(f"Starting patch_last_online_verification_date for {len(urls)} URLs at {start_time.isoformat()}")
         new_last_online_verification_date = datetime.now().isoformat()
-        for url in scraped_urls_already_in_db:
-            response = data_uploader.patch_content(url=url, data={"last_online_verification_date": new_last_online_verification_date})
-            responses.append(response)
+        data = {"last_online_verification_date": new_last_online_verification_date}
+
+        with ThreadPoolExecutor(max_workers=30) as executor:
+            futures = [executor.submit(data_uploader.patch_content, url=url, data=data) for url in urls]
+            responses = [future.result() for future in as_completed(futures)]
+
+        end_time = datetime.now()
+        duration = end_time - start_time
+        logger.info(f"patch_last_online_verification_date completed at {end_time.isoformat()}")
+        logger.info(f"Total duration: {duration.total_seconds():.3f} seconds for {len(urls)} URLs")
+        logger.info(f"Average time per URL: {(duration.total_seconds() / len(urls)):.3f} seconds")
 
         return responses
 
     def reverify_articles(self, urls: List[str], keycloak_token: str) -> List[str]:
-        """Reverify articles that are already in the database.
-        
-        This method takes a list of URLs that the scraper found on the website,
-        checks which of these URLs are already in the database, updates the
-        last_online_verification_date field for these articles in the database, and returns
-        a list of articles that are NOT already in the database.
-        """
+        """Reverify articles and update last_online_verification_date for those in the database"""
+        start_time = datetime.now()
+        logger.info(f"Starting reverify_articles for {len(urls)} URLs at {start_time.isoformat()}")
         data_downloader = DataDownloader(keycloak_token)
+        data_uploader = DataUploader(keycloak_token)
         articles_in_db = []
         articles_not_in_db = []
 
         def process_url(url):
+            url_start_time = datetime.now()
             status_code = data_downloader.get_content_rehydrate_status_code_only(url=url)
             if status_code == 200:
+                logger.info(f"Article found in the database: {url}. Status code: {status_code}")
                 articles_in_db.append(url)
-                self.patch_last_online_verification_date(keycloak_token, [url])
-                logger.info(f"Article reverified and updated last_online_verification_date: {url}")
             else:
+                logger.info(f"Article not found in the database: {url}. Status code: {status_code}")
                 articles_not_in_db.append(url)
+            url_end_time = datetime.now()
+            logger.debug(f"Processed URL {url} in {(url_end_time - url_start_time).total_seconds():.3f} seconds")
 
-        with ThreadPoolExecutor(max_workers=10) as executor:  # Adjust max_workers as needed
+        with ThreadPoolExecutor(max_workers=30) as executor:
             list(executor.map(process_url, urls))
 
+        if articles_in_db:
+            patch_start_time = datetime.now()
+            self.patch_last_online_verification_date(data_uploader, articles_in_db)
+            patch_end_time = datetime.now()
+            logger.info(f"Updated last_online_verification_date for {len(articles_in_db)} articles in the database")
+            logger.info(f"Patch operation took {(patch_end_time - patch_start_time).total_seconds():.3f} seconds")
+
+        end_time = datetime.now()
+        total_duration = end_time - start_time
+        logger.info(f"reverify_articles completed at {end_time.isoformat()}")
+        logger.info(f"Total duration: {total_duration.total_seconds():.3f} seconds for {len(urls)} URLs")
+        logger.info(f"Average time per URL: {(total_duration.total_seconds() / len(urls)):.3f} seconds")
+
         return articles_not_in_db
+
+    # def reverify_articles(self, urls: List[str], keycloak_token: str) -> List[str]:
+    #     """Reverify articles that are already in the database.
+        
+    #     This method takes a list of URLs that the scraper found on the website,
+    #     checks which of these URLs are already in the database, updates the
+    #     last_online_verification_date field for these articles in the database, and returns
+    #     a list of articles that are NOT already in the database.
+    #     """
+    #     data_downloader = DataDownloader(keycloak_token)
+    #     data_uploader = DataUploader(keycloak_token)
+    #     articles_in_db = []
+    #     articles_not_in_db = []
+
+    #     def process_url(url):
+    #         status_code = data_downloader.get_content_rehydrate_status_code_only(url=url)
+    #         if status_code == 200:
+    #             articles_in_db.append(url)
+    #             self.patch_last_online_verification_date(data_uploader, [url])
+    #             logger.info(f"Article reverified and updated last_online_verification_date: {url}")
+    #         else:
+    #             articles_not_in_db.append(url)
+
+    #     with ThreadPoolExecutor(max_workers=10) as executor:  # Adjust max_workers as needed
+    #         list(executor.map(process_url, urls))
+
+    #     return articles_not_in_db
     
     def _get_all_article_urls_on_current_page(self) -> List[str]:
         """Get all article URLs from the current page
