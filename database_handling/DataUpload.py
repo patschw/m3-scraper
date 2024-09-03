@@ -62,7 +62,7 @@ class DataUploader:
         url = f'{self.base_url}api/v1/content/'
         response = requests.patch(url, headers=self.headers, params=params, data=json.dumps(data))
         return self._return_response(response)
-    
+        
     def patch_use(self, data, **params):
         """Patches use with given parameters and data."""
         url = f'{self.base_url}api/v1/use/'

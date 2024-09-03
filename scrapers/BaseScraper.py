@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException, StaleElementReferenceException
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from database_handling.DataDownload import DataDownloader
@@ -19,6 +19,11 @@ import requests
 from requests.exceptions import RequestException
 import logging
 from trafilatura.settings import use_config
+import os
+from typing import List, Tuple, Optional, Dict, Any
+from abc import ABC, abstractmethod
+import re
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -26,17 +31,21 @@ logger = logging.getLogger(__name__)
 
 class BaseScraper:
     """Base class for all scrapers"""
-    
-    def __init__(self):
+
+    def __init__(self, headless: bool = True, timeout: int = 10):
         """Initialize the scraper with default attributes"""
-        self.driver = None
-        self.wait = None
-        self.email = None
-        self.password = None
-        self.url = None
-        self.crawler_version = "0.1"
+        self.driver: Optional[webdriver.Firefox] = None
+        self.wait: Optional[WebDriverWait] = None
+        self.email: Optional[str] = None
+        self.password: Optional[str] = None
+        self.url: Optional[str] = None
+        self.crawler_version: str = "0.1"
+        self.headless: bool = headless
+        self.timeout: int = timeout
+        self.article_url_pattern = r'PLACEHOLDER_FOR_ARTICLE_URL_PATTERN'
+        self.subpage_url_pattern = r'PLACEHOLDER_FOR_SUBPAGE_URL_PATTERN'
     
-    def get_credentials(self, path):
+    def get_credentials(self, path: str) -> Tuple[str, str]:
         """Get the credentials from a file"""
         try:
             with open(path, "r") as f:
@@ -46,9 +55,9 @@ class BaseScraper:
             logger.error(f"Credentials file not found: {e}")
             raise
 
-    def start_browser(self, headless=True):
+    def start_browser(self):
         """Start the browser and initialize the WebDriver and WebDriverWait instances"""
-        if headless:
+        if self.headless:
             geckodriver_path = '/usr/local/bin/geckodriver'
             firefox_binary_path = '/usr/bin/firefox'
 
@@ -79,7 +88,7 @@ class BaseScraper:
             self.driver.quit()
             logger.info("Browser closed successfully")
 
-    def navigate_to(self, url):
+    def navigate_to(self, url: str):
         """Navigate to a specific URL"""
         try:
             self.url = url
@@ -89,11 +98,11 @@ class BaseScraper:
             logger.error(f"Failed to navigate to {url}: {e}")
             raise
 
-    def get_all_urls_on_current_page(self):
+    def _get_all_urls_on_current_page(self) -> List[str]:
         """Get all URLs from the current page."""
         try:
             # Wait until all anchor elements are present
-            self.wait.until(EC.presence_of_all_elements_located((By.TAG_NAME, 'a')))
+            self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href]')))
             # Execute JavaScript to get all href attributes from anchor elements
             urls = self.driver.execute_script('''
                 return Array.from(document.querySelectorAll('a'))
@@ -105,7 +114,7 @@ class BaseScraper:
             logger.error(f"Timeout while getting URLs on current page: {e}")
             return []
 
-    def wait_for_element(self, by, value, timeout=10):
+    def wait_for_element(self, by: By, value: str, timeout: int = 10):
         """Wait for a specific element to be loaded on the page"""
         try:
             element_present = EC.presence_of_element_located((by, value))
@@ -115,7 +124,7 @@ class BaseScraper:
             logger.error(f"Timeout while waiting for element {value}: {e}")
             raise
 
-    def find_element(self, strategies):
+    def find_element(self, strategies: List[Tuple[str, str]]) -> webdriver.Firefox.find_element:
         """Find an element on the page using the strategies defined in the config"""
         found_element = None
         last_exception = None
@@ -139,41 +148,52 @@ class BaseScraper:
         else:
             raise NoSuchElementException("Element not found using any strategy")
 
-    def click_element(self, strategy):
+    def click_element(self, strategy: List[Tuple[str, str]]):
         """Click an element on the page"""
         element = self.find_element(strategy)
         element.click()
         logger.info(f"Clicked element with strategy: {strategy}")
 
-    def input_text(self, element, text):
+    def input_text(self, element: webdriver.Firefox.find_element, text: str):
         """Input text into a field on the page"""
         element.clear()
         element.send_keys(text)
         input_value = element.get_attribute('value')
 
         if input_value != text:
-            logger.error(f"Input text '{text}' was not successfully entered into the field.")
-            raise ValueError(f"Input text '{text}' was not successfully entered into the field.")
-        logger.info(f"Input text '{text}' successfully entered into the field.")
+            logger.error(f"Input text was not successfully entered into the field.")
+            raise ValueError(f"Input text was not successfully entered into the field.")
+        logger.info(f"Input text successfully entered into the field.")
 
-    def enter_email(self, email, email_strategy=WEBSITE_STRATEGIES["spiegel"]["email_username"]):
+    def enter_email(self, email: str, email_strategy: List[Tuple[str, str]] = WEBSITE_STRATEGIES["spiegel"]["email_username"]):
         """Enter the email into the email field using the strategies defined in the config"""
         elem_email_username = self.find_element(email_strategy)
         self.input_text(elem_email_username, email)
 
-    def enter_password(self, password, password_strategy=WEBSITE_STRATEGIES["spiegel"]["password"]):
+    def enter_password(self, password: str, password_strategy: List[Tuple[str, str]] = WEBSITE_STRATEGIES["spiegel"]["password"]):
         """Enter the password into the password field using the strategies defined in the config"""
         elem_password = self.find_element(password_strategy)
         self.input_text(elem_password, password)
 
-    def click_submit(self, submit_strategy=WEBSITE_STRATEGIES["spiegel"]["submit"]):
+    def click_submit(self, submit_strategy: List[Tuple[str, str]] = WEBSITE_STRATEGIES["spiegel"]["submit"]):
         """Click the submit button using the strategies defined in the config"""
         elem_submit = self.find_element(submit_strategy)
         elem_submit.click()
 
-    def _extract_content(self):
+    def _get_page_source(self) -> str:
+        """Get the page source using JavaScript for better performance."""
+        try:
+            # Execute JavaScript to get the outer HTML of the entire document
+            html_content = self.driver.execute_script("return document.documentElement.outerHTML;")
+            return html_content
+        except Exception as e:
+            logger.error(f"Error getting page source using JavaScript: {e}")
+            # Fallback to the default method if JavaScript execution fails
+            return self.driver.page_source
+
+    def _extract_content(self) -> Dict[str, Any]:
         """Extract the main content from where the driver is currently at using trafilatura."""
-        html_content = self.driver.page_source
+        html_content = self._get_page_source()
 
         # Preprocess HTML content with BeautifulSoup
         soup = BeautifulSoup(html_content, 'html.parser')
@@ -189,9 +209,6 @@ class BaseScraper:
         config.set("DEFAULT", "EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
         config.set("DEFAULT", "BLACKLIST_ELEMENTS", "div.cookie-consent, div.pop-up")
         config.set("DEFAULT", "EXTRACTION_TIMEOUT", "30")
-        #config.set("DEFAULT", "EXTRACTION_MIN_LENGTH", "200")
-        #config.set("DEFAULT", "EXTRACTION_MAX_LENGTH", "10000")
-        #config.set("DEFAULT", "EXTRACTION_KEYWORDS", "news, article, content")
         config.set("DEFAULT", "EXTRACTION_KEYWORDS_THRESHOLD", "0.5")
         config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE", "advertisement, promo")
         config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_THRESHOLD", "0.5")
@@ -233,7 +250,7 @@ class BaseScraper:
 
         return content_dict
 
-    def check_for_paywall(self, paywall_strategy=WEBSITE_STRATEGIES["spiegel"]["paywall"]):
+    def check_for_paywall(self, paywall_strategy: List[Tuple[str, str]] = WEBSITE_STRATEGIES["spiegel"]["paywall"]) -> bool:
         """Check if the page is paywalled"""
         original_wait = self.wait
         self.wait = WebDriverWait(self.driver, 1)
@@ -246,24 +263,15 @@ class BaseScraper:
         finally:
             self.wait = original_wait
 
-    def save_extracted_data(self):
+    def save_extracted_data(self) -> None:
         """Save the extracted data to a file"""
         filename = "extracted_data.json"
-        main_text_to_vectorize, lead_text_to_vectorize, return_url, author, date = self._extract_content()
-        main_text_vectorized = self.vectorize_text(main_text_to_vectorize)
-        lead_text_vectorized = self.vectorize_text(lead_text_to_vectorize)
-        data = {
-            "main_text_vector": main_text_vectorized,
-            "lead_text_vector": lead_text_vectorized,
-            "return_url": return_url,
-            "author": author,
-            "date": date
-        }
+        content_dict = self._extract_content()
         with open(filename, "w") as f:
-            json.dump(data, f)
+            json.dump(content_dict, f)
         logger.info(f"Extracted data saved to {filename}")
 
-    def retry_request(self, url, retries=3, delay=5):
+    def retry_request(self, url: str, retries: int = 3, delay: int = 5) -> requests.Response:
         """Retry logic for network requests"""
         for attempt in range(retries):
             try:
@@ -275,7 +283,7 @@ class BaseScraper:
                 time.sleep(delay)
         raise RequestException(f"Failed to fetch {url} after {retries} attempts")
 
-    def patch_last_online_verification_date(self, auth_token, scraped_urls_already_in_db):
+    def patch_last_online_verification_date(self, auth_token: str, scraped_urls_already_in_db: List[str]) -> List[requests.Response]:
         """Update the last online verification date in a content_dict"""
         data_uploader = DataUploader(auth_token)
 
@@ -288,7 +296,7 @@ class BaseScraper:
 
         return responses
 
-    def reverify_articles(self, urls, keycloak_token):
+    def reverify_articles(self, urls: List[str], keycloak_token: str) -> List[str]:
         """Reverify articles that are already in the database.
         
         This method takes a list of URLs that the scraper found on the website,
@@ -296,20 +304,122 @@ class BaseScraper:
         last_online_verification_date field for these articles in the database, and returns
         a list of articles that are NOT already in the database.
         """
-        # Initialize DataDownloader to interact with the database
         data_downloader = DataDownloader(keycloak_token)
-
-        # Rehydrate articles from the database that match the provided URLs
         articles_in_db = []
-        for url in urls:
+        articles_not_in_db = []
+
+        def process_url(url):
             status_code = data_downloader.get_content_rehydrate_status_code_only(url=url)
             if status_code == 200:
                 articles_in_db.append(url)
-                # Update the last_online_verification_date field for these articles
                 self.patch_last_online_verification_date(keycloak_token, [url])
+                logger.info(f"Article reverified and updated last_online_verification_date: {url}")
+            else:
+                articles_not_in_db.append(url)
 
-        # Return the list of articles that are already in the database
-        return articles_in_db
+        with ThreadPoolExecutor(max_workers=10) as executor:  # Adjust max_workers as needed
+            list(executor.map(process_url, urls))
+
+        return articles_not_in_db
+    
+    def _get_all_article_urls_on_current_page(self) -> List[str]:
+        """Get all article URLs from the current page
+
+        Returns:
+            List[str]: A list of article URLs found on the current page.
+        """
+        # Retrieve all URLs from the current page using the base scraper method
+        all_urls = self._get_all_urls_on_current_page()
+        # Filter URLs that match the article URL pattern
+        article_urls = [url for url in all_urls if re.match(self.article_url_pattern, url)]
+        logger.info(f"Found {len(article_urls)} article URLs on the current page: {self.driver.current_url}")  # Log the count of found URLs
+        return article_urls
+
+    def _get_subpage_urls_on_current_page(self) -> List[str]:
+        """Get all subpage URLs from the current page
+
+        Returns:
+            List[str]: A list of subpage URLs found on the current page.
+        """
+        # Retrieve all URLs from the current page
+        all_urls = self._get_all_urls_on_current_page()
+        # Filter URLs that match the subpage URL pattern
+        subpage_urls = [url for url in all_urls if re.match(self.subpage_url_pattern, url)]
+        return subpage_urls
+
+    def _get_all_article_urls_on_subpages(self) -> List[str]:
+        """Get all article URLs from the subpages
+        
+        Returns:
+            List[str]: A list of all article URLs found on subpages.
+        """
+        # Get all subpage URLs from the current page
+        subpage_urls = self._get_subpage_urls_on_current_page()
+        all_article_urls = []  # Initialize a list to store all article URLs
+        
+        # Iterate through each subpage URL
+        for url in subpage_urls:
+            try:
+                # Navigate to the subpage
+                self.navigate_to(url)
+                # Collect article URLs from the subpage
+                all_article_urls += self._get_all_article_urls_on_current_page()
+            except StaleElementReferenceException:
+                # Log a warning if a stale element reference exception occurs
+                logger.warning(f"StaleElementReferenceException occurred while navigating to {url}")
+                continue  # Skip to the next URL if an exception occurs
+        return all_article_urls
+        
+    def get_article_urls(self) -> List[str]:
+        """Get all unique article URLs from the main page and subpages
+
+        Returns:
+            List[str]: A list of all unique article URLs.
+        """
+        # Navigate to the base URL of the scraper
+        self.navigate_to(self.base_url)
+        # Get article URLs from the main page
+        startpage_urls = self._get_all_article_urls_on_current_page()
+        # Get article URLs from subpages
+        subpage_urls = self._get_all_article_urls_on_subpages()
+        # Combine and deduplicate the URLs
+        all_article_urls = list(set(startpage_urls + subpage_urls))
+        return all_article_urls
+
+    def scrape(self, urls_to_scrape: List[str]):
+        """Scrape articles from the Spiegel website
+        
+        Args:
+            keycloak_token: The token used for article verification.
+            urls_to_scrape: The list of URLs to scrape.
+        
+        Returns:
+            List[dict]: A list of dictionaries containing article content and metadata.
+        """
+
+        all_articles_content = []  # Initialize a list to store the content of all articles
+
+        # Iterate through each URL to scrape content
+        for url in urls_to_scrape:
+            try:
+                # Navigate to the article URL
+                self.navigate_to(url)
+                # Extract content and metadata from the article
+                article_content_and_metadata = super()._extract_content()
+                # Add additional metadata
+                article_content_and_metadata["medium"] = {"readable_id": self.crawler_medium}
+                article_content_and_metadata["crawler_medium"] = self.crawler_medium
+                article_content_and_metadata["crawler_version"] = "0.1"
+                # Append the content to the results list
+                all_articles_content.append(article_content_and_metadata)
+                logger.info(f"Extracted content from {url}")  # Log successful extraction
+            except Exception as e:
+                # Log an error if content extraction fails
+                logger.error(f"Failed to extract content from {url}: {e}")
+
+        # Close the browser after scraping
+        super().close_browser()
+        return all_articles_content
     
 
 

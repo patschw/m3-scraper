@@ -1,0 +1,660 @@
+1725355577506	geckodriver	INFO	Listening on 127.0.0.1:51799
+1725355580577	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileue84xB"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725355581068	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725355581313	Marionette	INFO	Listening on port 51811
+Read port: 51811
+1725355581560	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13040 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725355612308	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+1725355805840	geckodriver	INFO	Listening on 127.0.0.1:52017
+1725355808891	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile37q9tE"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725355809283	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725355809502	Marionette	INFO	Listening on port 52028
+Read port: 52028
+1725355809757	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 12975 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript warning: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Script terminated by timeout at:
+onVisibilityChange@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54401
+165/initPageVisibilityAPI/this.boundOnPageHide@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54209
+
+1725355827985	Marionette	INFO	Stopped listening on port 52028
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725355833644	geckodriver	INFO	Listening on 127.0.0.1:52094
+1725355836700	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileAwJvGb"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725355837020	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725355837208	Marionette	INFO	Listening on port 52105
+Read port: 52105
+1725355837364	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript warning: https://cdn.prod.www.spiegel.de/public/shared/generated/js/commons.09e03007189a02c6b596.js, line 3: Script terminated by timeout at:
+a.d@https://cdn.prod.www.spiegel.de/public/shared/generated/js/commons.09e03007189a02c6b596.js:3:2407
+705@https://cdn.prod.www.spiegel.de/public/shared/generated/js/vendors.298adb1b0c634b40269b.js:1:5563
+a@https://cdn.prod.www.spiegel.de/public/shared/generated/js/commons.09e03007189a02c6b596.js:3:1493
+165@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:174
+a@https://cdn.prod.www.spiegel.de/public/shared/generated/js/commons.09e03007189a02c6b596.js:3:1493
+@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:201549
+a.O@https://cdn.prod.www.spiegel.de/public/shared/generated/js/commons.09e03007189a02c6b596.js:3:1763
+@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:201569
+t@https://cdn.prod.www.spiegel.de/public/shared/generated/js/commons.09e03007189a02c6b596.js:3:4148
+@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:68
+
+JavaScript error: moz-extension://c02f4c61-9a82-47fe-81ff-e5e5b6526075/js/contentscript.js, line 487: NS_ERROR_NOT_INITIALIZED: 
+JavaScript error: resource://gre/modules/ConduitsChild.sys.mjs, line 64: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: moz-extension://c02f4c61-9a82-47fe-81ff-e5e5b6526075/js/vapi-client.js, line 220: InvalidStateError: An exception was thrown
+1725355844291	Marionette	INFO	Stopped listening on port 52105
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725357984070	geckodriver	INFO	Listening on 127.0.0.1:53205
+1725357987159	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilePxKctE"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725357987477	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725357987672	Marionette	INFO	Listening on port 53215
+Read port: 53215
+1725357987832	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13052 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript warning: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Script terminated by timeout at:
+onVisibilityChange@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54401
+initPageVisibilityAPI/this.boundOnPageHide@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54209
+
+1725357995377	Marionette	INFO	Stopped listening on port 53215
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725361194649	geckodriver	INFO	Listening on 127.0.0.1:54087
+1725361197723	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileLsvuTf"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725361198045	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725361198359	Marionette	INFO	Listening on port 54098
+Read port: 54098
+1725361198494	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13180 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/fuermich/ line 3359 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://assets.adobedtm.com/cc10f7b4369d/32ae8c3350c5/launch-8a2e39fde471.min.js, line 9: Error: Identity cookie not found.
+1725361212772	Marionette	INFO	Stopped listening on port 54098
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725363109566	geckodriver	INFO	Listening on 127.0.0.1:55817
+1725363112637	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileJu7Ook"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725363112945	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725363113133	Marionette	INFO	Listening on port 55828
+Read port: 55828
+1725363113292	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js, line 1: Script terminated by timeout at:
+a@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:105561
+78018/W/<@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:106032
+r@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:101849
+
+1725363135029	Marionette	INFO	Stopped listening on port 55828
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725364100472	geckodriver	INFO	Listening on 127.0.0.1:56621
+1725364103525	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofiled3XwhM"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725364103865	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725364104075	Marionette	INFO	Listening on port 56633
+Read port: 56633
+1725364104257	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js, line 1: Script terminated by timeout at:
+a@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:105561
+78018/W/<@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:106032
+r@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:101849
+
+1725364128103	Marionette	INFO	Stopped listening on port 56633
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725364214031	geckodriver	INFO	Listening on 127.0.0.1:57098
+1725364217110	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilejNskgn"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725364217531	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725364217705	Marionette	INFO	Listening on port 57112
+Read port: 57112
+1725364217862	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13034 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript warning: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Script terminated by timeout at:
+onVisibilityChange@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54401
+165/initPageVisibilityAPI/this.boundOnPageHide@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54209
+
+1725364227314	Marionette	INFO	Stopped listening on port 57112
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725364883843	geckodriver	INFO	Listening on 127.0.0.1:57536
+1725364886901	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilemnbtW3"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725364887290	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725364887516	Marionette	INFO	Listening on port 57551
+Read port: 57551
+1725364887816	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript warning: https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js, line 1: Script terminated by timeout at:
+bu@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:195489
+ji@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:181995
+cc/window._sp_.destroyMessages@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:223816
+@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:230868
+
+1725364910537	Marionette	INFO	Stopped listening on port 57551
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725365009854	geckodriver	INFO	Listening on 127.0.0.1:57631
+1725365012886	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilelW2Pld"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725365013215	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725365013427	Marionette	INFO	Listening on port 57641
+Read port: 57641
+1725365013556	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+1725365044801	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1725365136619	geckodriver	INFO	Listening on 127.0.0.1:57851
+1725365139691	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilesg7INj"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725365140012	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725365140238	Marionette	INFO	Listening on port 57862
+Read port: 57862
+1725365140408	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript error: , line 0: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+1725365170919	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1725365185378	geckodriver	INFO	Listening on 127.0.0.1:57953
+1725365188434	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileLHiLHP"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725365188916	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725365189176	Marionette	INFO	Listening on port 57964
+Read port: 57964
+1725365189452	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+1725365218970	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript warning: https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js, line 1: Script terminated by timeout at:
+bu@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:195489
+ji@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:181995
+cc/window._sp_.destroyMessages@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:223816
+@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:230868
+
+1725365221678	Marionette	INFO	Stopped listening on port 57964
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725367180528	geckodriver	INFO	Listening on 127.0.0.1:58935
+1725367183556	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile7MtqT0"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725367183911	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725367184100	Marionette	INFO	Listening on port 58947
+Read port: 58947
+1725367184234	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 12690 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 12690 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725367214752	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1725367315076	geckodriver	INFO	Listening on 127.0.0.1:59108
+1725367318127	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileTyuyvO"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725367318568	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725367318889	Marionette	INFO	Listening on port 59122
+Read port: 59122
+1725367319189	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 12815 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 12815 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725367350412	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+1725367541581	geckodriver	INFO	Listening on 127.0.0.1:59360
+1725367544671	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilea8ZO2v"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725367544985	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725367545181	Marionette	INFO	Listening on port 59372
+Read port: 59372
+1725367545333	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 12808 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/ line 12808 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/panorama/ line 5048 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4833 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4747 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5378 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/geschichte/ line 8324 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 16035 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725367575061	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 350: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/politik/ line 4821 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5145 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5048 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4833 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/geschichte/ line 8324 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/ausland/ line 5145 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4747 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5378 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 6419 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725368201220	geckodriver	INFO	Listening on 127.0.0.1:59792
+1725368204291	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileFXqA2V"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725368204736	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725368204963	Marionette	INFO	Listening on port 59804
+Read port: 59804
+1725368205144	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 350: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/ line 12808 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 12808 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/fuermich/ line 3359 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15992 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/spiegel/print/index-2024-36.html line 13 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/fuermich/ line 3359 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15992 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5145 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725368234806	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4833 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/start/ line 5378 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/geschichte/ line 8324 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5378 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15992 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/ausland/ line 5145 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5048 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4833 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4747 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/backstage/ line 4779 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 6419 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1725368544470	geckodriver	INFO	Listening on 127.0.0.1:60099
+1725368547534	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileArDUwT"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725368547854	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725368548059	Marionette	INFO	Listening on port 60110
+Read port: 60110
+1725368548222	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 565))
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 565))
+JavaScript error: resource:///modules/FaviconLoader.sys.mjs, line 581: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: resource:///modules/FaviconLoader.sys.mjs, line 581: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+console.error: (new InvalidStateError("JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment", (void 0), 565))
+JavaScript error: resource:///modules/FaviconLoader.sys.mjs, line 581: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: , line 0: uncaught exception: undefined
+Port.onMessage event fired while context is inactive.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Port.onMessage event fired while context is inactive.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/video/ line 13443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/politik/ line 4821 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5145 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5048 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 4832 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5378 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8324 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725368577982	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15992 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5342 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5145 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/panorama/ line 5048 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5095 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4833 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4747 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4736 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4925 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5378 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 8324 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/backstage/ line 4779 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 6419 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725369435181	geckodriver	INFO	Listening on 127.0.0.1:61072
+1725369438233	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileTXwx8S"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725369438597	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725369438801	Marionette	INFO	Listening on port 61083
+Read port: 61083
+1725369438977	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 12886 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 12883 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725369469549	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1725369494716	geckodriver	INFO	Listening on 127.0.0.1:61192
+1725369497770	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilesbJH2h"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725369498097	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725369498297	Marionette	INFO	Listening on port 61203
+Read port: 61203
+1725369498452	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 12911 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725369528237	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.
+1725370033489	geckodriver	INFO	Listening on 127.0.0.1:61801
+1725370036546	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilea2wNwW"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725370036899	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725370037126	Marionette	INFO	Listening on port 61812
+Read port: 61812
+1725370037330	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 12801 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725370068026	addons.xpi	ERROR	System addon update list error SyntaxError: XMLHttpRequest.open: 'http://%(server)s/dummy-system-addons.xml' is not a valid URL.

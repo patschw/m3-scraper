@@ -2,10 +2,12 @@ from config import BASE_URLS
 from database_handling.KeycloakLogin import KeycloakLogin
 import requests
 import json
+import logging
 
 
 #TODO: Status code ausgeben, damit im final laufenden scraper script gechecked werden kann, ob der download erfolgreich war
 
+logger = logging.getLogger(__name__)
 
 class DataDownloader:
     def __init__(self, auth_token):
@@ -22,7 +24,7 @@ class DataDownloader:
         """Utility method to build query string from filters."""
         # This method converts filter arguments into a dictionary that `requests` can use.
         query = {}
-        for key, value in filters.items():
+        for key, value in params.items():
             if value is not None:  # This ensures only provided filters are included
                 query[key] = value
         return query
@@ -55,17 +57,14 @@ class DataDownloader:
             return self._return_response(response)
 
     def _get_data_status_code_only(self, endpoint, **params):
-        """Sends a GET request to the specified endpoint with optional parameters."""
+        """Sends a GET request to the specified endpoint and returns only the status code."""
         url = f'{self.base_url}{endpoint}'
         try:
-             # Send the GET request with stream=True to prevent immediate download of the body
-            response = requests.get(url, params=params, stream=True)
-            response.raise_for_status()  # Raises a HTTPError if the status is 4xx, 5xx
-        except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
-            return None
-        else:
+            response = requests.get(url, params=params, stream=True, timeout=5)
             return response.status_code
+        except requests.exceptions.RequestException as e:
+            logger.error(f"An error occurred while checking {url}: {e}")
+            return None
 
     def get_profile(self):
         """Fetches profile information."""

@@ -1,5 +1,4 @@
 # config.py:
-
 from selenium.webdriver.common.by import By
 
 # Define the strategy lists for different websites
@@ -97,6 +96,26 @@ WEBSITE_STRATEGIES = {
         ]
     },
 
+}
+
+# Regex patterns for article and subpage URLs
+PATTERNS = {
+    'spiegel': {
+        'article_url': r'https://www\.spiegel\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'subpage_url': r'^https://www\.spiegel\.de/[a-z]+/$'
+    }, 
+    'sueddeutsche': {
+        'article_url': r'^https:\/\/www\.sueddeutsche\.de\/(politik|wirtschaft|kultur|panorama|sport|projekte\/artikel|wissen|karriere|auto|stil|leben|deutschland|welt|meinung|digital|gesellschaft|muenchen)\/[\w\-]+(\/[\w\-]+)+\/?(e\d+|lux\.[\w]+)?\/?$',
+        'subpage_url': r'^https://www\.sueddeutsche\.de/[a-zA-Z0-9]+(?:/[a-zA-Z0-9_-]+)?$'
+    },
+    'zeit': {
+        'article_url': r'https://www\.zeit\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'subpage_url': r'^https://www\.zeit\.de/[a-z]+/$'
+    },
+    'bayerischer_rundfunk': {
+        'article_url': r'https://www\.br\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'subpage_url': r'^https://www\.br\.de/[a-z]+/$'
+    }
 }
 
 
