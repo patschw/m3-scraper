@@ -1,5 +1,6 @@
 # config.py:
 from selenium.webdriver.common.by import By
+import re
 
 # Define the strategy lists for different websites
 WEBSITE_STRATEGIES = {
@@ -98,24 +99,36 @@ WEBSITE_STRATEGIES = {
 
 }
 
+# Base URLs for the different websites
+# RULE: THE URL HERE ENDS WITH A SLASH, THE REMAINDER PART OF THE URL IN THE CODE DOES NOT START WITH A SLASH
+BASE_URLS = {"m3-api-base": "https://api.m3.ifkw.lmu.de/",
+            "spiegel": "https://www.spiegel.de/", 
+            "zeit": "https://www.zeit.de/", 
+            "sueddeutsche": "https://www.sueddeutsche.de/",
+            "bayerischer_rundfunk": "https://www.br.de/nachrichten/"}
+
 # Regex patterns for article and subpage URLs
 PATTERNS = {
     'spiegel': {
-        'article_url': r'https://www\.spiegel\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
-        'subpage_url': r'^https://www\.spiegel\.de/[a-z]+/$'
+        'article_url': re.escape(BASE_URLS["spiegel"]) + '.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'subpage_url': '^' + re.escape(BASE_URLS["spiegel"]) + '[a-z]+/$'
     }, 
+    # 'sueddeutsche': {
+    #     'article_url': '^https:\/\/www\.sueddeutsche\.de\/(politik|wirtschaft|kultur|panorama|sport|projekte\/artikel|wissen|karriere|auto|stil|leben|deutschland|welt|meinung|digital|gesellschaft|muenchen)\/[\w\-]+(\/[\w\-]+)+\/?(e\d+|lux\.[\w]+)?\/?$',
+    #     'subpage_url': '^https://www\.sueddeutsche\.de/[a-zA-Z0-9]+(?:/[a-zA-Z0-9_-]+)?$'
+    # },
     'sueddeutsche': {
-        'article_url': r'^https:\/\/www\.sueddeutsche\.de\/(politik|wirtschaft|kultur|panorama|sport|projekte\/artikel|wissen|karriere|auto|stil|leben|deutschland|welt|meinung|digital|gesellschaft|muenchen)\/[\w\-]+(\/[\w\-]+)+\/?(e\d+|lux\.[\w]+)?\/?$',
-        'subpage_url': r'^https://www\.sueddeutsche\.de/[a-zA-Z0-9]+(?:/[a-zA-Z0-9_-]+)?$'
+        'article_url': re.escape(BASE_URLS["sueddeutsche"]) + '[a-z-]+/[a-z-]+-(?:lux\.[A-Za-z0-9]+|[0-9.]+)$',
+        'subpage_url': '^' + re.escape(BASE_URLS["sueddeutsche"]) + '(?!supplements|cbd/|[^/]+\.sueddeutsche\.de)[a-zA-Z0-9]+(?:/[a-zA-Z0-9_-]+)?$'
     },
     'zeit': {
-        'article_url': r'https://www\.zeit\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
-        'subpage_url': r'^https://www\.zeit\.de/[a-z]+/$'
+        'article_url': re.escape(BASE_URLS["zeit"]) + '.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'subpage_url': '^' + re.escape(BASE_URLS["zeit"]) + '[a-z]+/$'
     },
     'bayerischer_rundfunk': {
-        'article_url': r'https://www\.br\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
-        'subpage_url': r'^https://www\.br\.de/[a-z]+/$'
-    }
+        'article_url': '^' + re.escape(BASE_URLS["bayerischer_rundfunk"]) + r'[a-z]+/[a-z-]+-[a-z-]+,[A-Z0-9]{6,8}$',
+        'subpage_url': '^' + re.escape(BASE_URLS["bayerischer_rundfunk"]) + r'[a-z-]{1,2},[A-Z0-9]{6,8}$'
+    },
 }
 
 
@@ -131,14 +144,6 @@ LOGIN_URLS = {"spiegel": "https://gruppenkonto.spiegel.de/anmelden.html",
               "zeit": "https://meine.zeit.de/anmelden",
               "sueddeutsche": "https://www.sueddeutsche.de/?piano-screen=login"}
 
-
-# Base URLs for the different websites
-# RULE: THE URL HERE ENDS WITH A SLASH, THE REMAINDER PART OF THE URL IN THE CODE DOES NOT START WITH A SLASH
-BASE_URLS = {"m3-api-base": "https://api.m3.ifkw.lmu.de/",
-            "spiegel": "https://www.spiegel.de/", 
-            "zeit": "https://www.zeit.de/", 
-            "sueddeutsche": "https://www.sueddeutsche.de/",
-            "bayerischer_rundfunk": "https://www.br.de/nachrichten/"}
 
 # transformer models used for vectorisation
 TRANSFORMER_MODEL_NAMES_DICT = {'bert': 'deepset/gbert-large', 

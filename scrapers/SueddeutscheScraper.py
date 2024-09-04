@@ -50,6 +50,8 @@ class SueddeutscheScraper(BaseScraper):
     def start_browser(self):
         """Start the browser and initialize the WebDriver and WebDriverWait instances"""
         # Check if the ChromeDriver path is already set; if not, install it
+        # firefox has weird ad blockers that makes it impossible to scrape suddeutsche
+        # therefore we use chrome
         if SueddeutscheScraper.chromedriver_path is None:
             SueddeutscheScraper.chromedriver_path = ChromeDriverManager().install()
         
@@ -77,6 +79,7 @@ class SueddeutscheScraper(BaseScraper):
 
     def login(self) -> None:
         """Login to the website using the strategies defined in the config"""
+        sleep(3)
         try:
             # Retrieve credentials from the specified path
             email, password = self.get_credentials(CREDENTIALS_PATH)
@@ -96,106 +99,106 @@ class SueddeutscheScraper(BaseScraper):
         except Exception as e:
             logger.error(f"Login failed: {e}")  # Log any errors during login
 
-    def _get_all_article_urls_on_current_page(self) -> List[str]:
-        """Get all URLs from the current page and filter for URLs using the config pattern
+    # def _get_all_article_urls_on_current_page(self) -> List[str]:
+    #     """Get all URLs from the current page and filter for URLs using the config pattern
         
-        Returns:
-            List[str]: A list of article URLs found on the current page.
-        """
-        # Retrieve all URLs from the current page using the base scraper method
-        all_urls = super().get_all_urls_on_current_page()
-        # Filter URLs that match the article URL pattern
-        article_urls = [url for url in all_urls if re.match(self.article_url_pattern, url)]
-        logger.info(f"Found {len(article_urls)} article URLs on the current page.")  # Log the count of found URLs
-        return article_urls
+    #     Returns:
+    #         List[str]: A list of article URLs found on the current page.
+    #     """
+    #     # Retrieve all URLs from the current page using the base scraper method
+    #     all_urls = super()._get_all_urls_on_current_page()
+    #     # Filter URLs that match the article URL pattern
+    #     article_urls = [url for url in all_urls if re.match(self.article_url_pattern, url)]
+    #     logger.info(f"Found {len(article_urls)} article URLs on the current page.")  # Log the count of found URLs
+    #     return article_urls
 
-    def _get_subpage_urls_on_current_page(self) -> List[str]:
-        """Get all subpage URLs from the current page using the config pattern
+    # def _get_subpage_urls_on_current_page(self) -> List[str]:
+    #     """Get all subpage URLs from the current page using the config pattern
         
-        Returns:
-            List[str]: A list of subpage URLs found on the current page.
-        """
-        # Retrieve all URLs from the current page
-        all_urls = super().get_all_urls_on_current_page()
-        # Filter URLs that match the subpage URL pattern
-        subpage_urls = [url for url in all_urls if re.match(self.subpage_url_pattern, url)]
-        return subpage_urls
+    #     Returns:
+    #         List[str]: A list of subpage URLs found on the current page.
+    #     """
+    #     # Retrieve all URLs from the current page
+    #     all_urls = super()._get_all_urls_on_current_page()
+    #     # Filter URLs that match the subpage URL pattern
+    #     subpage_urls = [url for url in all_urls if re.match(self.subpage_url_pattern, url)]
+    #     return subpage_urls
 
-    def _get_all_article_urls_on_subpages(self) -> List[str]:
-        """Get all article URLs from the subpages
+    # def _get_all_article_urls_on_subpages(self) -> List[str]:
+    #     """Get all article URLs from the subpages
         
-        Returns:
-            List[str]: A list of all article URLs found on subpages.
-        """
-        # Get all subpage URLs from the current page
-        subpage_urls = self._get_subpage_urls_on_current_page()
-        all_article_urls = []  # Initialize a list to store all article URLs
+    #     Returns:
+    #         List[str]: A list of all article URLs found on subpages.
+    #     """
+    #     # Get all subpage URLs from the current page
+    #     subpage_urls = self._get_subpage_urls_on_current_page()
+    #     all_article_urls = []  # Initialize a list to store all article URLs
         
-        # Iterate through each subpage URL
-        for url in subpage_urls:
-            try:
-                # Navigate to the subpage
-                self.navigate_to(url)
-                # Collect article URLs from the subpage
-                all_article_urls += self._get_all_article_urls_on_current_page()
-            except StaleElementReferenceException:
-                # Log a warning if a stale element reference exception occurs
-                logger.warning(f"StaleElementReferenceException occurred while navigating to {url}")
-                continue  # Skip to the next URL if an exception occurs
-        return all_article_urls
+    #     # Iterate through each subpage URL
+    #     for url in subpage_urls:
+    #         try:
+    #             # Navigate to the subpage
+    #             self.navigate_to(url)
+    #             # Collect article URLs from the subpage
+    #             all_article_urls += self._get_all_article_urls_on_current_page()
+    #         except StaleElementReferenceException:
+    #             # Log a warning if a stale element reference exception occurs
+    #             logger.warning(f"StaleElementReferenceException occurred while navigating to {url}")
+    #             continue  # Skip to the next URL if an exception occurs
+    #     return all_article_urls
 
-    def _get_article_urls(self) -> List[str]:
-        """Get all unique article URLs from the base URL and its subpages
+    # def _get_article_urls(self) -> List[str]:
+    #     """Get all unique article URLs from the base URL and its subpages
         
-        Returns:
-            List[str]: A list of all unique article URLs.
-        """
-        # Navigate to the base URL of the scraper
-        self.navigate_to(self.base_url)
-        # Get article URLs from the main page
-        startpage_urls = self._get_all_article_urls_on_current_page()
-        # Get article URLs from subpages
-        subpage_urls = self._get_all_article_urls_on_subpages()
-        # Combine and deduplicate the URLs
-        all_article_urls = list(set(startpage_urls + subpage_urls))
-        return all_article_urls
+    #     Returns:
+    #         List[str]: A list of all unique article URLs.
+    #     """
+    #     # Navigate to the base URL of the scraper
+    #     self.navigate_to(self.base_url)
+    #     # Get article URLs from the main page
+    #     startpage_urls = self._get_all_article_urls_on_current_page()
+    #     # Get article URLs from subpages
+    #     subpage_urls = self._get_all_article_urls_on_subpages()
+    #     # Combine and deduplicate the URLs
+    #     all_article_urls = list(set(startpage_urls + subpage_urls))
+    #     return all_article_urls
 
-    def scrape(self, keycloak_token):
-        """Scrape all articles and return their content
+    # def scrape(self, keycloak_token):
+    #     """Scrape all articles and return their content
         
-        Args:
-            keycloak_token: The token used for article verification.
+    #     Args:
+    #         keycloak_token: The token used for article verification.
         
-        Returns:
-            List[dict]: A list of dictionaries containing article content and metadata.
-        """
-        # Get all article URLs to scrape
-        all_article_urls = self._get_article_urls()
-        # Verify the articles using the base scraper method
-        urls_to_scrape = super().reverify_articles(all_article_urls, keycloak_token)
-        all_articles_content = []  # Initialize a list to store the content of all articles
+    #     Returns:
+    #         List[dict]: A list of dictionaries containing article content and metadata.
+    #     """
+    #     # Get all article URLs to scrape
+    #     all_article_urls = self._get_article_urls()
+    #     # Verify the articles using the base scraper method
+    #     urls_to_scrape = super().reverify_articles(all_article_urls, keycloak_token)
+    #     all_articles_content = []  # Initialize a list to store the content of all articles
 
-        # Iterate through each URL to scrape content
-        for url in urls_to_scrape:
-            try:
-                # Navigate to the article URL
-                self.navigate_to(url)
-                # Extract content and metadata from the article
-                article_content_and_metadata = super()._extract_content()
-                # Add additional metadata
-                article_content_and_metadata["medium"] = {"readable_id": self.crawler_medium}
-                article_content_and_metadata["crawler_medium"] = self.crawler_medium
-                article_content_and_metadata["crawler_version"] = "0.1"
-                # Append the content to the results list
-                all_articles_content.append(article_content_and_metadata)
-                logger.info(f"Extracted content from {url}")  # Log successful extraction
-            except Exception as e:
-                # Log an error if content extraction fails
-                logger.error(f"Failed to extract content from {url}: {e}")
+    #     # Iterate through each URL to scrape content
+    #     for url in urls_to_scrape:
+    #         try:
+    #             # Navigate to the article URL
+    #             self.navigate_to(url)
+    #             # Extract content and metadata from the article
+    #             article_content_and_metadata = super()._extract_content()
+    #             # Add additional metadata
+    #             article_content_and_metadata["medium"] = {"readable_id": self.crawler_medium}
+    #             article_content_and_metadata["crawler_medium"] = self.crawler_medium
+    #             article_content_and_metadata["crawler_version"] = "0.1"
+    #             # Append the content to the results list
+    #             all_articles_content.append(article_content_and_metadata)
+    #             logger.info(f"Extracted content from {url}")  # Log successful extraction
+    #         except Exception as e:
+    #             # Log an error if content extraction fails
+    #             logger.error(f"Failed to extract content from {url}: {e}")
 
-        # Close the browser after scraping
-        super().close_browser()
-        return all_articles_content
+    #     # Close the browser after scraping
+    #     super().close_browser()
+    #     return all_articles_content
 
     def find_dynamic_iframe(self):
         """Find and return the correct iframe for login

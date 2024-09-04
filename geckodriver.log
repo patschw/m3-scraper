@@ -1011,3 +1011,148 @@ Port.onMessage event fired while context is inactive.
 JavaScript error: https://www.spiegel.de/tests/ line 8983 > injectedScript, line 10: TypeError: _satellite.logger is not a function
 JavaScript error: https://www.spiegel.de/backstage/ line 4779 > injectedScript, line 10: TypeError: _satellite.logger is not a function
 JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 7410 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725439438371	geckodriver	INFO	Listening on 127.0.0.1:55509
+1725439441401	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileSLKXES"
+1725445931491	geckodriver	INFO	Listening on 127.0.0.1:51428
+1725445934549	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileywB5Ft"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725445935074	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725445935378	Marionette	INFO	Listening on port 51439
+Read port: 51439
+1725445935663	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13246 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 13246 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+Port.onMessage event fired while context is inactive.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Port.onMessage event fired while context is inactive.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/plus/ line 5456 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+Port.onMessage event fired while context is inactive.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5335 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5456 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/plus/ line 5456 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5456 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13275 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/politik/ line 4789 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 4967 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4761 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4834 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5184 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4755 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4921 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/karriere/ line 5125 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4806 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8980 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8980 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/tests/ line 8980 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Error: ScriptUtils error: failed to load script "logora-debat" from https://cdn.logora.com/debat.js
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5456 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5055 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4834 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4761 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4755 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/kultur/ line 4921 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/stil/ line 4875 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4762 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://www.spiegel.de/familie/ line 4949 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4845 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://www.spiegel.de/karriere/ line 5125 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 5443 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4806 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5449 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5433 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5327 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 8980 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 5366 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+1725448068844	geckodriver	INFO	Listening on 127.0.0.1:62875
+1725448071868	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilekOpCMQ"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725448072464	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725448072751	Marionette	INFO	Listening on port 62886
+Read port: 62886
+1725448073040	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1725448153434	geckodriver	INFO	Listening on 127.0.0.1:63030
+1725448156507	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileQQFrua"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725448156942	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725448157225	Marionette	INFO	Listening on port 63041
+Read port: 63041
+1725448157469	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js, line 1: Script terminated by timeout at:
+a@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:105561
+78018/W/<@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:106032
+r@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:101849
+
+JavaScript warning: https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js, line 1: Script terminated by timeout at:
+a@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:105561
+78018/W/<@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:106032
+r@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:101849
+
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1725448394306	geckodriver	INFO	Listening on 127.0.0.1:63264
+1725448397375	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileJlLl0u"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725448397705	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725448397934	Marionette	INFO	Listening on port 63275
+Read port: 63275
+1725448398126	RemoteAgent	WARN	TLS certificate errors will be ignored for this session

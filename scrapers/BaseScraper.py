@@ -101,15 +101,15 @@ class BaseScraper:
     def _get_all_urls_on_current_page(self) -> List[str]:
         """Get all URLs from the current page."""
         try:
-            # Wait until all anchor elements are present
-            self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[href]')))
-            # Execute JavaScript to get all href attributes from anchor elements
+            # Wait for the body element to be present, which indicates the page has loaded
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
+            
+            # Use JavaScript to get all URLs
             urls = self.driver.execute_script('''
-                return Array.from(document.querySelectorAll('a'))
-                            .map(a => a.href)
-                            .filter(href => href);
+                return Array.from(document.links).map(a => a.href).filter(Boolean);
             ''')
-            return [url for url in urls if url is not None]
+            
+            return urls
         except TimeoutException as e:
             logger.error(f"Timeout while getting URLs on current page: {e}")
             return []
@@ -191,7 +191,7 @@ class BaseScraper:
             # Fallback to the default method if JavaScript execution fails
             return self.driver.page_source
 
-    def _extract_content(self) -> Dict[str, Any]:
+    def _extract_content(self) -> Dict[str, Optional[str]]:
         """Extract the main content from where the driver is currently at using trafilatura."""
         html_content = self._get_page_source()
 
@@ -220,11 +220,7 @@ class BaseScraper:
         try:
             # Extract main text using trafilatura with the configured settings
             main_text = trafilatura.extract(cleaned_html, config=config)
-            if main_text:
-                main_text = main_text.replace('\n', ' ')
-            else:
-                logger.warning("Failed to extract main text")
-                main_text = None
+            main_text = main_text.replace('\n', ' ') if main_text else None
         except (ValueError, TypeError) as e:
             logger.error(f"An error occurred during main text extraction: {e}")
             main_text = None
@@ -232,17 +228,19 @@ class BaseScraper:
         try:
             # Extract metadata using trafilatura with the configured settings
             extracted_metadata = trafilatura.extract_metadata(cleaned_html, config=config)
+            lead_text = extracted_metadata.description.replace('\n', ' ') if extracted_metadata and extracted_metadata.description else ''
+            url = self.driver.current_url
+            extracted_url = extracted_metadata.url if extracted_metadata else None
+            if url != extracted_url:
+                logger.warning(f"URL mismatch: Driver URL '{url}' differs from extracted URL '{extracted_url}'")
         except (ValueError, TypeError) as e:
             logger.error(f"An error occurred during metadata extraction: {e}")
-            extracted_metadata = None
-
-        lead_text = ''
-        if extracted_metadata:
-            lead_text = extracted_metadata.description.replace('\n', ' ') if extracted_metadata.description else ''
+            lead_text = ''
+            url = None
 
         # Create a dictionary with the extracted content and metadata
         content_dict = {
-            "url": extracted_metadata.url if extracted_metadata else None,
+            "url": url,
             "main_text": main_text,
             "lead_text": lead_text,
             "last_online_verification_date": datetime.now().isoformat(),
@@ -250,18 +248,15 @@ class BaseScraper:
 
         return content_dict
 
-    def check_for_paywall(self, paywall_strategy: List[Tuple[str, str]] = WEBSITE_STRATEGIES["spiegel"]["paywall"]) -> bool:
-        """Check if the page is paywalled"""
-        original_wait = self.wait
-        self.wait = WebDriverWait(self.driver, 1)
-
+    def check_for_paywall(self) -> bool:
+        """Check if the page is paywalled using JavaScript."""
         try:
-            if self.find_element(paywall_strategy):
-                return True
-        except (NoSuchElementException, TimeoutException):
+            return self.driver.execute_script('''
+                return Boolean(document.querySelector('.paywall, .paid-content, #paywall-container'));
+            ''')
+        except Exception as e:
+            logger.error(f"Error checking for paywall using JavaScript: {e}")
             return False
-        finally:
-            self.wait = original_wait
 
     def save_extracted_data(self) -> None:
         """Save the extracted data to a file"""
@@ -374,24 +369,32 @@ class BaseScraper:
         Returns:
             List[str]: A list of article URLs found on the current page.
         """
-        # Retrieve all URLs from the current page using the base scraper method
-        all_urls = self._get_all_urls_on_current_page()
-        # Filter URLs that match the article URL pattern
-        article_urls = [url for url in all_urls if re.match(self.article_url_pattern, url)]
-        logger.info(f"Found {len(article_urls)} article URLs on the current page: {self.driver.current_url}")  # Log the count of found URLs
-        return article_urls
+        try:
+            article_urls = self.driver.execute_script(f'''
+                const pattern = new RegExp('{self.article_url_pattern}');
+                return Array.from(document.links)
+                    .map(a => a.href)
+                    .filter(url => pattern.test(url));
+            ''')
+            logger.info(f"Found {len(article_urls)} article URLs on the current page: {self.driver.current_url}")
+            return article_urls
+        except Exception as e:
+            logger.error(f"Error getting article URLs using JavaScript: {e}")
+            return []
 
     def _get_subpage_urls_on_current_page(self) -> List[str]:
-        """Get all subpage URLs from the current page
-
-        Returns:
-            List[str]: A list of subpage URLs found on the current page.
-        """
-        # Retrieve all URLs from the current page
-        all_urls = self._get_all_urls_on_current_page()
-        # Filter URLs that match the subpage URL pattern
-        subpage_urls = [url for url in all_urls if re.match(self.subpage_url_pattern, url)]
-        return subpage_urls
+        """Get all unique subpage URLs from the current page using JavaScript."""
+        try:
+            subpage_urls = self.driver.execute_script(f'''
+                const pattern = new RegExp('{self.subpage_url_pattern}');
+                return [...new Set(Array.from(document.links)
+                    .map(a => a.href)
+                    .filter(url => pattern.test(url)))];
+            ''')
+            return subpage_urls
+        except Exception as e:
+            logger.error(f"Error getting subpage URLs using JavaScript: {e}")
+            return []
 
     def _get_all_article_urls_on_subpages(self) -> List[str]:
         """Get all article URLs from the subpages
@@ -425,13 +428,70 @@ class BaseScraper:
         # Navigate to the base URL of the scraper
         self.navigate_to(self.base_url)
         # Get article URLs from the main page
-        startpage_urls = self._get_all_article_urls_on_current_page()
+        article_urls_from_startpage = self._get_all_article_urls_on_current_page()
         # Get article URLs from subpages
-        subpage_urls = self._get_all_article_urls_on_subpages()
-        # Combine and deduplicate the URLs
-        all_article_urls = list(set(startpage_urls + subpage_urls))
+        article_urls_from_subpages = self._get_all_article_urls_on_subpages()
+        # Combine and deduplicate the URLs using a set
+        all_article_urls = list(dict.fromkeys(article_urls_from_startpage + article_urls_from_subpages))
         return all_article_urls
 
+    def _extract_content(self) -> Dict[str, Optional[str]]:
+        """Extract the main content from the current page using trafilatura."""
+        html_content = self._get_page_source()
+
+        # Preprocess HTML content with BeautifulSoup
+        soup = BeautifulSoup(html_content, 'html.parser')
+        cleaned_html = str(soup)
+
+        # Initialize and configure trafilatura settings
+        config = use_config()
+        config.set("DEFAULT", "EXTRACTION", "true")
+        config.set("DEFAULT", "STRICT", "true")
+        config.set("DEFAULT", "ADVANCED_FILTER", "true")
+        config.set("DEFAULT", "ADBLOCK_FILTERING", "true")
+        config.set("DEFAULT", "NO_FOOTER", "true")
+        config.set("DEFAULT", "EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
+        config.set("DEFAULT", "BLACKLIST_ELEMENTS", "div.cookie-consent, div.pop-up")
+        config.set("DEFAULT", "EXTRACTION_TIMEOUT", "30")
+        config.set("DEFAULT", "EXTRACTION_KEYWORDS_THRESHOLD", "0.5")
+        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE", "advertisement, promo")
+        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_THRESHOLD", "0.5")
+        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
+        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS_THRESHOLD", "0.5")
+        config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS", "div.article, section.content")
+        config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS_THRESHOLD", "0.5")
+
+        try:
+            # Extract main text using trafilatura with the configured settings
+            main_text = trafilatura.extract(cleaned_html, config=config)
+            main_text = main_text.replace('\n', ' ') if main_text else None
+        except (ValueError, TypeError) as e:
+            logger.error(f"An error occurred during main text extraction: {e}")
+            main_text = None
+
+        try:
+            # Extract metadata using trafilatura with the configured settings
+            extracted_metadata = trafilatura.extract_metadata(cleaned_html, config=config)
+            lead_text = extracted_metadata.description.replace('\n', ' ') if extracted_metadata and extracted_metadata.description else ''
+            url = self.driver.current_url
+            extracted_url = extracted_metadata.url if extracted_metadata else None
+            if url != extracted_url:
+                logger.warning(f"URL mismatch: Driver URL '{url}' differs from extracted URL '{extracted_url}'")
+        except (ValueError, TypeError) as e:
+            logger.error(f"An error occurred during metadata extraction: {e}")
+            lead_text = ''
+            url = None
+
+        # Create a dictionary with the extracted content and metadata
+        content_dict = {
+            "url": url,
+            "main_text": main_text,
+            "lead_text": lead_text,
+            "last_online_verification_date": datetime.now().isoformat(),
+        }
+
+        return content_dict
+    
     def scrape(self, urls_to_scrape: List[str]):
         """Scrape articles from the Spiegel website
         
@@ -451,7 +511,7 @@ class BaseScraper:
                 # Navigate to the article URL
                 self.navigate_to(url)
                 # Extract content and metadata from the article
-                article_content_and_metadata = super()._extract_content()
+                article_content_and_metadata = self._extract_content()
                 # Add additional metadata
                 article_content_and_metadata["medium"] = {"readable_id": self.crawler_medium}
                 article_content_and_metadata["crawler_medium"] = self.crawler_medium

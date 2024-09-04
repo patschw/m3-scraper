@@ -11,6 +11,12 @@ import trafilatura
 import json
 from sklearn.feature_extraction.text import CountVectorizer
 from datetime import datetime
+import logging
+from bs4 import BeautifulSoup
+import trafilatura
+from trafilatura.settings import use_config
+
+logger = logging.getLogger(__name__)
 
 class BaseScraper:
     """Base class for all scrapers"""
@@ -171,61 +177,66 @@ class BaseScraper:
         elem_submit.click()
 
     def _extract_content(self):
-        """Extract the main content from where the driver is currently at using trafilatura.
-        Returns a content_dict is already structured in the way the database expects it to be."""
-        # Extract the main content using trafilatura
-        # TODO: use beatifulsoup to preprocess the html content before passing it to trafilatura
-        # # Parse the HTML with BeautifulSoup 
-        # soup = BeautifulSoup(html_content, 'html.parser')
-        html_content = self.driver.page_source
-        
-        # Catch error if trafilatura fails to extract the main text
-        try:
-            main_text = trafilatura.extract(html_content)
-            if main_text is not None:
-                main_text = main_text.replace('\n', ' ')
-            else:
-                print("Failed to extract main text")
-                main_text = None
-        except (ValueError, TypeError) as e:
-            print(f"An error occurred during main text extraction: {e}")
-            main_text = None
-    
-        # Extract metadata
-        try:
-            extracted_metadata = trafilatura.extract_metadata(html_content)
-        except (ValueError, TypeError) as e:
-            print(f"An error occurred during metadata extraction: {e}")
-            extracted_metadata = None
-    
-        # Check if extracted_metadata is None
-        try:
-            if extracted_metadata is None:
-                print("Failed to extract metadata")
-                lead_text = ''  # Set lead_text to an empty string or handle it appropriately
-            else:
-                if extracted_metadata.description is not None:
-                    lead_text = extracted_metadata.description.replace('\n', ' ')
+            """Extract the main content from where the driver is currently at using trafilatura."""
+            html_content = self.driver.page_source
+
+            # Preprocess HTML content with BeautifulSoup
+            soup = BeautifulSoup(html_content, 'html.parser')
+            cleaned_html = str(soup)
+
+            # Initialize and configure trafilatura settings
+            config = use_config()
+            config.set("DEFAULT", "EXTRACTION", "true")
+            config.set("DEFAULT", "STRICT", "true")
+            config.set("DEFAULT", "ADVANCED_FILTER", "true")
+            config.set("DEFAULT", "ADBLOCK_FILTERING", "true")
+            config.set("DEFAULT", "NO_FOOTER", "true")
+            config.set("DEFAULT", "EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
+            config.set("DEFAULT", "BLACKLIST_ELEMENTS", "div.cookie-consent, div.pop-up")
+            config.set("DEFAULT", "EXTRACTION_TIMEOUT", "30")
+            #config.set("DEFAULT", "EXTRACTION_MIN_LENGTH", "200")
+            #config.set("DEFAULT", "EXTRACTION_MAX_LENGTH", "10000")
+            #config.set("DEFAULT", "EXTRACTION_KEYWORDS", "news, article, content")
+            config.set("DEFAULT", "EXTRACTION_KEYWORDS_THRESHOLD", "0.5")
+            config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE", "advertisement, promo")
+            config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_THRESHOLD", "0.5")
+            config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
+            config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS_THRESHOLD", "0.5")
+            config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS", "div.article, section.content")
+            config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS_THRESHOLD", "0.5")
+
+            try:
+                # Extract main text using trafilatura with the configured settings
+                main_text = trafilatura.extract(cleaned_html, config=config)
+                if main_text:
+                    main_text = main_text.replace('\n', ' ')
                 else:
-                    lead_text = ''
-        except AttributeError as e:
-            print(f"An error occurred during lead text extraction: {e}")
+                    logger.warning("Failed to extract main text")
+                    main_text = None
+            except (ValueError, TypeError) as e:
+                logger.error(f"An error occurred during main text extraction: {e}")
+                main_text = None
+
+            try:
+                # Extract metadata using trafilatura with the configured settings
+                extracted_metadata = trafilatura.extract_metadata(cleaned_html, config=config)
+            except (ValueError, TypeError) as e:
+                logger.error(f"An error occurred during metadata extraction: {e}")
+                extracted_metadata = None
+
             lead_text = ''
-    
-        # Check if the URL matches the extracted URL
-        url = extracted_metadata.url if extracted_metadata else None
-        author = extracted_metadata.author if extracted_metadata else None
-        date = extracted_metadata.date if extracted_metadata else None
-    
-        # Create a dictionary with the extracted content and metadata
-        content_dict = {
-            "url": url,
-            "main_text": main_text,
-            "lead_text": lead_text,
-            "last_online_verification_date": datetime.now().isoformat(),
-        }
-    
-        return content_dict
+            if extracted_metadata:
+                lead_text = extracted_metadata.description.replace('\n', ' ') if extracted_metadata.description else ''
+
+            # Create a dictionary with the extracted content and metadata
+            content_dict = {
+                "url": extracted_metadata.url if extracted_metadata else None,
+                "main_text": main_text,
+                "lead_text": lead_text,
+                "last_online_verification_date": datetime.now().isoformat(),
+            }
+
+            return content_dict
 
     def check_for_paywall(self, paywall_strategy = WEBSITE_STRATEGIES["spiegel"]["paywall"]):
         """Check if the page is paywalled"""
