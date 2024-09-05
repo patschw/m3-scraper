@@ -1,6 +1,5 @@
 # config.py:
 from selenium.webdriver.common.by import By
-import re
 
 # Define the strategy lists for different websites
 WEBSITE_STRATEGIES = {
@@ -110,25 +109,28 @@ BASE_URLS = {"m3-api-base": "https://api.m3.ifkw.lmu.de/",
 # Regex patterns for article and subpage URLs
 PATTERNS = {
     'spiegel': {
-        'article_url': re.escape(BASE_URLS["spiegel"]) + '.+/.+-[a-z0-9\-]+(?<!\d{4})$',
-        'subpage_url': '^' + re.escape(BASE_URLS["spiegel"]) + '[a-z]+/$'
+        'article_url': 'https://www\.spiegel\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'subpage_url': '^https://www\.spiegel\.de/[a-z]+/$'
     }, 
     # 'sueddeutsche': {
     #     'article_url': '^https:\/\/www\.sueddeutsche\.de\/(politik|wirtschaft|kultur|panorama|sport|projekte\/artikel|wissen|karriere|auto|stil|leben|deutschland|welt|meinung|digital|gesellschaft|muenchen)\/[\w\-]+(\/[\w\-]+)+\/?(e\d+|lux\.[\w]+)?\/?$',
     #     'subpage_url': '^https://www\.sueddeutsche\.de/[a-zA-Z0-9]+(?:/[a-zA-Z0-9_-]+)?$'
+    # TODO: Add pattern for archive articles
     # },
     'sueddeutsche': {
-        'article_url': re.escape(BASE_URLS["sueddeutsche"]) + '[a-z-]+/[a-z-]+-(?:lux\.[A-Za-z0-9]+|[0-9.]+)$',
-        'subpage_url': '^' + re.escape(BASE_URLS["sueddeutsche"]) + '(?!supplements|cbd/|[^/]+\.sueddeutsche\.de)[a-zA-Z0-9]+(?:/[a-zA-Z0-9_-]+)?$'
+        'article_url': 'https://www\.sueddeutsche\.de/[a-z-]+/[a-z-]+-(?:lux\.[A-Za-z0-9]+|[0-9.]+)$',
+        'subpage_url': '^https://www\.sueddeutsche\.de/(?!supplements|cbd/|[^/]+\.sueddeutsche\.de)[a-zA-Z0-9]+(?:/[a-zA-Z0-9_-]+)?$'
+        # TODO: Add pattern for archive articles
     },
     'zeit': {
-        'article_url': re.escape(BASE_URLS["zeit"]) + '.+/.+-[a-z0-9\-]+(?<!\d{4})$',
-        'subpage_url': '^' + re.escape(BASE_URLS["zeit"]) + '[a-z]+/$'
+        'article_url': 'https://www\.zeit\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'subpage_url': '^https:\/\/www\.zeit\.de\/(?!spiele\/)(?:[a-z-]+\/index|daten-und-visualisierung|beta\/fragen-sie-zeit-online-news|archiv\/index)$'
+        # TODO: Add pattern for archive articles
     },
     'bayerischer_rundfunk': {
-        'article_url': '^' + re.escape(BASE_URLS["bayerischer_rundfunk"]) + r'[a-z]+/[a-z-]+-[a-z-]+,[A-Z0-9]{6,8}$',
-        'subpage_url': '^' + re.escape(BASE_URLS["bayerischer_rundfunk"]) + r'[a-z-]{1,2},[A-Z0-9]{6,8}$'
-    },
+        'article_url': '^https:\/\/www\.br\.de\/nachrichten\/(?!autoren\/)(?!themen\/)(?:[a-z]+(?:-[a-z]+)*)\/[a-z0-9-]+,[A-Za-z0-9]+$',
+        'subpage_url': '^https:\/\/www\.br\.de\/nachrichten\/(?!autoren\/)(?!credits$)(?!suche$)(?:[a-z]+(?:-[a-z]+)*)(?:,[A-Za-z0-9]+)?$'
+    }
 }
 
 

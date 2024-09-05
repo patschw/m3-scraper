@@ -3,7 +3,8 @@ from selenium.common.exceptions import StaleElementReferenceException
 from scrapers.BaseScraper import BaseScraper
 import logging
 import re
-from typing import List
+from typing import List, Dict, Any
+from datetime import datetime
 
 # Set up logging for the scraper to track events and errors
 logger = logging.getLogger(__name__)
@@ -60,83 +61,66 @@ class ZeitScraper(BaseScraper):
         except Exception as e:
             logger.error(f"Login failed: {e}")  # Log any errors during login
 
-    def _get_all_article_urls_on_current_page(self) -> List[str]:
-        """Get all article URLs from the current page
+    def scrape_archive(self) -> List[str]:
+        """Scrape articles from the archive of the Zeit online website
         
-        Returns:
-            List[str]: A list of article URLs found on the current page.
-        """
-        # Retrieve all URLs from the current page using the base scraper method
-        all_urls = super().get_all_urls_on_current_page()
-        # Filter URLs that match the article URL pattern
-        article_urls = [url for url in all_urls if re.match(self.article_url_pattern, url)]
-        logger.info(f"Found {len(article_urls)} article URLs on the current page.")  # Log the count of found URLs
-        return article_urls
+        This method navigates to the archive page, selects the date range, and scrapes all articles within that range.
+        
+        Args:
+            start_date (datetime.date): The start date for the archive.
+            end_date (datetime.date): The end date for the archive."""
+        
+        years = range(1946, 1950)  # 1946 until today
+        issues_weeks = range(1, 10)  # 01 to 09
+        issues_weeks = list(map(lambda x: f"{x:02}", issues_weeks)) + [f"{i:02}" for i in range(10, 60)]  # 10 to 60
 
-    def _get_subpage_urls_on_current_page(self) -> List[str]:
-        """Get all subpage URLs from the current page
-        
-        Returns:
-            List[str]: A list of subpage URLs found on the current page.
-        """
-        # Retrieve all URLs from the current page
-        all_urls = super().get_all_urls_on_current_page()
-        # Filter URLs that match the subpage URL pattern
-        subpage_urls = [url for url in all_urls if re.match(self.subpage_url_pattern, url)]
-        return subpage_urls
+        all_article_urls_archive = []   
+        # Iterate over years and issue_weeks and navigate to the issue page
+        for year in years:
+            for issue_week in issues_weeks:
+                issue_url = f"https://www.zeit.de/{year}/{issue_week}/index"
+                try:
+                    # Use the updated navigate_to method
+                    self.navigate_to(issue_url)
+                    
+                    # If navigation was skipped due to a 404 status, break the loop
+                    if self.url is None:
+                        logger.info(f"404 Not Found for URL: {issue_url}. Stopping the loop.")
+                        break
+                    
+                    # Get all article URLs from the current issue page
+                    article_urls_tmp = self._get_all_article_urls_on_current_page()
+                    if article_urls_tmp:
+                        print(article_urls_tmp)
+                        all_article_urls_archive.extend(article_urls_tmp)
+                    else:
+                        logger.warning(f"No article URLs found on {issue_url}.")
+                
+                except Exception as e:
+                    logger.error(f"Error navigating to {issue_url}: {e}")
+                    continue  # Continue to the next issue week even if there's an error
 
-    def _get_all_article_urls_on_subpages(self) -> List[str]:
-        """Get all article URLs from the subpages
-        
-        Returns:
-            List[str]: A list of all article URLs found on subpages.
-        """
-        # Get all subpage URLs from the current page
-        subpage_urls = self._get_subpage_urls_on_current_page()
-        all_article_urls = []  # Initialize a list to store all article URLs
-        
-        # Iterate through each subpage URL
-        for url in subpage_urls:
-            try:
-                # Navigate to the subpage
-                self.navigate_to(url)
-                # Collect article URLs from the subpage
-                all_article_urls += self._get_all_article_urls_on_current_page()
-            except StaleElementReferenceException:
-                # Log a warning if a stale element reference exception occurs
-                logger.warning(f"StaleElementReferenceException occurred while navigating to {url}")
-                continue  # Skip to the next URL if an exception occurs
-        return all_article_urls
+        # Scrape all article URLs
+        if all_article_urls_archive:
+            all_articles_content_archive = self.scrape(all_article_urls_archive)
+        else:
+            logger.warning("No article URLs to scrape.")
+            all_articles_content_archive = []
 
-    def _get_article_urls(self) -> List[str]:
-        """Get all unique article URLs from the main page and subpages
-        
-        Returns:
-            List[str]: A list of all unique article URLs.
-        """
-        # Navigate to the base URL of the scraper
-        self.navigate_to(self.base_url)
-        # Get article URLs from the main page
-        startpage_urls = self._get_all_article_urls_on_current_page()
-        # Get article URLs from subpages
-        subpage_urls = self._get_all_article_urls_on_subpages()
-        # Combine and deduplicate the URLs
-        all_article_urls = list(set(startpage_urls + subpage_urls))
-        return all_article_urls
+        return all_articles_content_archive
 
-    def scrape(self, keycloak_token):
+            
+    def scrape(self, urls_to_scrape: List[str]) -> List[Dict[str, Any]]:
         """Scrape articles from the Spiegel website
         
         Args:
             keycloak_token: The token used for article verification.
+            urls_to_scrape: The list of URLs to scrape.
         
         Returns:
             List[dict]: A list of dictionaries containing article content and metadata.
         """
-        # Get all article URLs to scrape
-        all_article_urls = self._get_article_urls()
-        # Verify the articles using the base scraper method
-        urls_to_scrape = super().reverify_articles(all_article_urls, keycloak_token)
+
         all_articles_content = []  # Initialize a list to store the content of all articles
 
         # Iterate through each URL to scrape content
@@ -145,7 +129,7 @@ class ZeitScraper(BaseScraper):
                 # Navigate to the article URL
                 self.navigate_to(url)
                 # Extract content and metadata from the article
-                article_content_and_metadata = super()._extract_content()
+                article_content_and_metadata = self._extract_content()
                 # Add additional metadata
                 article_content_and_metadata["medium"] = {"readable_id": self.crawler_medium}
                 article_content_and_metadata["crawler_medium"] = self.crawler_medium
@@ -158,11 +142,8 @@ class ZeitScraper(BaseScraper):
                 logger.error(f"Failed to extract content from {url}: {e}")
 
         # Close the browser after scraping
-        super().close_browser()
+        self.close_browser()
         return all_articles_content
-        
-        
-        
         
 
     

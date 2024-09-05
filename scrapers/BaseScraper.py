@@ -23,6 +23,7 @@ import os
 from typing import List, Tuple, Optional, Dict, Any
 from abc import ABC, abstractmethod
 import re
+import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Configure logging
@@ -89,14 +90,20 @@ class BaseScraper:
             logger.info("Browser closed successfully")
 
     def navigate_to(self, url: str):
-        """Navigate to a specific URL"""
+        """Navigate to a specific URL and check for HTTP status."""
         try:
+            # Check the HTTP status code before navigating
+            response = requests.head(url, allow_redirects=True)
+            if response.status_code == 404:
+                logger.warning(f"404 Not Found for URL: {url}. Skipping navigation.")
+                return  # Skip navigation if the page is not found
+
+            # If the status code is OK, proceed to navigate
             self.url = url
             self.driver.get(self.url)
             logger.info(f"Navigated to {url}")
-        except WebDriverException as e:
-            logger.error(f"Failed to navigate to {url}: {e}")
-            raise
+        except requests.RequestException as e:
+            logger.error(f"Request failed for {url}: {e}")
 
     def _get_all_urls_on_current_page(self) -> List[str]:
         """Get all URLs from the current page."""
@@ -197,7 +204,17 @@ class BaseScraper:
 
         # Preprocess HTML content with BeautifulSoup
         soup = BeautifulSoup(html_content, 'html.parser')
+        # self._remove_duplicate_sections(soup)
         cleaned_html = str(soup)
+        # write html_content to a file
+        # with open("html_content.html", "w") as f:
+        #     f.write(html_content)
+        # # write soup to a file
+        # with open("soup.html", "w") as f:
+        #     f.write(str(soup))
+        # # write cleaned_html to a file
+        # with open("cleaned_html.html", "w") as f:
+        #     f.write(cleaned_html)
 
         # Initialize and configure trafilatura settings
         config = use_config()
@@ -216,6 +233,8 @@ class BaseScraper:
         config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS_THRESHOLD", "0.5")
         config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS", "div.article, section.content")
         config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS_THRESHOLD", "0.5")
+        config.set("DEFAULT", "DEDUPLICATE", "true")
+        config.set("DEFAULT", "FAVOR_PRECISION", "true")
 
         try:
             # Extract main text using trafilatura with the configured settings
@@ -227,7 +246,7 @@ class BaseScraper:
 
         try:
             # Extract metadata using trafilatura with the configured settings
-            extracted_metadata = trafilatura.extract_metadata(cleaned_html, config=config)
+            extracted_metadata = trafilatura.extract_metadata(cleaned_html)
             lead_text = extracted_metadata.description.replace('\n', ' ') if extracted_metadata and extracted_metadata.description else ''
             url = self.driver.current_url
             extracted_url = extracted_metadata.url if extracted_metadata else None
@@ -247,6 +266,24 @@ class BaseScraper:
         }
 
         return content_dict
+    
+    # def _remove_duplicate_sections(self, soup):
+    #     """Some news websites use scrolling elements where text only scrolls into view. This leads to duplicate sections in the HTML content.
+    #     This function removes duplicate sections from the HTML content.
+    #     """
+    #     # Create a dictionary to store hashes of content
+    #     content_hashes = {}
+        
+    #     # Find all div elements (adjust selector as needed)
+    #     for div in soup.find_all('div', class_='slide-container'):
+    #         # Generate a hash of the div's content
+    #         content_hash = hashlib.md5(div.encode_contents().strip()).hexdigest()
+            
+    #         # If we've seen this content before, remove the element
+    #         if content_hash in content_hashes:
+    #             div.decompose()
+    #         else:
+    #             content_hashes[content_hash] = True
 
     def check_for_paywall(self) -> bool:
         """Check if the page is paywalled using JavaScript."""
@@ -435,64 +472,64 @@ class BaseScraper:
         all_article_urls = list(dict.fromkeys(article_urls_from_startpage + article_urls_from_subpages))
         return all_article_urls
 
-    def _extract_content(self) -> Dict[str, Optional[str]]:
-        """Extract the main content from the current page using trafilatura."""
-        html_content = self._get_page_source()
+    # def _extract_content(self) -> Dict[str, Optional[str]]:
+    #     """Extract the main content from the current page using trafilatura."""
+    #     html_content = self._get_page_source()
 
-        # Preprocess HTML content with BeautifulSoup
-        soup = BeautifulSoup(html_content, 'html.parser')
-        cleaned_html = str(soup)
+    #     # Preprocess HTML content with BeautifulSoup
+    #     soup = BeautifulSoup(html_content, 'html.parser')
+    #     cleaned_html = str(soup)
 
-        # Initialize and configure trafilatura settings
-        config = use_config()
-        config.set("DEFAULT", "EXTRACTION", "true")
-        config.set("DEFAULT", "STRICT", "true")
-        config.set("DEFAULT", "ADVANCED_FILTER", "true")
-        config.set("DEFAULT", "ADBLOCK_FILTERING", "true")
-        config.set("DEFAULT", "NO_FOOTER", "true")
-        config.set("DEFAULT", "EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
-        config.set("DEFAULT", "BLACKLIST_ELEMENTS", "div.cookie-consent, div.pop-up")
-        config.set("DEFAULT", "EXTRACTION_TIMEOUT", "30")
-        config.set("DEFAULT", "EXTRACTION_KEYWORDS_THRESHOLD", "0.5")
-        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE", "advertisement, promo")
-        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_THRESHOLD", "0.5")
-        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
-        config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS_THRESHOLD", "0.5")
-        config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS", "div.article, section.content")
-        config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS_THRESHOLD", "0.5")
+    #     # Initialize and configure trafilatura settings
+    #     config = use_config()
+    #     config.set("DEFAULT", "EXTRACTION", "true")
+    #     config.set("DEFAULT", "STRICT", "true")
+    #     config.set("DEFAULT", "ADVANCED_FILTER", "true")
+    #     config.set("DEFAULT", "ADBLOCK_FILTERING", "true")
+    #     config.set("DEFAULT", "NO_FOOTER", "true")
+    #     config.set("DEFAULT", "EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
+    #     config.set("DEFAULT", "BLACKLIST_ELEMENTS", "div.cookie-consent, div.pop-up")
+    #     config.set("DEFAULT", "EXTRACTION_TIMEOUT", "30")
+    #     config.set("DEFAULT", "EXTRACTION_KEYWORDS_THRESHOLD", "0.5")
+    #     config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE", "advertisement, promo")
+    #     config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_THRESHOLD", "0.5")
+    #     config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS", "div.advertisement, aside.sidebar")
+    #     config.set("DEFAULT", "EXTRACTION_KEYWORDS_EXCLUDE_ELEMENTS_THRESHOLD", "0.5")
+    #     config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS", "div.article, section.content")
+    #     config.set("DEFAULT", "EXTRACTION_KEYWORDS_INCLUDE_ELEMENTS_THRESHOLD", "0.5")
 
-        try:
-            # Extract main text using trafilatura with the configured settings
-            main_text = trafilatura.extract(cleaned_html, config=config)
-            main_text = main_text.replace('\n', ' ') if main_text else None
-        except (ValueError, TypeError) as e:
-            logger.error(f"An error occurred during main text extraction: {e}")
-            main_text = None
+    #     try:
+    #         # Extract main text using trafilatura with the configured settings
+    #         main_text = trafilatura.extract(cleaned_html, config=config)
+    #         main_text = main_text.replace('\n', ' ') if main_text else None
+    #     except (ValueError, TypeError) as e:
+    #         logger.error(f"An error occurred during main text extraction: {e}")
+    #         main_text = None
 
-        try:
-            # Extract metadata using trafilatura with the configured settings
-            extracted_metadata = trafilatura.extract_metadata(cleaned_html, config=config)
-            lead_text = extracted_metadata.description.replace('\n', ' ') if extracted_metadata and extracted_metadata.description else ''
-            url = self.driver.current_url
-            extracted_url = extracted_metadata.url if extracted_metadata else None
-            if url != extracted_url:
-                logger.warning(f"URL mismatch: Driver URL '{url}' differs from extracted URL '{extracted_url}'")
-        except (ValueError, TypeError) as e:
-            logger.error(f"An error occurred during metadata extraction: {e}")
-            lead_text = ''
-            url = None
+    #     try:
+    #         # Extract metadata using trafilatura with the configured settings
+    #         extracted_metadata = trafilatura.extract_metadata(cleaned_html)
+    #         lead_text = extracted_metadata.description.replace('\n', ' ') if extracted_metadata and extracted_metadata.description else ''
+    #         url = self.driver.current_url
+    #         extracted_url = extracted_metadata.url if extracted_metadata else None
+    #         if url != extracted_url:
+    #             logger.warning(f"URL mismatch: Driver URL '{url}' differs from extracted URL '{extracted_url}'")
+    #     except (ValueError, TypeError) as e:
+    #         logger.error(f"An error occurred during metadata extraction: {e}")
+    #         lead_text = ''
+    #         url = None
 
-        # Create a dictionary with the extracted content and metadata
-        content_dict = {
-            "url": url,
-            "main_text": main_text,
-            "lead_text": lead_text,
-            "last_online_verification_date": datetime.now().isoformat(),
-        }
+    #     # Create a dictionary with the extracted content and metadata
+    #     content_dict = {
+    #         "url": url,
+    #         "main_text": main_text,
+    #         "lead_text": lead_text,
+    #         "last_online_verification_date": datetime.now().isoformat(),
+    #     }
 
-        return content_dict
+    #     return content_dict
     
-    def scrape(self, urls_to_scrape: List[str]):
+    def scrape(self, urls_to_scrape: List[str]) -> List[Dict[str, Any]]:
         """Scrape articles from the Spiegel website
         
         Args:
@@ -524,7 +561,7 @@ class BaseScraper:
                 logger.error(f"Failed to extract content from {url}: {e}")
 
         # Close the browser after scraping
-        super().close_browser()
+        self.close_browser()
         return all_articles_content
     
 
