@@ -1739,3 +1739,17 @@ Read port: 61466
 1725546581335	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+1725546736251	geckodriver	INFO	Listening on 127.0.0.1:61656
+1725546739273	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile5w8d4l"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725546739951	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725546740180	Marionette	INFO	Listening on port 61680
+Read port: 61680
+1725546740363	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1725546765830	Marionette	INFO	Stopped listening on port 61680
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
