@@ -400,7 +400,7 @@ class BaseScraper:
 
     #     return articles_not_in_db
     
-    def _get_all_article_urls_on_current_page(self) -> List[str]:
+    def _get_all_article_urls_on_current_page(self, pattern: str = None) -> List[str]:
         """Get all article URLs from the current page
 
         Returns:
@@ -449,7 +449,7 @@ class BaseScraper:
                 # Navigate to the subpage
                 self.navigate_to(url)
                 # Collect article URLs from the subpage
-                all_article_urls += self._get_all_article_urls_on_current_page()
+                all_article_urls += self._get_all_article_urls_on_current_page(self.article_url_pattern)
             except StaleElementReferenceException:
                 # Log a warning if a stale element reference exception occurs
                 logger.warning(f"StaleElementReferenceException occurred while navigating to {url}")
@@ -465,7 +465,7 @@ class BaseScraper:
         # Navigate to the base URL of the scraper
         self.navigate_to(self.base_url)
         # Get article URLs from the main page
-        article_urls_from_startpage = self._get_all_article_urls_on_current_page()
+        article_urls_from_startpage = self._get_all_article_urls_on_current_page(self.article_url_pattern)
         # Get article URLs from subpages
         article_urls_from_subpages = self._get_all_article_urls_on_subpages()
         # Combine and deduplicate the URLs using a set

@@ -1626,3 +1626,116 @@ JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProce
 JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
 JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
 JavaScript error: , line 0: NotFoundError: No such JSProcessActor 'DevToolsProcess'
+1725545741957	geckodriver	INFO	Listening on 127.0.0.1:63753
+1725545745030	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileAuK5Nz"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725545745435	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725545745658	Marionette	INFO	Listening on port 63764
+Read port: 63764
+1725545745791	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript warning: https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js, line 1: Script terminated by timeout at:
+bu@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:195489
+ji@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:181995
+cc/window._sp_.destroyMessages@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:223816
+@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:230868
+
+1725545763538	Marionette	INFO	Stopped listening on port 63764
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725545873434	geckodriver	INFO	Listening on 127.0.0.1:63924
+1725545876496	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilecEMeFR"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725545876789	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725545877018	Marionette	INFO	Listening on port 63935
+Read port: 63935
+1725545877236	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript warning: https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js, line 1: Script terminated by timeout at:
+mi/<@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:179996
+mi@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:179997
+ji@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:181856
+cc/window._sp_.destroyMessages@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:223816
+@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:230868
+
+1725545900127	Marionette	INFO	Stopped listening on port 63935
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725545909093	geckodriver	INFO	Listening on 127.0.0.1:64049
+1725545912116	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileH1fV1Z"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725545912447	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725545912663	Marionette	INFO	Listening on port 64060
+Read port: 64060
+1725545912887	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+1725545951033	Marionette	INFO	Stopped listening on port 64060
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+onsole.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725545948083	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725545948345	Marionette	INFO	Listening on port 64137
+Read port: 64137
+1725545948580	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 30: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 32: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+1725546024431	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 30: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 32: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 30: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 32: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+1725546162854	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+Port.onMessage event fired while context is inactive.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 30: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 32: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+1725546232935	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 30: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 32: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+1725546294411	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 30: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 32: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+1725546358489	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 30: Error: Minified React error #418; visit https://reactjs.org/docs/error-decoder.html?invariant=418 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+JavaScript error: https://interactive.zeit.de/g/2023/zg-deepset-prompt/static/assets/react.9738794d.mjs, line 32: Error: Minified React error #423; visit https://reactjs.org/docs/error-decoder.html?invariant=423 for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+1725546414876	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+JavaScript warning: https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js, line 1: Script terminated by timeout at:
+bu@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:195489
+ji@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:181995
+cc/window._sp_.destroyMessages@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:223816
+@https://consent-cdn.zeit.de/wrapperMessagingWithoutDetection.js:1:230868
+
+1725546428808	Marionette	INFO	Stopped listening on port 64137
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725546577421	geckodriver	INFO	Listening on 127.0.0.1:61455
+1725546580449	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilekbuqOO"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725546580890	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725546581121	Marionette	INFO	Listening on port 61466
+Read port: 61466
+1725546581335	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."

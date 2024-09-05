@@ -70,10 +70,10 @@ class ZeitScraper(BaseScraper):
             start_date (datetime.date): The start date for the archive.
             end_date (datetime.date): The end date for the archive."""
         
-        years = range(1946, 1950)  # 1946 until today
+        years = range(1946, 1947)  # 1946 until today
         issues_weeks = range(1, 10)  # 01 to 09
         issues_weeks = list(map(lambda x: f"{x:02}", issues_weeks)) + [f"{i:02}" for i in range(10, 60)]  # 10 to 60
-
+        archive_article_url_pattern = PATTERNS[self.STRATEGY_SOURCE]['archive_article_url']
         all_article_urls_archive = []   
         # Iterate over years and issue_weeks and navigate to the issue page
         for year in years:
@@ -89,7 +89,7 @@ class ZeitScraper(BaseScraper):
                         break
                     
                     # Get all article URLs from the current issue page
-                    article_urls_tmp = self._get_all_article_urls_on_current_page()
+                    article_urls_tmp = self._get_all_article_urls_on_current_page(archive_article_url_pattern)
                     if article_urls_tmp:
                         print(article_urls_tmp)
                         all_article_urls_archive.extend(article_urls_tmp)
