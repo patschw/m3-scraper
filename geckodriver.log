@@ -1739,8 +1739,9 @@ Read port: 61466
 1725546581335	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
-1725546736251	geckodriver	INFO	Listening on 127.0.0.1:61656
-1725546739273	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile5w8d4l"
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1725547213115	Marionette	INFO	Stopped listening on port 61466
+irefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile5w8d4l"
 console.error: Enterprise Policies: 
   Policy SearchEngines is only allowed on ESR
 console.warn: services.settings: Ignoring preference override of remote settings server
