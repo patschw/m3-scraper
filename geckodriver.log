@@ -1754,3 +1754,379 @@ Read port: 61680
 1725546765830	Marionette	INFO	Stopped listening on port 61680
 Dynamically enable window occlusion 1
 JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725604915637	geckodriver	INFO	Listening on 127.0.0.1:59418
+1725604918715	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile7ipZur"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725604919443	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725604919783	Marionette	INFO	Listening on port 59428
+Read port: 59428
+1725604919996	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+JavaScript error: resource:///modules/sessionstore/SessionStore.sys.mjs, line 2371: TypeError: subject.QueryInterface is not a function
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1725605046995	geckodriver	INFO	Listening on 127.0.0.1:59578
+1725605050058	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilevLfVc5"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725605050556	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725605050931	Marionette	INFO	Listening on port 59588
+Read port: 59588
+1725605051113	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+1725605401191	geckodriver	INFO	Listening on 127.0.0.1:59926
+1725605404228	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileHvoq91"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725605404667	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725605404991	Marionette	INFO	Listening on port 59937
+Read port: 59937
+1725605405176	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1725605478461	geckodriver	INFO	Listening on 127.0.0.1:60073
+1725605481519	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile3tmEca"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725605481905	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725605482179	Marionette	INFO	Listening on port 60083
+Read port: 60083
+1725605482347	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+1725606135076	geckodriver	INFO	Listening on 127.0.0.1:60421
+1725606138105	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileRlLxtO"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725606138829	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725606139284	Marionette	INFO	Listening on port 60434
+Read port: 60434
+1725606139497	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript warning: https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js, line 1: Script terminated by timeout at:
+a@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:105561
+78018/W/<@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:106032
+r@https://www.br.de/nachrichten/_next/static/chunks/main-94495152fae20e41.js:1:101849
+
+1725606167781	Marionette	INFO	Stopped listening on port 60434
+Dynamically enable window occlusion 1
+JavaScript error: resource://gre/modules/AsyncShutdown.sys.mjs, line 569: AbortError: Actor 'Conduits' destroyed before query 'RunListener' was resolved
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1725606170411	geckodriver	INFO	Listening on 127.0.0.1:60507
+1725606173468	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileMooDA6"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725606174103	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725606174193	Marionette	INFO	Listening on port 60520
+Read port: 60520
+1725606174457	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/ContentMetaChild.sys.mjs, line 179: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: resource://gre/actors/ContentMetaChild.sys.mjs, line 179: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+JavaScript error: resource://gre/actors/ContentMetaChild.sys.mjs, line 179: InvalidStateError: JSWindowActorChild.sendAsyncMessage: JSWindowActorChild cannot send at the moment
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://www.br.de/nachrichten/bayern/instrumentalisiert-debatte-um-kinder-auf-bauerndemo,U0sffBp" ({})
+[GFX1-]: CompositorBridgeChild receives IPC close with reason=AbnormalShutdown
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+[GFX1-]: CompositorBridgeChild receives IPC close with reason=AbnormalShutdown
+[GFX1-]: CompositorBridgeChild receives IPC close with reason=AbnormalShutdown
+1725607789409	geckodriver	INFO	Listening on 127.0.0.1:61773
+1725607792449	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile99RotX"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725607793147	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725607793473	Marionette	INFO	Listening on port 61784
+Read port: 61784
+1725607793703	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725607948325	Marionette	INFO	Stopped listening on port 61784
+Dynamically enable window occlusion 1
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/file/3609157/ublock_origin-1.28.4-an+fx.xpi
+console.error: services.settings: 
+  Message: NetworkError: Network error: TypeError: NetworkError: Network request failed
+  Stack:
+    APIError@resource://services-settings/RemoteSettingsClient.sys.mjs:107:1
+NetworkError@resource://services-settings/RemoteSettingsClient.sys.mjs:111:5
+_adjustedError@resource://services-settings/RemoteSettingsClient.sys.mjs:916:14
+maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:821:38
+
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+console.warn: services.settings: main/doh-config sync interrupted by shutdown
+console.warn: services.settings: main/devtools-devices sync interrupted by shutdown
+console.warn: services.settings: main/websites-with-shared-credential-backends sync interrupted by shutdown
+console.warn: services.settings: main/language-dictionaries sync interrupted by shutdown
+console.warn: services.settings: main/password-recipes sync interrupted by shutdown
+console.warn: services.settings: main/password-rules sync interrupted by shutdown
+console.warn: services.settings: main/fxmonitor-breaches sync interrupted by shutdown
+console.warn: services.settings: main/addons-manager-settings sync interrupted by shutdown
+console.warn: services.settings: main/query-stripping sync interrupted by shutdown
+console.warn: services.settings: main/partitioning-exempt-urls sync interrupted by shutdown
+console.warn: services.settings: main/translations-wasm sync interrupted by shutdown
+console.warn: services.settings: main/search-config-overrides-v2 sync interrupted by shutdown
+console.warn: services.settings: main/fingerprinting-protection-overrides sync interrupted by shutdown
+console.warn: services.settings: main/search-default-override-allowlist sync interrupted by shutdown
+console.warn: services.settings: security-state/cert-revocations sync interrupted by shutdown
+console.warn: services.settings: security-state/intermediates sync interrupted by shutdown
+console.warn: services.settings: security-state/onecrl sync interrupted by shutdown
+console.error: (new NetworkError("Network error: TypeError: NetworkError: Network request failed", "resource://services-settings/RemoteSettingsClient.sys.mjs", 107))
+1725607957529	geckodriver	INFO	Listening on 127.0.0.1:62053
+1725607960575	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileQfthht"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725607961320	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725607961689	Marionette	INFO	Listening on port 62067
+Read port: 62067
+1725607961942	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+1725608037663	Marionette	INFO	Stopped listening on port 62067
+Dynamically enable window occlusion 1
+console.error: services.settings: 
+Object
+  - prototype Object
+    - columnNumber = 0
+    - data = null
+    - filename = resource://gre/modules/ServiceRequest.sys.mjs
+    - lineNumber = 133
+    - location = {"name":"open","filename":"resource://gre/modules/ServiceRequest.sys.mjs","sourceId":34,"lineNumber":133,"columnNumber":11,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch/<","sourceId":33,"lineNumber":266,"columnNumber":15,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/Utils.sys.mjs","name":"fetch","sourceId":33,"lineNumber":217,"columnNumber":12,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/RemoteSettingsClient.sys.mjs","name":"_validateCollectionSignature","sourceId":31,"lineNumber":1009,"columnNumber":47,"asyncCause":null,"asyncCaller":null,"caller":{"filename":"resource://services-settings/RemoteSettingsClient.sys.mjs","name":"maybeSync","sourceId":31,"lineNumber":726,"columnNumber":26,"asyncCause":null,"asyncCaller":null,"caller":null,"formattedStack":"maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:726:26\n","nativeSavedFrame":{}},"formattedStack":"_validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1009:47\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:726:26\n","nativeSavedFrame":{}},"formattedStack":"fetch@resource://services-settings/Utils.sys.mjs:217:12\n_validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1009:47\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:726:26\n","nativeSavedFrame":{}},"formattedStack":"fetch/<@resource://services-settings/Utils.sys.mjs:266:15\nfetch@resource://services-settings/Utils.sys.mjs:217:12\n_validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1009:47\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:726:26\n","nativeSavedFrame":{}},"formattedStack":"open@resource://gre/modules/ServiceRequest.sys.mjs:133:11\nfetch/<@resource://services-settings/Utils.sys.mjs:266:15\nfetch@resource://services-settings/Utils.sys.mjs:217:12\n_validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1009:47\nmaybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:726:26\n","nativeSavedFrame":{}}
+    - message = 
+    - name = 
+    - result = 2152071198
+    - stack = open@resource://gre/modules/ServiceRequest.sys.mjs:133:11|fetch/<@resource://services-settings/Utils.sys.mjs:266:15|fetch@resource://services-settings/Utils.sys.mjs:217:12|_validateCollectionSignature@resource://services-settings/RemoteSettingsClient.sys.mjs:1009:47|maybeSync@resource://services-settings/RemoteSettingsClient.sys.mjs:726:26|
+  - prototype Object
+console.warn: services.settings: main/translations-models sync interrupted by shutdown
+console.warn: services.settings: main/hijack-blocklists sync interrupted by shutdown
+console.warn: services.settings: main/pioneer-study-addons-v1 sync interrupted by shutdown
+console.error: Policies: 
+  Download failed - ERROR_NETWORK_FAILURE - https://addons.mozilla.org/firefox/downloads/file/3609157/ublock_origin-1.28.4-an+fx.xpi
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+console.error: (new AbortError("IndexedDB: main/rally-studies-v1 getLastModified() IndexedDB:  execute() A request was aborted, for example through a call to IDBTransaction.abort.", "resource://services-settings/IDBHelpers.sys.mjs", 16))
+1725620454554	geckodriver	INFO	Listening on 127.0.0.1:53316
+1725620457605	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileSytX7e"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725620458026	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725620458347	Marionette	INFO	Listening on port 53327
+Read port: 53327
+1725620458580	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725620683946	geckodriver	INFO	Listening on 127.0.0.1:53524
+1725620687471	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilehwgnit"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725620687882	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725620688436	Marionette	INFO	Listening on port 53536
+Read port: 53536
+1725620688683	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: BackupService: "Failed to measure for resource: miscellaneous" (new NotFoundError("Could not stat `C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilehwgnit\\storage\\permanent\\chrome\\idb\\2918063365piupsah.sqlite-journal': file does not exist (NS_ERROR_FILE_NOT_FOUND)", (void 0)))
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725621168714	geckodriver	INFO	Listening on 127.0.0.1:53929
+1725621171781	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileCVR1fq"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725621172174	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725621172377	Marionette	INFO	Listening on port 53940
+Read port: 53940
+1725621172607	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript error: , line 0: InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725621414557	geckodriver	INFO	Listening on 127.0.0.1:54107
+1725621417586	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileLa4Ycx"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725621417905	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725621418306	Marionette	INFO	Listening on port 54118
+Read port: 54118
+1725621418696	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725621870660	geckodriver	INFO	Listening on 127.0.0.1:54313
+1725621873697	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilePtZy3w"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725621874036	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725621874359	Marionette	INFO	Listening on port 54325
+Read port: 54325
+1725621874696	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725622096861	geckodriver	INFO	Listening on 127.0.0.1:50923
+1725622099929	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileRGT3hJ"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725622100226	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725622100416	Marionette	INFO	Listening on port 50934
+Read port: 50934
+1725622100573	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725624955552	geckodriver	INFO	Listening on 127.0.0.1:49736
+1725624958600	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofilej7xEDn"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725624959329	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725624959698	Marionette	INFO	Listening on port 49748
+Read port: 49748
+1725624959890	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://meine.zeit.de/anmelden" ({})
+1725625245138	geckodriver	INFO	Listening on 127.0.0.1:50099
+1725625248197	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileJNSBXI"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725625248807	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725625249428	Marionette	INFO	Listening on port 50121
+Read port: 50121
+1725625249644	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+1725625351003	geckodriver	INFO	Listening on 127.0.0.1:50293
+1725625354060	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileQkIq7D"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725625354588	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725625354978	Marionette	INFO	Listening on port 50307
+Read port: 50307
+1725625355251	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+1725625508089	geckodriver	INFO	Listening on 127.0.0.1:50516
+1725625511121	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofiletJQW48"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725625511890	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725625512304	Marionette	INFO	Listening on port 50527
+Read port: 50527
+1725625512547	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+1725625597953	geckodriver	INFO	Listening on 127.0.0.1:50763
+1725625600997	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileV9jtpz"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725625601549	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725625601914	Marionette	INFO	Listening on port 50775
+Read port: 50775
+1725625602125	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 1679: Error: permitUnload is already running for this tab.
+1725625901441	geckodriver	INFO	Listening on 127.0.0.1:51070
+1725625904457	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileSO3XsR"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725625905123	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725625905425	Marionette	INFO	Listening on port 51085
+Read port: 51085
+1725625905611	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: WindowsJumpLists: "Failed to fetch favicon for " "https://www.zeit.de/1946/11/74-millionen-in-4-zonen" ({})
+1725626107791	Marionette	INFO	Stopped listening on port 51085
+Dynamically enable window occlusion 1
+1725626248511	geckodriver	INFO	Listening on 127.0.0.1:51478
+1725626251539	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofileVp4zeJ"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1725626252183	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1725626252560	Marionette	INFO	Listening on port 51489
+Read port: 51489
+1725626252752	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
+1725626426038	Marionette	INFO	Stopped listening on port 51489
+Dynamically enable window occlusion 1

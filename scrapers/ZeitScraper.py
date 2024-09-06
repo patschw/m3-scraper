@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 
 class ZeitScraper(BaseScraper):
-    """A scraper for the Spiegel website"""
+    """A scraper for the online website of (see name of this class)"""
 
     # Define constants for strategies and URLs used in the scraping process
     EMAIL_STRATEGY_KEY = "email_username"  # Key for email strategy in the config
@@ -40,7 +40,7 @@ class ZeitScraper(BaseScraper):
         self.article_url_pattern = PATTERNS[self.STRATEGY_SOURCE]['article_url']  # Regex pattern for article URLs
 
     def login(self) -> None:
-        """Login to the Spiegel website using the defined strategies
+        """Login to the website using the defined strategies
         
         This method navigates to the login page, enters the credentials, and submits the form.
         """
@@ -62,22 +62,19 @@ class ZeitScraper(BaseScraper):
             logger.error(f"Login failed: {e}")  # Log any errors during login
 
     def scrape_archive(self) -> List[str]:
-        """Scrape articles from the archive of the Zeit online website
+        """Scrape articles from the archive of the website (if this news outlet has an archive)"""
         
-        This method navigates to the archive page, selects the date range, and scrapes all articles within that range.
+        years = range(1946, 1947)  # 1945 until today
+        issues_weeks = range(10, 13)  # 01 to 09
+        #issues_weeks = list(map(lambda x: f"{x:02}", issues_weeks)) + [f"{i:02}" for i in range(10, 60)]  # 10 to 60
         
-        Args:
-            start_date (datetime.date): The start date for the archive.
-            end_date (datetime.date): The end date for the archive."""
-        
-        years = range(1946, 1947)  # 1946 until today
-        issues_weeks = range(1, 10)  # 01 to 09
-        issues_weeks = list(map(lambda x: f"{x:02}", issues_weeks)) + [f"{i:02}" for i in range(10, 60)]  # 10 to 60
-        archive_article_url_pattern = PATTERNS[self.STRATEGY_SOURCE]['archive_article_url']
         all_article_urls_archive = []   
         # Iterate over years and issue_weeks and navigate to the issue page
         for year in years:
+            print(year)
             for issue_week in issues_weeks:
+                archive_article_url_pattern = f'^https://www\.zeit\.de/{year}/{issue_week}/(?!.*#index)(?!.*index#)(?!index$)[a-z0-9-äöüß]+$'
+                print(archive_article_url_pattern)
                 issue_url = f"https://www.zeit.de/{year}/{issue_week}/index"
                 try:
                     # Use the updated navigate_to method
@@ -110,40 +107,40 @@ class ZeitScraper(BaseScraper):
         return all_articles_content_archive
 
             
-    def scrape(self, urls_to_scrape: List[str]) -> List[Dict[str, Any]]:
-        """Scrape articles from the Spiegel website
+    # def scrape(self, urls_to_scrape: List[str]) -> List[Dict[str, Any]]:
+    #     """Scrape articles from the website
         
-        Args:
-            keycloak_token: The token used for article verification.
-            urls_to_scrape: The list of URLs to scrape.
+    #     Args:
+    #         keycloak_token: The token used for article verification.
+    #         urls_to_scrape: The list of URLs to scrape.
         
-        Returns:
-            List[dict]: A list of dictionaries containing article content and metadata.
-        """
+    #     Returns:
+    #         List[dict]: A list of dictionaries containing article content and metadata.
+    #     """
 
-        all_articles_content = []  # Initialize a list to store the content of all articles
+    #     all_articles_content = []  # Initialize a list to store the content of all articles
 
-        # Iterate through each URL to scrape content
-        for url in urls_to_scrape:
-            try:
-                # Navigate to the article URL
-                self.navigate_to(url)
-                # Extract content and metadata from the article
-                article_content_and_metadata = self._extract_content()
-                # Add additional metadata
-                article_content_and_metadata["medium"] = {"readable_id": self.crawler_medium}
-                article_content_and_metadata["crawler_medium"] = self.crawler_medium
-                article_content_and_metadata["crawler_version"] = "0.1"
-                # Append the content to the results list
-                all_articles_content.append(article_content_and_metadata)
-                logger.info(f"Extracted content from {url}")  # Log successful extraction
-            except Exception as e:
-                # Log an error if content extraction fails
-                logger.error(f"Failed to extract content from {url}: {e}")
+    #     # Iterate through each URL to scrape content
+    #     for url in urls_to_scrape:
+    #         try:
+    #             # Navigate to the article URL
+    #             self.navigate_to(url)
+    #             # Extract content and metadata from the article
+    #             article_content_and_metadata = self._extract_content()
+    #             # Add additional metadata
+    #             article_content_and_metadata["medium"] = {"readable_id": self.crawler_medium}
+    #             article_content_and_metadata["crawler_medium"] = self.crawler_medium
+    #             article_content_and_metadata["crawler_version"] = "0.1"
+    #             # Append the content to the results list
+    #             all_articles_content.append(article_content_and_metadata)
+    #             logger.info(f"Extracted content from {url}")  # Log successful extraction
+    #         except Exception as e:
+    #             # Log an error if content extraction fails
+    #             logger.error(f"Failed to extract content from {url}: {e}")
 
-        # Close the browser after scraping
-        self.close_browser()
-        return all_articles_content
+    #     # Close the browser after scraping
+    #     self.close_browser()
+    #     return all_articles_content
         
 
     

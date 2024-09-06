@@ -123,9 +123,11 @@ PATTERNS = {
         # TODO: Add pattern for archive articles
     },
     'zeit': {
-        'article_url': 'https://www\.zeit\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
+        'article_url': '^https:\/\/www\.zeit\.de\/(?!beta\/)(?!administratives\/).+\/.+-[a-z0-9-]+(?<!\d{4})$',
+        # 'article_url': 'https://www\.zeit\.de/.+/.+-[a-z0-9\-]+(?<!\d{4})$',
         'subpage_url': '^https:\/\/www\.zeit\.de\/(?!spiele\/)(?:[a-z-]+\/index|daten-und-visualisierung|beta\/fragen-sie-zeit-online-news|archiv\/index)$',
-        'archive_article_url': '^https:\/\/www\.zeit\.de\/\d{4}\/\d{2}\/[a-z0-9-]+$',
+        #'archive_article_url': '^https:\/\/www\.zeit\.de\/\d{4}\/\d{2}\/[a-z0-9-]+$',
+        # 'archive_article_url': '^https:\/\/www\.zeit\.de\/(?!beta\/)(?!administratives\/)(?![a-z]+\/index)(?![a-z]+\/[a-z#]+)\d{4}\/\d{2}\/[a-z0-9-]+$',
     },
     'bayerischer_rundfunk': {
         'article_url': '^https:\/\/www\.br\.de\/nachrichten\/(?!autoren\/)(?!themen\/)(?:[a-z]+(?:-[a-z]+)*)\/[a-z0-9-]+,[A-Za-z0-9]+$',

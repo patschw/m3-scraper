@@ -6,6 +6,9 @@ import logging
 import re
 from typing import List
 from time import sleep
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 # Set up logging for the scraper
 logger = logging.getLogger(__name__)
@@ -145,39 +148,48 @@ class BayerischerRundfunkScraper(BaseScraper):
     def click_cookie_button(self):
         """Click the cookie consent button if it appears"""
         # Find the shadow host element using the base scraper method
-        shadow_host = super().find_element(self.shadow_host_strategy)
+        shadow_host = self.find_element(self.shadow_host_strategy)
 
-        # Wait for the cookie banner to appear
-        sleep(2)
+        # Wait for the cookie-deny button (within the shadow dom) to appear
+        WebDriverWait(self.driver, 10).until(
+            lambda driver: self.driver.execute_script(
+        "return arguments[0].shadowRoot.querySelector(arguments[1]) !== null;", 
+        shadow_host, 
+        self.cookie_banner_button_strategy_css
+    )
+)
+        retries = 3  # Number of retries
+        for attempt in range(retries):
+            try:
+                # Execute JavaScript to click the cookie consent button
+                self.driver.execute_script("""
+                    // Retrieve the shadow host, CSS selector, and XPath from the arguments
+                    const shadowHost = arguments[0];
+                    const cssSelector = arguments[1];
+                    const xpath = arguments[2];
+                    // Access the shadow root of the shadow host
+                    const shadowRoot = shadowHost.shadowRoot;
 
-        try:
-            # Execute JavaScript to click the cookie consent button
-            self.driver.execute_script("""
-                // Retrieve the shadow host, CSS selector, and XPath from the arguments
-                const shadowHost = arguments[0];
-                const cssSelector = arguments[1];
-                const xpath = arguments[2];
-                // Access the shadow root of the shadow host
-                const shadowRoot = shadowHost.shadowRoot;
+                    // Attempt to find the accept button using the CSS selector
+                    let acceptButton = shadowRoot.querySelector(cssSelector);
+                    // If the accept button is not found using the CSS selector, try using the XPath
+                    if (!acceptButton) {
+                        acceptButton = shadowRoot.evaluate(xpath, shadowRoot, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+                    }
 
-                // Attempt to find the accept button using the CSS selector
-                let acceptButton = shadowRoot.querySelector(cssSelector);
-                // If the accept button is not found using the CSS selector, try using the XPath
-                if (!acceptButton) {
-                    acceptButton = shadowRoot.evaluate(xpath, shadowRoot, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-                }
-
-                // If the accept button is found, click it
-                if (acceptButton) {
-                    acceptButton.click();
-                } else {
-                    // Log an error if the accept button is not found using both the CSS selector and XPath
-                    console.error('Accept button not found using both CSS selector and XPath.');
-                }
-            """, shadow_host, self.cookie_banner_button_strategy_css, self.cookie_banner_button_strategy_xpath)
-        except Exception as e:
-            # Log an error if clicking the cookie button fails
-            logger.error(f"An error occurred while clicking the cookie button: {e}")
+                    // If the accept button is found, click it
+                    if (acceptButton) {
+                        acceptButton.click();
+                    } else {
+                        // Log an error if the accept button is not found using both the CSS selector and XPath
+                        console.error('Accept button not found using both CSS selector and XPath.');
+                    }
+                """, shadow_host, self.cookie_banner_button_strategy_css, self.cookie_banner_button_strategy_xpath)
+                break  # Exit the loop if successful
+            except Exception as e:
+                logger.error(f"Attempt {attempt + 1} failed: {e}")
+                if attempt == retries - 1:
+                    logger.error("All attempts to click the cookie button have failed.")
         
         
         

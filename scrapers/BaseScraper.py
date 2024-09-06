@@ -403,17 +403,24 @@ class BaseScraper:
     def _get_all_article_urls_on_current_page(self, pattern: str = None) -> List[str]:
         """Get all article URLs from the current page
 
+        Args:
+            pattern (str): Optional regex pattern to filter article URLs. Defaults to self.article_url_pattern if not provided.
+            (Background: Some website use different URL patterns (for instance for real online articles and for archive articles)).
+            subpage_url_pattern (str): Optional regex pattern to filter subpage URLs. Defaults to self.subpage_url_pattern if not provided.
+            
         Returns:
             List[str]: A list of article URLs found on the current page.
         """
+        pattern = pattern or self.article_url_pattern
+
         try:
             article_urls = self.driver.execute_script(f'''
-                const pattern = new RegExp('{self.article_url_pattern}');
-                return Array.from(document.links)
+                const pattern = new RegExp('{pattern}');
+                return [...new Set(Array.from(document.links)
                     .map(a => a.href)
-                    .filter(url => pattern.test(url));
+                    .filter(url => pattern.test(url)))];
             ''')
-            logger.info(f"Found {len(article_urls)} article URLs on the current page: {self.driver.current_url}")
+            logger.info(f"Found {len(article_urls)} unique article URLs on the current page: {self.driver.current_url}")
             return article_urls
         except Exception as e:
             logger.error(f"Error getting article URLs using JavaScript: {e}")
