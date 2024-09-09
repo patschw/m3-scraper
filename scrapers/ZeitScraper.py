@@ -66,7 +66,7 @@ class ZeitScraper(BaseScraper):
         """Scrape articles from the archive of the website (if this news outlet has an archive)"""
         
         years = range(1946, 1947)  # 1945 until today
-        issues_weeks = range(10, 13)  # 01 to 09
+        issues_weeks = range(10, 11)  # 01 to 09
         #issues_weeks = list(map(lambda x: f"{x:02}", issues_weeks)) + [f"{i:02}" for i in range(10, 60)]  # 10 to 60
         
         all_article_urls_archive = []   
