@@ -5,6 +5,7 @@ import logging
 import re
 from typing import List, Dict, Any
 from datetime import datetime
+import requests
 
 # Set up logging for the scraper to track events and errors
 logger = logging.getLogger(__name__)
@@ -88,8 +89,15 @@ class ZeitScraper(BaseScraper):
                     # Get all article URLs from the current issue page
                     article_urls_tmp = self._get_all_article_urls_on_current_page(archive_article_url_pattern)
                     if article_urls_tmp:
-                        print(article_urls_tmp)
-                        all_article_urls_archive.extend(article_urls_tmp)
+                        for article_url in article_urls_tmp:
+                            komplettansicht_url = f"{article_url}/komplettansicht"
+                            # Check if the komplettansicht URL exists
+                            response = requests.head(komplettansicht_url, allow_redirects=True)
+                            if response.status_code != 404:
+                                all_article_urls_archive.append(komplettansicht_url)
+                            else:
+                                all_article_urls_archive.append(article_url)
+                        print(all_article_urls_archive)
                     else:
                         logger.warning(f"No article URLs found on {issue_url}.")
                 
