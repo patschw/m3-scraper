@@ -3,9 +3,13 @@ import gc
 from flair.data import Sentence
 from flair.models import SequenceTagger
 from datasets import Dataset
+import pandas as pd
+import rpy2.robjects as robjects
+from rpy2.robjects.packages import importr
+from rpy2.robjects import pandas2ri
 
 class NEExtractor:
-    """A named entity extractor that uses the Flair library to extract named entities from text."""
+    """A named entity extractor that uses the Flair library to extract named entities from text and newsmap to infer geographical focus."""
     
     def __init__(self, model="flair/ner-german-large", max_chunk_size=5000):
         """Initialize the named entity extractor with a specific flair model and chunk size."""
@@ -16,7 +20,16 @@ class NEExtractor:
         except Exception as e:
             print(f"Failed to load model '{model}'. Error: {e}")
             self.tagger = None  # Ensure tagger is at least defined
-    
+        
+        # Initialize R and load necessary packages
+        pandas2ri.activate()
+        self.r_base = importr('base')
+        self.newsmap = importr('newsmap')
+        self.quanteda = importr('quanteda')
+        
+        # Load the pre-trained newsmap model for German
+        self.r_model = self.newsmap.readRDS(self.r_base.url("https://github.com/koheiw/newsmap/raw/master/data/model_de.RDS"))
+
     def chunk_text(self, text, max_chunk_size):
         """Split the text into smaller chunks of up to max_chunk_size tokens."""
         tokens = text.split()
@@ -29,12 +42,13 @@ class NEExtractor:
     def extract_entities(self, articles_list):
         """
         Extract unique entities for each entry in the articles list and add them to the dataset.
+        Also infer geographical focus using the newsmap R package.
         
         Parameters:
         articles_list (list): A list of dictionaries containing the articles.
         
         Returns:
-        list: The original list of articles with an additional 'central_entities' field containing extracted entities.
+        list: The original list of articles with additional 'central_entities' field including the inferred geographical focus.
         """
         
         # Convert articles_list to a Hugging Face Dataset
@@ -80,9 +94,52 @@ class NEExtractor:
         for i, single_article_dict in enumerate(articles_list):
             single_article_dict["central_entities"] = results[i]["central_entities"]
 
+        # Infer geographical focus using newsmap
+        articles_list = self._infer_geo_focus(articles_list)
+
         # Final GPU memory cleanup
         del results
         torch.cuda.empty_cache()
         gc.collect()
 
+        return articles_list
+
+    def _infer_geo_focus(self, articles_list):
+        """Infer geographical focus of the articles using the newsmap R package."""
+        # Convert articles to a pandas DataFrame
+        df = pd.DataFrame(articles_list)
+        
+        # Convert pandas DataFrame to R dataframe
+        r_df = pandas2ri.py2rpy(df)
+        
+        # Create corpus
+        corp = self.quanteda.corpus(r_df, text_field='main_text')
+        
+        # Tokenize
+        toks = self.quanteda.tokens(corp)
+        toks = self.quanteda.tokens_remove(toks, self.quanteda.stopwords('german'), valuetype='fixed', padding=True)
+        
+        # Look up in dictionary
+        toks_label = self.quanteda.tokens_lookup(toks, self.newsmap.data_dictionary_newsmap_de, levels=3)
+        dfmt_label = self.quanteda.dfm(toks_label)
+        
+        # Create feature dfm
+        dfmt_feat = self.quanteda.dfm(toks, tolower=False)
+        dfmt_feat = self.quanteda.dfm_select(dfmt_feat, selection="keep", '^[A-Z][A-Za-z1-2]+', 
+                                             valuetype='regex', case_insensitive=False)
+        dfmt_feat = self.quanteda.dfm_trim(dfmt_feat, min_termfreq=10)
+        
+        # Apply the model
+        pred = self.newsmap.predict(self.r_model, dfmt_feat)
+        
+        # Convert R result back to Python
+        py_result = pandas2ri.rpy2py(pred)
+        
+        # Add inferred geographical focus to the original articles as a location named entity
+        for i, article in enumerate(articles_list):
+            if i < len(py_result):
+                geo_focus = py_result[i]
+                if geo_focus:  # Check if a geographical focus was inferred
+                    article['central_entities'].append({"type_id": "loc", "title": geo_focus})
+        
         return articles_list

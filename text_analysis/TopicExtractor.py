@@ -22,7 +22,7 @@ class TopicExtractor:
             "Kriminalität und Recht"
         ]
 
-        hypothesis_template = "In diesem Text der Nachrichtenwebsite spiegel.de geht es um {}"
+        hypothesis_template = "In diesem Text der Nachrichtenwebsite spiegel.de geht es um {}" # TODO: spiegel.de austauschen
 
         # Convert articles_list to a Dataset
         dataset = Dataset.from_dict({"main_text": [article["main_text"] for article in articles_list]})

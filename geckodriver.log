@@ -2300,3 +2300,119 @@ console.warn: LoginRecipes: "Falling back to a synchronous message for: https://
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://meine.zeit.de."
 1725884071310	Marionette	INFO	Stopped listening on port 59730
 Dynamically enable window occlusion 1
+1726054125076	geckodriver	INFO	Listening on 127.0.0.1:54861
+1726054128090	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofiley34Bgo"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1726054128599	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1726054129095	Marionette	INFO	Listening on port 54872
+Read port: 54872
+1726054129395	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13275 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 13336 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ line 13275 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/fuermich/ line 3359 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15714 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/spiegel/print/index-2024-37.html line 13 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5316 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5251 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5039 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/panorama/ line 5113 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5089 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4775 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4745 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4971 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 5139 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 6140 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 9062 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 7682 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/auto/ line 4756 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13062 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5415 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5529 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/politik/ line 4813 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4783 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4960 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4849 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/backstage/ line 4779 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 5818 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript warning: https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js, line 1: Script terminated by timeout at:
+onVisibilityChange@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54401
+165/initPageVisibilityAPI/this.boundOnPageHide@https://cdn.prod.www.spiegel.de/public/shared/generated/js/index.74e7726755b6be4afeac.js:1:54209
+
+1726054633902	Marionette	INFO	Stopped listening on port 54872
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1726054689910	geckodriver	INFO	Listening on 127.0.0.1:55205
+1726054692949	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "-no-remote" "-profile" "C:\\Users\\ra76lax\\AppData\\Local\\Temp\\rust_mozprofile0TGH2C"
+console.error: Enterprise Policies: 
+  Policy SearchEngines is only allowed on ESR
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1726054693296	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1726054693552	Marionette	INFO	Listening on port 55215
+Read port: 55215
+1726054693740	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://gruppenkonto.spiegel.de."
+JavaScript error: https://www.spiegel.de/ line 13197 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/ line 13197 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/fuermich/ line 3359 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/schlagzeilen/ line 15642 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/spiegel/print/index-2024-37.html line 13 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/audio/ line 5316 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/plus/ line 5251 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/ausland/ line 5039 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/panorama/ line 5113 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/sport/ line 5089 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wirtschaft/ line 4819 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/wissenschaft/ line 4775 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/netzwelt/ line 4745 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/kultur/ line 4971 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/karriere/ line 5139 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/start/ line 6140 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/tests/ line 9062 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/geschichte/ line 7682 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/auto/ line 4756 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/video/ line 13062 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/debatten/ line 3509 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/deinspiegel/ line 5415 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/international/ line 5529 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/politik/ line 4813 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: resource://gre/actors/PictureInPictureChild.sys.mjs, line 381: TypeError: can't access dead object
+JavaScript error: https://www.spiegel.de/gesundheit/ line 4783 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/psychologie/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/familie/ line 4960 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/partnerschaft/ line 4857 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/reise/ line 4840 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/stil/ line 4849 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/services/ line 4666 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/backstage/ line 4779 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://www.spiegel.de/nachrichtenarchiv/ line 5818 > injectedScript, line 10: TypeError: _satellite.logger is not a function
+JavaScript error: https://assets.adobedtm.com/cc10f7b4369d/32ae8c3350c5/launch-8a2e39fde471.min.js, line 10: Error: Identity cookie not found.
+JavaScript error: https://assets.adobedtm.com/cc10f7b4369d/32ae8c3350c5/launch-8a2e39fde471.min.js, line 10: Error: Identity cookie not found.
+1726057373436	Marionette	INFO	Stopped listening on port 55215
+Dynamically enable window occlusion 1
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 47: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
