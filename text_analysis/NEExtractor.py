@@ -125,7 +125,7 @@ class NEExtractor:
         
         # Create feature dfm
         dfmt_feat = self.quanteda.dfm(toks, tolower=False)
-        dfmt_feat = self.quanteda.dfm_select(dfmt_feat, selection="keep", '^[A-Z][A-Za-z1-2]+', 
+        dfmt_feat = self.quanteda.dfm_select(dfmt_feat, selection="keep", pattern='^[A-Z][A-Za-z1-2]+', 
                                              valuetype='regex', case_insensitive=False)
         dfmt_feat = self.quanteda.dfm_trim(dfmt_feat, min_termfreq=10)
         
