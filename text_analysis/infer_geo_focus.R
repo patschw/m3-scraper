@@ -1,58 +1,55 @@
-library(jsonlite)
-install.packages("newsmap")
 library(newsmap)
-install.packages("quanteda")
 library(quanteda)
+library(dplyr)
+library(countrycode)
+library(jsonlite)
 
-# Read input from stdin
-# Start of Selection
-input_data <- fromJSON("archive_articles.json")
-# End of Selection
-# Start of Selection
-articles <- data.frame(
-  url = input_data$url,
-  main_text = input_data$main_text,
-  stringsAsFactors = FALSE
+infer_geo_focus <- function(file = "main_texts_for_geo_focus_inference.txt") {
+  # Convert articles to a dataframe
+  df <- data.frame(text = readLines(file))
+
+  # Create corpus
+  corp <- corpus(df, text_field = "text")
+
+  # Tokenize
+  toks <- tokens(corp,
+    remove_punct = TRUE,
+    remove_numbers = TRUE, remove_symbols = TRUE
+  )
+  toks <- tokens_remove(toks, stopwords("german"),
+    valuetype = "fixed", padding = TRUE
+  )
+
+  # Apply dictionary
+  toks_label <- tokens_lookup(toks,
+    newsmap::data_dictionary_newsmap_de,
+    levels = 3
+  )
+  dfmt_label <- dfm(toks_label)
+
+  # Create feature dfm
+  dfmt_feat <- dfm(toks, tolower = FALSE)
+  dfmt_feat <- dfm_select(dfmt_feat, "^[A-ZÄÖÜ][A-Za-zäöüß1-2]+",
+    valuetype = "regex", case_insensitive = FALSE
+  )
+  dfmt_feat <- dfm_trim(dfmt_feat, min_termfreq = 10)
+
+  # Create and apply model
+  model <- textmodel_newsmap(dfmt_feat, dfmt_label)
+  pred <- predict(model)
+  pred <- as.character(pred)
+
+  # Convert to full country names
+  country_names <- countrycode(pred, "iso2c", "country.name")
+
+  return(country_names)
+}
+
+country_names <- infer_geo_focus("main_texts_for_geo_focus_inference.txt")
+# delete the file
+file.remove("main_texts_for_geo_focus_inference.txt")
+
+# write to a .txt file
+write.table(country_names, "geo_inference_country_names.txt",
+  row.names = FALSE, quote = FALSE, col.names = FALSE
 )
-# End of Selection
-# End of Selection
-
-# Create a corpus from the articles
-# Start of Selection
-corp <- corpus(articles, text_field = "main_text")
-
-# Tokenize the corpus
-toks <- tokens(corp, remove_punct = TRUE, remove_numbers = TRUE, remove_symbols = TRUE)
-
-# Create a dfm (document-feature matrix)
-dfmat <- dfm(toks)
-
-# Load the pre-trained German newsmap model
-# Note: You may need to adjust the path to where you've saved the model
-data(data_dictionary_newsmap_de)
-
-# Apply the newsmap model
-result <- newsmap(dfmat, data_dictionary_newsmap_german)
-
-# Get the top predicted country for each document
-top_countries <- apply(result, 1, function(x) names(which.max(x)))
-
-# Create a data frame with document IDs and top countries
-output <- data.frame(
-  doc_id = docnames(dfmat),
-  country = top_countries,
-  stringsAsFactors = FALSE
-)
-
-# Convert country codes to country names (optional)
-# You might want to create a mapping of country codes to full names
-country_names <- c(
-  "DE" = "Germany",
-  "AT" = "Austria",
-  "CH" = "Switzerland",
-  # Add more mappings as needed
-)
-output$country <- country_names[output$country]
-
-# Output results as JSON
-cat(toJSON(output$country))

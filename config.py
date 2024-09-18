@@ -150,9 +150,29 @@ LOGIN_URLS = {"spiegel": "https://gruppenkonto.spiegel.de/anmelden.html",
 
 
 # transformer models used for vectorisation
-TRANSFORMER_MODEL_NAMES_DICT = {'bert': 'deepset/gbert-large', 
+TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION = {'bert': 'deepset/gbert-large', 
                                 'roberta': 'T-Systems-onsite/german-roberta-sentence-transformer-v2', 
                                 'gbert': 'deutsche-telekom/gbert-large-paraphrase-euclidean', 
                                 'xmlr': 'xlm-roberta-large', 
                                 'bigbird': 'google/bigbird-roberta-large', 
                                 'longformer': 'severinsimmler/xlm-roberta-longformer-large-16384'}
+
+
+TRANSFORMER_MODEL_NAMES_LIST_FAST_MODE_SUMMARIZATION = {'sentence-transformers/paraphrase-multilingual-mpnet-base-v2',
+                                                        'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
+                                                        'deutsche-telekom/gbert-large-paraphrase-cosine',
+                                                        'deutsche-telekom/gbert-large-paraphrase-euclidean',
+                                                        'Einmalumdiewelt/PegasusXSUM_GNAD',
+                                                        'LennartKeller/longformer-gottbert-base-8192-aw512',
+                                                        'hyperonym/xlm-roberta-longformer-base-16384',
+                                                        'severinsimmler/xlm-roberta-longformer-base-16384',
+                                                        'google/flan-t5-large',
+                                                        'google-t5/t5-large',
+                                                        'dbmdz/german-gpt2',
+                                                        'Shahm/bart-german',
+                                                        'T-Systems-onsite/mt5-small-sum-de-en-v2',
+                                                        'google/mt5-xl',
+                                                        'LeoLM/leo-mistral-hessianai-7b',
+                                                        'Einmalumdiewelt/DistilBART_CNN_GNAD_V3',
+                                                        'mrm8488/bert2bert_shared-german-finetuned-summarization',
+                                                        'snipaid/gptj-title-teaser-10k'}

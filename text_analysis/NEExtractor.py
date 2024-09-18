@@ -3,37 +3,30 @@ import gc
 from flair.data import Sentence
 from flair.models import SequenceTagger
 from datasets import Dataset
-import pandas as pd
-import rpy2.robjects as robjects
-from rpy2.robjects.packages import importr
-from rpy2.robjects import pandas2ri
+import logging
+import subprocess
+import os
 
 class NEExtractor:
     """A named entity extractor that uses the Flair library to extract named entities from text and newsmap to infer geographical focus."""
     
     def __init__(self, model="flair/ner-german-large", max_chunk_size=5000):
         """Initialize the named entity extractor with a specific flair model and chunk size."""
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("Initializing NEExtractor with model: %s", model)
         try:
             self.tagger = SequenceTagger.load(model)
             self.max_chunk_size = max_chunk_size
-            print('Tagger instantiated successfully')
+            self.logger.info('Tagger instantiated successfully')
         except Exception as e:
-            print(f"Failed to load model '{model}'. Error: {e}")
+            self.logger.error("Failed to load model '%s'. Error: %s", model, e)
             self.tagger = None  # Ensure tagger is at least defined
-        
-        # Initialize R and load necessary packages
-        pandas2ri.activate()
-        self.r_base = importr('base')
-        self.newsmap = importr('newsmap')
-        self.quanteda = importr('quanteda')
-        
-        # Load the pre-trained newsmap model for German
-        self.r_model = self.newsmap.readRDS(self.r_base.url("https://github.com/koheiw/newsmap/raw/master/data/model_de.RDS"))
 
     def chunk_text(self, text, max_chunk_size):
         """Split the text into smaller chunks of up to max_chunk_size tokens."""
         tokens = text.split()
         if len(tokens) > max_chunk_size:
+            self.logger.debug("Chunking text of %d tokens into smaller pieces", len(tokens))
             chunks = [' '.join(tokens[i:i + max_chunk_size]) for i in range(0, len(tokens), max_chunk_size)]
         else:
             chunks = [text]  # If text is not too long, return it as a single chunk
@@ -43,13 +36,8 @@ class NEExtractor:
         """
         Extract unique entities for each entry in the articles list and add them to the dataset.
         Also infer geographical focus using the newsmap R package.
-        
-        Parameters:
-        articles_list (list): A list of dictionaries containing the articles.
-        
-        Returns:
-        list: The original list of articles with additional 'central_entities' field including the inferred geographical focus.
         """
+        self.logger.info("Starting entity extraction for %d articles", len(articles_list))
         
         # Convert articles_list to a Hugging Face Dataset
         dataset = Dataset.from_dict({"main_text": [article["main_text"] for article in articles_list]})
@@ -62,7 +50,8 @@ class NEExtractor:
             chunks = self.chunk_text(example["main_text"], self.max_chunk_size)
 
             # Process each chunk individually
-            for chunk in chunks:
+            for i, chunk in enumerate(chunks):
+                self.logger.debug("Processing chunk %d of %d", i+1, len(chunks))
                 sentence = Sentence(chunk)
                 
                 # Perform entity prediction within a no_grad context
@@ -85,9 +74,11 @@ class NEExtractor:
             entity_types = [entity_type.lower() for entity_type in entity_types]
             central_entities = [{"type_id": type_id, "title": entity} for entity, type_id in zip(entities, entity_types)]
             
+            self.logger.debug("Extracted %d unique entities", len(central_entities))
             return {"central_entities": central_entities}
 
         # Apply the extraction to the entire dataset
+        self.logger.info("Applying entity extraction to all articles")
         results = dataset.map(extract, batched=False)
 
         # Update the original articles with the extracted entities
@@ -95,6 +86,7 @@ class NEExtractor:
             single_article_dict["central_entities"] = results[i]["central_entities"]
 
         # Infer geographical focus using newsmap
+        self.logger.info("Inferring geographical focus")
         articles_list = self._infer_geo_focus(articles_list)
 
         # Final GPU memory cleanup
@@ -102,44 +94,48 @@ class NEExtractor:
         torch.cuda.empty_cache()
         gc.collect()
 
+        self.logger.info("Entity extraction and geographical focus inference complete")
         return articles_list
+
 
     def _infer_geo_focus(self, articles_list):
         """Infer geographical focus of the articles using the newsmap R package."""
-        # Convert articles to a pandas DataFrame
-        df = pd.DataFrame(articles_list)
-        
-        # Convert pandas DataFrame to R dataframe
-        r_df = pandas2ri.py2rpy(df)
-        
-        # Create corpus
-        corp = self.quanteda.corpus(r_df, text_field='main_text')
-        
-        # Tokenize
-        toks = self.quanteda.tokens(corp)
-        toks = self.quanteda.tokens_remove(toks, self.quanteda.stopwords('german'), valuetype='fixed', padding=True)
-        
-        # Look up in dictionary
-        toks_label = self.quanteda.tokens_lookup(toks, self.newsmap.data_dictionary_newsmap_de, levels=3)
-        dfmt_label = self.quanteda.dfm(toks_label)
-        
-        # Create feature dfm
-        dfmt_feat = self.quanteda.dfm(toks, tolower=False)
-        dfmt_feat = self.quanteda.dfm_select(dfmt_feat, selection="keep", pattern='^[A-Z][A-Za-z1-2]+', 
-                                             valuetype='regex', case_insensitive=False)
-        dfmt_feat = self.quanteda.dfm_trim(dfmt_feat, min_termfreq=10)
-        
-        # Apply the model
-        pred = self.newsmap.predict(self.r_model, dfmt_feat)
-        
-        # Convert R result back to Python
-        py_result = pandas2ri.rpy2py(pred)
-        
-        # Add inferred geographical focus to the original articles as a location named entity
-        for i, article in enumerate(articles_list):
-            if i < len(py_result):
-                geo_focus = py_result[i]
-                if geo_focus:  # Check if a geographical focus was inferred
-                    article['central_entities'].append({"type_id": "loc", "title": geo_focus})
+        self.logger.info("Starting geographical focus inference for %d articles", len(articles_list))
+        # delete the files if they exist
+        if os.path.exists('main_texts_for_geo_focus_inference.txt'):
+            os.remove('main_texts_for_geo_focus_inference.txt')
+        if os.path.exists('geo_inference_country_names.txt'):
+            os.remove('geo_inference_country_names.txt')
+
+        try:
+            # Write main_text to file
+            input_file_path = 'main_texts_for_geo_focus_inference.txt'
+            with open(input_file_path, 'w', encoding='utf-8') as f:
+                for article in articles_list:
+                    f.write(article['main_text'] + '\n')
+            
+            self.logger.debug("Wrote main texts to file: %s", input_file_path)
+
+            # Call R script
+            r_script_path = os.path.join('text_analysis', 'infer_geo_focus.R')
+            self.logger.debug("Calling R script: %s", r_script_path)
+            subprocess.run(['Rscript', r_script_path], check=True)
+            
+            # Read the output file
+            output_file_path = 'geo_inference_country_names.txt'
+            with open(output_file_path, 'r', encoding='utf-8') as f:
+                country_names = f.read().strip().split('\n')
+            
+            # Add inferred geographical focus to the original articles
+            for i, (article, country) in enumerate(zip(articles_list, country_names)):
+                if country and country != 'NA':
+                    article['central_entities'].append({"title": country, "type_id": "loc"})
+                    self.logger.debug("Added geographical focus '%s' to article %d", country, i)
+                else:
+                    self.logger.debug("No geographical focus inferred for article %d", i)
+            
+            self.logger.info("Geographical focus inference completed successfully")
+        except Exception as e:
+            self.logger.error("Error in geographical focus inference: %s", str(e))
         
         return articles_list

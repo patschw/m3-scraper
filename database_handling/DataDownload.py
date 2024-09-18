@@ -3,6 +3,7 @@ from database_handling.KeycloakLogin import KeycloakLogin
 import requests
 import json
 import logging
+import time
 
 
 #TODO: Status code ausgeben, damit im final laufenden scraper script gechecked werden kann, ob der download erfolgreich war
@@ -26,32 +27,50 @@ class DataDownloader:
         query = {}
         for key, value in params.items():
             if value is not None:  # This ensures only provided filters are included
+                if key == 'url' and isinstance(value, list):
+                    value = ', '.join(value)
                 query[key] = value
         return query
     
     def _return_response(self, response):
         """Utility method to return the response."""
+        start_time = time.time()
         # Check if the response is not empty
         if response.text:
             # Try to parse the response as JSON
             try:
-                return response.json()
+                result = response.json()
+                logger.debug(f"JSON parsing took {time.time() - start_time:.2f} seconds")
+                return result
             # Handle JSON decoding errors
             except json.JSONDecodeError:
-                print("Error decoding JSON")
-                print(response.text)
-                print(response.status_code)
+                logger.error(f"Error decoding JSON after {time.time() - start_time:.2f} seconds")
+                logger.error(f"Response text: {response.text}")
+                logger.error(f"Status code: {response.status_code}")
         else:
-            print("Empty response received")
-            
+            logger.warning(f"Empty response received after {time.time() - start_time:.2f} seconds")
+            logger.warning(f"Status code: {response.status_code}")
+        
+        # Return None if we couldn't process the response
+        return None
+
     def _get_data(self, endpoint, **params):
         """Sends a GET request to the specified endpoint with optional parameters."""
         url = f'{self.base_url}{endpoint}'
+        query = self._build_query(**params)
+        start_time = time.time()
         try:
-            response = requests.get(url, headers=self.headers, params=params)
+            # Log the full URL and parameters for debugging
+            logger.debug(f"Requesting URL: {url}")
+            logger.debug(f"With params: {query}")
+            
+            response = requests.get(url, headers=self.headers, params=query)
+            response_time = time.time() - start_time
+            logger.debug(f"Request took {response_time:.2f} seconds")
+            
             response.raise_for_status()  # Raises a HTTPError if the status is 4xx, 5xx
         except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
+            logger.error(f"An error occurred after {time.time() - start_time:.2f} seconds: {e}")
             return None
         else:
             return self._return_response(response)
@@ -96,27 +115,27 @@ class DataDownloader:
         """Gets content rehydrate with optional filters."""
         return self._get_data("api/v1/content/rehydrate/", **params)
 
-    def get_content_rehydrate_status_code_only(self, **params):
-        """
-        Sends a GET request to the content rehydrate API with optional filters and returns only the status code.
+    # def get_content_rehydrate_status_code_only(self, **params):
+    #     """
+    #     Sends a GET request to the content rehydrate API with optional filters and returns only the status code.
     
-        Parameters:
-        - **params: Optional query parameters to be included in the request.
+    #     Parameters:
+    #     - **params: Optional query parameters to be included in the request.
     
-        Returns:
-        - The status code of the response (e.g., 200, 404, 500).
-        """
-        status_code = self._get_data_status_code_only("api/v1/content/rehydrate/", **params)
-        return status_code
+    #     Returns:
+    #     - The status code of the response (e.g., 200, 404, 500).
+    #     """
+    #     status_code = self._get_data_status_code_only("api/v1/content/rehydrate/", **params)
+    #     return status_code
 
-        # Note: This method doesn't only produce a 200 status code. It can return various status codes
-        # depending on the server's response. For example:
-        # - 200: Successful request
-        # - 400: Bad request
-        # - 401: Unauthorized
-        # - 404: Not found
-        # - 500: Internal server error
-        # The actual status code returned depends on the server's response to the request.
+    #     # Note: This method doesn't only produce a 200 status code. It can return various status codes
+    #     # depending on the server's response. For example:
+    #     # - 200: Successful request
+    #     # - 400: Bad request
+    #     # - 401: Unauthorized
+    #     # - 404: Not found
+    #     # - 500: Internal server error
+    #     # The actual status code returned depends on the server's response to the request.
 
     def get_content_entity(self):
         """Gets content entity."""

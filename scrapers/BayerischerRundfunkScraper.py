@@ -10,6 +10,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
+# TODO: remove footers from the content, in BR articles trafilatura sees them as main text
+
 # Set up logging for the scraper
 logger = logging.getLogger(__name__)
 

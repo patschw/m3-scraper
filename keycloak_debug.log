@@ -1,0 +1,155 @@
+2024-09-17 12:00:07,971 - database_handling.KeycloakLogin - DEBUG - Initializing KeycloakLogin
+2024-09-17 12:00:07,972 - database_handling.KeycloakLogin - DEBUG - Loading credentials
+2024-09-17 12:00:07,974 - database_handling.KeycloakLogin - DEBUG - Credential loading took 0.00 seconds
+2024-09-17 12:00:07,974 - database_handling.KeycloakLogin - DEBUG - KeycloakLogin initialization took 0.00 seconds
+2024-09-17 12:00:07,975 - database_handling.KeycloakLogin - DEBUG - Getting token
+2024-09-17 12:00:07,976 - database_handling.KeycloakLogin - DEBUG - Refreshing token
+2024-09-17 12:00:07,977 - database_handling.KeycloakLogin - DEBUG - Initializing KeycloakOpenID client
+2024-09-17 12:00:07,978 - urllib3.util.retry - DEBUG - Converted retries value: 1 -> Retry(total=1, connect=None, read=None, redirect=None, status=None)
+2024-09-17 12:00:07,979 - urllib3.util.retry - DEBUG - Converted retries value: 1 -> Retry(total=1, connect=None, read=None, redirect=None, status=None)
+2024-09-17 12:00:07,979 - database_handling.KeycloakLogin - DEBUG - KeycloakOpenID initialization took 0.00 seconds
+2024-09-17 12:00:08,018 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): login.m3.ifkw.lmu.de:443
+2024-09-17 12:00:29,569 - urllib3.connectionpool - DEBUG - https://login.m3.ifkw.lmu.de:443 "POST /auth/realms/m3-api/protocol/openid-connect/token HTTP/1.1" 200 3649
+2024-09-17 12:00:29,571 - database_handling.KeycloakLogin - DEBUG - Token request took 21.59 seconds
+2024-09-17 12:00:29,571 - database_handling.KeycloakLogin - DEBUG - Token refresh took 21.59 seconds
+2024-09-17 12:00:29,572 - database_handling.KeycloakLogin - DEBUG - Token retrieval took 21.60 seconds
+2024-09-17 12:02:20,965 - database_handling.KeycloakLogin - DEBUG - Initializing KeycloakLogin
+2024-09-17 12:02:20,966 - database_handling.KeycloakLogin - DEBUG - Loading credentials
+2024-09-17 12:02:20,967 - database_handling.KeycloakLogin - DEBUG - Credential loading took 0.00 seconds
+2024-09-17 12:02:20,968 - database_handling.KeycloakLogin - DEBUG - KeycloakLogin initialization took 0.00 seconds
+2024-09-17 12:02:20,969 - database_handling.KeycloakLogin - DEBUG - Getting token
+2024-09-17 12:02:20,969 - database_handling.KeycloakLogin - DEBUG - Refreshing token
+2024-09-17 12:02:20,970 - database_handling.KeycloakLogin - DEBUG - Initializing KeycloakOpenID client
+2024-09-17 12:02:20,971 - urllib3.util.retry - DEBUG - Converted retries value: 1 -> Retry(total=1, connect=None, read=None, redirect=None, status=None)
+2024-09-17 12:02:20,972 - urllib3.util.retry - DEBUG - Converted retries value: 1 -> Retry(total=1, connect=None, read=None, redirect=None, status=None)
+2024-09-17 12:02:20,972 - database_handling.KeycloakLogin - DEBUG - KeycloakOpenID initialization took 0.00 seconds
+2024-09-17 12:02:21,009 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): login.m3.ifkw.lmu.de:443
+2024-09-17 12:02:42,574 - urllib3.connectionpool - DEBUG - https://login.m3.ifkw.lmu.de:443 "POST /auth/realms/m3-api/protocol/openid-connect/token HTTP/1.1" 200 3649
+2024-09-17 12:02:42,576 - database_handling.KeycloakLogin - DEBUG - Token request took 21.60 seconds
+2024-09-17 12:02:42,577 - database_handling.KeycloakLogin - DEBUG - Token refresh took 21.61 seconds
+2024-09-17 12:02:42,578 - database_handling.KeycloakLogin - DEBUG - Token retrieval took 21.61 seconds
+2024-09-17 13:03:20,909 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 13:03:21,262 - urllib3.connectionpool - DEBUG - https://138.246.225.99:443 "POST /auth/realms/m3-api/protocol/openid-connect/token HTTP/1.1" 200 2432
+2024-09-17 13:03:23,278 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 13:03:23,538 - urllib3.connectionpool - DEBUG - https://138.246.225.99:443 "GET /auth/realms/m3-api/.well-known/openid-configuration HTTP/1.1" 200 6084
+2024-09-17 13:03:36,744 - database_handling.KeycloakLogin - DEBUG - Loading credentials
+2024-09-17 13:05:19,565 - database_handling.KeycloakLogin - DEBUG - Loading credentials
+2024-09-17 13:05:19,567 - database_handling.KeycloakLogin - DEBUG - Credential loading took 0.00 seconds
+2024-09-17 13:05:19,574 - database_handling.KeycloakLogin - DEBUG - Resolved Keycloak server IP: 138.246.225.99
+2024-09-17 13:05:19,574 - database_handling.KeycloakLogin - DEBUG - Getting token
+2024-09-17 13:05:19,576 - database_handling.KeycloakLogin - DEBUG - Refreshing token
+2024-09-17 13:05:19,580 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 13:05:19,818 - database_handling.KeycloakLogin - ERROR - Error during token request: HTTPSConnectionPool(host='138.246.225.99', port=443): Max retries exceeded with url: /auth/realms/m3-api/protocol/openid-connect/token (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1133)')))
+2024-09-17 14:08:13,891 - database_handling.KeycloakLogin - DEBUG - Loading credentials
+2024-09-17 14:08:13,902 - database_handling.KeycloakLogin - DEBUG - Credential loading took 0.01 seconds
+2024-09-17 14:08:13,907 - database_handling.KeycloakLogin - DEBUG - Resolved Keycloak server IP: 138.246.225.99
+2024-09-17 14:08:13,908 - database_handling.KeycloakLogin - DEBUG - Getting token
+2024-09-17 14:08:13,909 - database_handling.KeycloakLogin - DEBUG - Refreshing token
+2024-09-17 14:08:13,912 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 14:08:14,389 - urllib3.connectionpool - DEBUG - https://138.246.225.99:443 "POST /auth/realms/m3-api/protocol/openid-connect/token HTTP/1.1" 200 2432
+2024-09-17 14:08:14,391 - database_handling.KeycloakLogin - DEBUG - Token request took 0.48 seconds
+2024-09-17 14:08:14,391 - database_handling.KeycloakLogin - DEBUG - Token refresh took 0.48 seconds
+2024-09-17 14:08:14,395 - database_handling.KeycloakLogin - DEBUG - Token retrieval took 0.49 seconds
+2024-09-17 14:48:18,417 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-09-17 14:48:18,440 - httpx - DEBUG - load_verify_locations cafile='C:\\Users\\ra76lax\\AppData\\Local\\anaconda3\\envs\\python_m3_scrapers\\Library\\ssl\\cacert.pem'
+2024-09-17 14:48:18,691 - httpcore.connection - DEBUG - connect_tcp.started host='login.m3.ifkw.lmu.de' port=443 local_address=None timeout=5.0 socket_options=None
+2024-09-17 14:48:23,724 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012CEBB3F5B0>
+2024-09-17 14:48:23,727 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000012CED618C40> server_hostname='login.m3.ifkw.lmu.de' timeout=5.0
+2024-09-17 14:48:23,747 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012CE9DC57F0>
+2024-09-17 14:48:23,748 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2024-09-17 14:48:23,749 - httpcore.http11 - DEBUG - send_request_headers.complete
+2024-09-17 14:48:23,749 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2024-09-17 14:48:23,750 - httpcore.http11 - DEBUG - send_request_body.complete
+2024-09-17 14:48:23,750 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2024-09-17 14:48:23,757 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Tue, 17 Sep 2024 12:48:23 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'6084'), (b'Connection', b'keep-alive'), (b'Referrer-Policy', b'no-referrer'), (b'X-Frame-Options', b'SAMEORIGIN'), (b'Strict-Transport-Security', b'max-age=15724800; includeSubDomains'), (b'Cache-Control', b'no-cache, must-revalidate, no-transform, no-store'), (b'X-Content-Type-Options', b'nosniff'), (b'X-XSS-Protection', b'1; mode=block')])
+2024-09-17 14:48:23,758 - httpx - INFO - HTTP Request: GET https://login.m3.ifkw.lmu.de/auth/realms/m3-api/.well-known/openid-configuration "HTTP/1.1 200 OK"
+2024-09-17 14:48:23,760 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2024-09-17 14:48:23,760 - httpcore.http11 - DEBUG - receive_response_body.complete
+2024-09-17 14:48:23,762 - httpcore.http11 - DEBUG - response_closed.started
+2024-09-17 14:48:23,762 - httpcore.http11 - DEBUG - response_closed.complete
+2024-09-17 14:48:23,763 - httpcore.connection - DEBUG - close.started
+2024-09-17 14:48:23,764 - httpcore.connection - DEBUG - close.complete
+2024-09-17 14:49:56,796 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2024-09-17 14:49:56,798 - httpx - DEBUG - load_verify_locations cafile='C:\\Users\\ra76lax\\AppData\\Local\\anaconda3\\envs\\python_m3_scrapers\\Library\\ssl\\cacert.pem'
+2024-09-17 14:49:57,062 - httpcore.connection - DEBUG - connect_tcp.started host='login.m3.ifkw.lmu.de' port=443 local_address=None timeout=5.0 socket_options=None
+2024-09-17 14:50:02,068 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012CEB18A730>
+2024-09-17 14:50:02,071 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000012CED6CAB40> server_hostname='login.m3.ifkw.lmu.de' timeout=5.0
+2024-09-17 14:50:02,080 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x0000012CED68E790>
+2024-09-17 14:50:02,081 - httpcore.http2 - DEBUG - send_connection_init.started request=<Request [b'GET']>
+2024-09-17 14:50:02,082 - httpcore.http2 - DEBUG - send_connection_init.complete
+2024-09-17 14:50:02,084 - httpcore.http2 - DEBUG - send_request_headers.started request=<Request [b'GET']> stream_id=1
+2024-09-17 14:50:02,087 - hpack.hpack - DEBUG - Adding (b':method', b'GET') to the header table, sensitive:False, huffman:True
+2024-09-17 14:50:02,088 - hpack.hpack - DEBUG - Encoding 2 with 7 bits
+2024-09-17 14:50:02,089 - hpack.hpack - DEBUG - Adding (b':authority', b'login.m3.ifkw.lmu.de') to the header table, sensitive:False, huffman:True
+2024-09-17 14:50:02,090 - hpack.hpack - DEBUG - Encoding 1 with 6 bits
+2024-09-17 14:50:02,091 - hpack.hpack - DEBUG - Encoding 15 with 7 bits
+2024-09-17 14:50:02,091 - hpack.hpack - DEBUG - Adding (b':scheme', b'https') to the header table, sensitive:False, huffman:True
+2024-09-17 14:50:02,093 - hpack.hpack - DEBUG - Encoding 7 with 7 bits
+2024-09-17 14:50:02,093 - hpack.hpack - DEBUG - Adding (b':path', b'/auth/realms/m3-api/.well-known/openid-configuration') to the header table, sensitive:False, huffman:True
+2024-09-17 14:50:02,094 - hpack.hpack - DEBUG - Encoding 4 with 6 bits
+2024-09-17 14:50:02,095 - hpack.hpack - DEBUG - Encoding 37 with 7 bits
+2024-09-17 14:50:02,096 - hpack.hpack - DEBUG - Adding (b'accept', b'*/*') to the header table, sensitive:False, huffman:True
+2024-09-17 14:50:02,098 - hpack.hpack - DEBUG - Encoding 19 with 6 bits
+2024-09-17 14:50:02,098 - hpack.hpack - DEBUG - Encoding 3 with 7 bits
+2024-09-17 14:50:02,099 - hpack.hpack - DEBUG - Adding (b'accept-encoding', b'gzip, deflate, br') to the header table, sensitive:False, huffman:True
+2024-09-17 14:50:02,100 - hpack.hpack - DEBUG - Encoding 16 with 6 bits
+2024-09-17 14:50:02,101 - hpack.hpack - DEBUG - Encoding 13 with 7 bits
+2024-09-17 14:50:02,103 - hpack.hpack - DEBUG - Adding (b'user-agent', b'python-httpx/0.27.2') to the header table, sensitive:False, huffman:True
+2024-09-17 14:50:02,104 - hpack.hpack - DEBUG - Encoding 58 with 6 bits
+2024-09-17 14:50:02,105 - hpack.hpack - DEBUG - Encoding 14 with 7 bits
+2024-09-17 14:50:02,106 - hpack.hpack - DEBUG - Encoded header block to b"\x82A\x8f\xa0\xf3\x1a\xa5\xe9esK\xd7\xc2\xf4Sj\xf2\x17\x87D\xa5`v\xa6v,(\xe8\xa5\x0cR\xca\xc3\xac\xcc/\xe0\xb4P\xb7Z\x8f\xe2\xa6\x0fYj4\x8b\x10\xf5Ji\xad\xb0i1\xeaS\x83\xf9c\xe7P\x8d\x9b\xd9\xab\xfaRB\xcb@\xd2_\xa5#\xb3z\x8e\xaf\xd2g=KN\x94\xd7\xe5\x80.'W\x17"
+2024-09-17 14:50:02,107 - httpcore.http2 - DEBUG - send_request_headers.complete
+2024-09-17 14:50:02,108 - httpcore.http2 - DEBUG - send_request_body.started request=<Request [b'GET']> stream_id=1
+2024-09-17 14:50:02,109 - httpcore.http2 - DEBUG - send_request_body.complete
+2024-09-17 14:50:02,110 - httpcore.http2 - DEBUG - receive_response_headers.started request=<Request [b'GET']> stream_id=1
+2024-09-17 14:50:02,111 - httpcore.http2 - DEBUG - receive_remote_settings.started
+2024-09-17 14:50:02,112 - httpcore.http2 - DEBUG - receive_remote_settings.complete return_value=<RemoteSettingsChanged changed_settings:{ChangedSetting(setting=SettingCodes.MAX_CONCURRENT_STREAMS, original_value=None, new_value=128), ChangedSetting(setting=SettingCodes.INITIAL_WINDOW_SIZE, original_value=65535, new_value=65536), ChangedSetting(setting=SettingCodes.MAX_FRAME_SIZE, original_value=16384, new_value=16777215)}>
+2024-09-17 14:50:02,114 - hpack.hpack - DEBUG - Decoding b' \x88a\x96\xdfi~\x94\x0b\xaan-j\x08\x02i@\x8a\xe3`\xb8\x01)\x8bF\xff_\x8b\x1du\xd0b\r&=LtA\xea\\\x046084\x00\x8b\xb0\xb2\x96\xcb\x0bb\xd5\x9e\x83\x13\xd7\x88\xa8\xebXYKe\x85\xb3\x00\x8b\xf2\xb4\xb6\x0e\x92\xacz\xd2c\xd4\x8f\x89\xdd\x0e\x8c\x1a\xb6\xe4\xc5\x93O\x00\x91Bl1\x12\xb2l\x1dH\xac\xf6%d\x14\x96\xd8d\xfa\x9a\xa4~V\x1c\xc5\x80-\xba&\x9e\x00>\xd45D\xa2\xd9\x0b\xba\xd8\xef\x9e\x91\x9a\xa4\x7f\x00\x89 \xc99V!\xeaM\x87\xa3\xa3\xa8\xeb\x10d\x9c\xbfJSj\x12\xb5\x85\xee:\r \xd2_\xa5*:\xc9\xb0u"S\xd9O\xd2\x95\x1dd$\xf6\x17\x00\x90\xf2\xb1\x0fRKRVO\xaa\xca\xb1\xebI\x8fR?\x85\xa8\xe8\xa8\xd2\xcb\x00\x8c\xf2\xb7\x94!j\xec:JD\x98\xf5\x7f\x8a\x0f\xda\x94\x9eB\xc1\x1d\x07\'_'
+2024-09-17 14:50:02,115 - hpack.hpack - DEBUG - Decoded 0, consumed 1 bytes
+2024-09-17 14:50:02,116 - hpack.table - DEBUG - Resizing header table to 0 from 4096
+2024-09-17 14:50:02,117 - hpack.hpack - DEBUG - Decoded 8, consumed 1 bytes
+2024-09-17 14:50:02,117 - hpack.hpack - DEBUG - Decoded (b':status', b'200'), consumed 1
+2024-09-17 14:50:02,120 - hpack.hpack - DEBUG - Decoded 33, consumed 1 bytes
+2024-09-17 14:50:02,120 - hpack.hpack - DEBUG - Decoded 22, consumed 1 bytes
+2024-09-17 14:50:02,122 - hpack.hpack - DEBUG - Decoded (b'date', b'Tue, 17 Sep 2024 12:50:02 GMT'), total consumed 24 bytes, indexed True
+2024-09-17 14:50:02,123 - hpack.hpack - DEBUG - Decoded 31, consumed 1 bytes
+2024-09-17 14:50:02,124 - hpack.hpack - DEBUG - Decoded 11, consumed 1 bytes
+2024-09-17 14:50:02,125 - hpack.hpack - DEBUG - Decoded (b'content-type', b'application/json'), total consumed 13 bytes, indexed True
+2024-09-17 14:50:02,125 - hpack.hpack - DEBUG - Decoded 28, consumed 1 bytes
+2024-09-17 14:50:02,126 - hpack.hpack - DEBUG - Decoded 4, consumed 1 bytes
+2024-09-17 14:50:02,127 - hpack.hpack - DEBUG - Decoded (b'content-length', <memory at 0x0000012CED650AC0>), total consumed 6 bytes, indexed True
+2024-09-17 14:50:02,128 - hpack.hpack - DEBUG - Decoded 11, consumed 1 bytes
+2024-09-17 14:50:02,128 - hpack.hpack - DEBUG - Decoded 8, consumed 1 bytes
+2024-09-17 14:50:02,130 - hpack.hpack - DEBUG - Decoded (b'referrer-policy', b'no-referrer'), total consumed 22 bytes, indexed False
+2024-09-17 14:50:02,130 - hpack.hpack - DEBUG - Decoded 11, consumed 1 bytes
+2024-09-17 14:50:02,131 - hpack.hpack - DEBUG - Decoded 9, consumed 1 bytes
+2024-09-17 14:50:02,132 - hpack.hpack - DEBUG - Decoded (b'x-frame-options', b'SAMEORIGIN'), total consumed 23 bytes, indexed False
+2024-09-17 14:50:02,132 - hpack.hpack - DEBUG - Decoded 17, consumed 1 bytes
+2024-09-17 14:50:02,133 - hpack.hpack - DEBUG - Decoded 26, consumed 1 bytes
+2024-09-17 14:50:02,135 - hpack.hpack - DEBUG - Decoded (b'strict-transport-security', b'max-age=15724800; includeSubDomains'), total consumed 46 bytes, indexed False
+2024-09-17 14:50:02,136 - hpack.hpack - DEBUG - Decoded 9, consumed 1 bytes
+2024-09-17 14:50:02,138 - hpack.hpack - DEBUG - Decoded 35, consumed 1 bytes
+2024-09-17 14:50:02,139 - hpack.hpack - DEBUG - Decoded (b'cache-control', b'no-cache, must-revalidate, no-transform, no-store'), total consumed 47 bytes, indexed False
+2024-09-17 14:50:02,140 - hpack.hpack - DEBUG - Decoded 16, consumed 1 bytes
+2024-09-17 14:50:02,140 - hpack.hpack - DEBUG - Decoded 5, consumed 1 bytes
+2024-09-17 14:50:02,142 - hpack.hpack - DEBUG - Decoded (b'x-content-type-options', b'nosniff'), total consumed 24 bytes, indexed False
+2024-09-17 14:50:02,144 - hpack.hpack - DEBUG - Decoded 12, consumed 1 bytes
+2024-09-17 14:50:02,144 - hpack.hpack - DEBUG - Decoded 10, consumed 1 bytes
+2024-09-17 14:50:02,145 - hpack.hpack - DEBUG - Decoded (b'x-xss-protection', b'1; mode=block'), total consumed 25 bytes, indexed False
+2024-09-17 14:50:02,147 - httpcore.http2 - DEBUG - receive_response_headers.complete return_value=(200, [(b'date', b'Tue, 17 Sep 2024 12:50:02 GMT'), (b'content-type', b'application/json'), (b'content-length', b'6084'), (b'referrer-policy', b'no-referrer'), (b'x-frame-options', b'SAMEORIGIN'), (b'strict-transport-security', b'max-age=15724800; includeSubDomains'), (b'cache-control', b'no-cache, must-revalidate, no-transform, no-store'), (b'x-content-type-options', b'nosniff'), (b'x-xss-protection', b'1; mode=block')])
+2024-09-17 14:50:02,150 - httpx - INFO - HTTP Request: GET https://login.m3.ifkw.lmu.de/auth/realms/m3-api/.well-known/openid-configuration "HTTP/2 200 OK"
+2024-09-17 14:50:02,152 - httpcore.http2 - DEBUG - receive_response_body.started request=<Request [b'GET']> stream_id=1
+2024-09-17 14:50:02,156 - httpcore.http2 - DEBUG - receive_response_body.complete
+2024-09-17 14:50:02,156 - httpcore.http2 - DEBUG - response_closed.started stream_id=1
+2024-09-17 14:50:02,158 - httpcore.http2 - DEBUG - response_closed.complete
+2024-09-17 14:50:02,158 - httpcore.connection - DEBUG - close.started
+2024-09-17 14:50:02,159 - httpcore.connection - DEBUG - close.complete
+2024-09-17 14:52:30,820 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 14:52:31,207 - urllib3.connectionpool - DEBUG - https://138.246.225.99:443 "POST /auth/realms/m3-api/protocol/openid-connect/token HTTP/1.1" 401 72
+2024-09-17 14:52:45,852 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 14:52:46,360 - urllib3.connectionpool - DEBUG - https://138.246.225.99:443 "POST /auth/realms/m3-api/protocol/openid-connect/token HTTP/1.1" 200 2432
+2024-09-17 14:52:48,377 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 14:52:48,657 - urllib3.connectionpool - DEBUG - https://138.246.225.99:443 "GET /auth/realms/m3-api/.well-known/openid-configuration HTTP/1.1" 200 6084
+2024-09-17 14:53:24,749 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443
+2024-09-17 14:53:25,072 - urllib3.connectionpool - DEBUG - https://138.246.225.99:443 "POST /auth/realms/m3-api/protocol/openid-connect/token HTTP/1.1" 401 72
+2024-09-17 14:53:38,848 - urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): 138.246.225.99:443

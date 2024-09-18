@@ -8,6 +8,7 @@ from typing import List, Dict
 from functools import lru_cache
 from transformers import pipeline
 
+
 # bartowski/Llama-3.1-SauerkrautLM-8b-Instruct-GGUF
 # Llama-3.1-SauerkrautLM-8b-Instruct-Q6_K_L.gguf
 
@@ -19,14 +20,15 @@ class Summarizer:
                  max_new_tokens: int = 1024, 
                  context_length: int = 8192,
                  batch_size: int = 16,
-                 fast_mode: bool = False):
+                 fast_mode: bool = False,
+                 fast_mode_model: str = "google/flan-t5-large"):
         self.max_new_tokens = max_new_tokens
         self.context_length = context_length
         self.batch_size = batch_size
         self.fast_mode = fast_mode
 
         if fast_mode:
-            self.summarizer = pipeline("summarization", model="google/flan-t5-large", device=0 if torch.cuda.is_available() else -1)
+            self.summarizer = pipeline("summarization", model=fast_mode_model, device=0 if torch.cuda.is_available() else -1)
         else:
             llm = AutoModelForCausalLM.from_pretrained(
                 model_path,

@@ -4,20 +4,21 @@ from sentence_transformers import SentenceTransformer
 import numpy as np
 import nltk
 from datasets import Dataset
+from config import TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION
 
-TRANSFORMER_MODEL_NAMES_DICT = {
-    'bert': 'deepset/gbert-base', 
-    'roberta': 'T-Systems-onsite/german-roberta-sentence-transformer-v2', 
-    'gbert': 'deutsche-telekom/gbert-large-paraphrase-euclidean', 
-    'xmlr': 'xlm-roberta-large', 
-    'bigbird': 'google/bigbird-roberta-large', 
-    'longformer': 'severinsimmler/xlm-roberta-longformer-large-16384'
-}
+# TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION = {
+#     'bert': 'deepset/gbert-base', 
+#     'roberta': 'T-Systems-onsite/german-roberta-sentence-transformer-v2', 
+#     'gbert': 'deutsche-telekom/gbert-large-paraphrase-euclidean', 
+#     'xmlr': 'xlm-roberta-large', 
+#     'bigbird': 'google/bigbird-roberta-large', 
+#     'longformer': 'severinsimmler/xlm-roberta-longformer-large-16384'
+# }
 
 class Vectorizer:
     """A vectorizer that uses various Sentence Transformers models to vectorize text."""
     
-    def __init__(self, model_names_dict=TRANSFORMER_MODEL_NAMES_DICT, cache_dir="transformers_cache_dir"):
+    def __init__(self, model_names_dict=TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION, cache_dir="transformers_cache_dir"):
         self.models = {key: SentenceTransformer(model, cache_folder=cache_dir) for key, model in model_names_dict.items()}
         
     def vectorize(self, articles_list):
