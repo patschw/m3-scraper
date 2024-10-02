@@ -1,4 +1,16 @@
 credentials.txt
 credentials_keycloak.txt
 transformers_cache_dir
-scribble.txt
+chrome
+*.log
+__pycache__/
+*.py[cod]
+freeze
+firefox/
+geckodriver-folder/
+patrick_myenv/
+screenshot.png
+responses.json
+articles.json
+*.zip
+.ipynb_checkpoints/
