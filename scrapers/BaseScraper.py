@@ -12,6 +12,7 @@ from config import WEBSITE_STRATEGIES, CREDENTIALS_PATH
 import trafilatura
 import json
 from sklearn.feature_extraction.text import CountVectorizer
+from pathlib import Path
 from datetime import datetime
 from bs4 import BeautifulSoup
 import time
@@ -27,7 +28,6 @@ import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class BaseScraper:
@@ -59,11 +59,16 @@ class BaseScraper:
     def start_browser(self):
         """Start the browser and initialize the WebDriver and WebDriverWait instances"""
         if self.headless:
-            geckodriver_path = '/usr/local/bin/geckodriver'
-            firefox_binary_path = '/usr/bin/firefox'
+            geckodriver_path = Path("./geckodriver-folder/geckodriver").resolve()  # Absolute path to geckodriver
+            firefox_binary_path = Path("./firefox").resolve()   # Absolute path to firefox folder
+            
+            
+            logger.debug(f"Geckodriver path:", geckodriver_path)
+            logger.debug(f"Geckodriver path:", firefox_binary_path)
+            logger.debug(f"Current working directory:", Path.cwd())
 
             firefox_options = Options()
-            firefox_options.binary_location = firefox_binary_path
+            firefox_options.binary_location = str(firefox_binary_path / 'firefox')  # Path to Firefox binary
             firefox_options.add_argument("--no-sandbox")
             firefox_options.add_argument("--disable-dev-shm-usage")
             firefox_options.add_argument('--window-size=1920,1080')

@@ -1,8 +1,19 @@
-library(newsmap)
-library(quanteda)
-library(dplyr)
-library(countrycode)
-library(jsonlite)
+# List of required packages
+packages <- c("newsmap", "quanteda", "dplyr", "countrycode", "jsonlite")
+
+# Function to check and install missing packages
+install_if_missing <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg)
+  }
+}
+
+# Apply the function to each package
+lapply(packages, install_if_missing)
+
+# Load the libraries after installation
+lapply(packages, library, character.only = TRUE)
+
 
 infer_geo_focus <- function(file = "main_texts_for_geo_focus_inference.txt") {
   # Convert articles to a dataframe

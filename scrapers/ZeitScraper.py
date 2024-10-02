@@ -62,20 +62,20 @@ class ZeitScraper(BaseScraper):
         except Exception as e:
             logger.error(f"Login failed: {e}")  # Log any errors during login
 
-    def scrape_archive(self) -> List[str]:
+    def scrape_archive(self, year_start = 1946, year_end = 1946) -> List[str]:
         """Scrape articles from the archive of the website (if this news outlet has an archive)"""
         
-        years = range(1946, 1947)  # 1945 until today
-        issues_weeks = range(10, 11)  # 01 to 09
-        #issues_weeks = list(map(lambda x: f"{x:02}", issues_weeks)) + [f"{i:02}" for i in range(10, 60)]  # 10 to 60
+        years = range(year_start, year_end)  # 1945 until today
+        issues_weeks = range(1, 9)  # 01 to 09
+        issues_weeks = list(map(lambda x: f"{x:02}", issues_weeks)) + [f"{i:02}" for i in range(10, 60)]  # 10 to 60
         
         all_article_urls_archive = []   
         # Iterate over years and issue_weeks and navigate to the issue page
         for year in years:
-            print(year)
+            #print(year)
             for issue_week in issues_weeks:
                 archive_article_url_pattern = f'^https://www\.zeit\.de/{year}/{issue_week}/(?!.*#index)(?!.*index#)(?!index$)[a-z0-9-äöüß]+$'
-                print(archive_article_url_pattern)
+                #print(archive_article_url_pattern)
                 issue_url = f"https://www.zeit.de/{year}/{issue_week}/index"
                 try:
                     # Use the updated navigate_to method
@@ -97,7 +97,7 @@ class ZeitScraper(BaseScraper):
                                 all_article_urls_archive.append(komplettansicht_url)
                             else:
                                 all_article_urls_archive.append(article_url)
-                        print(all_article_urls_archive)
+                        #print(all_article_urls_archive)
                     else:
                         logger.warning(f"No article URLs found on {issue_url}.")
                 

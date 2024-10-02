@@ -64,7 +64,7 @@ class Vectorizer:
 
         # Convert the results back to a list of dictionaries
         for i, single_article_dict in enumerate(articles_list):
-            for key in TRANSFORMER_MODEL_NAMES_DICT.keys():
+            for key in TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION.keys():
                 single_article_dict[f"lead_{key}"] = vectorized_dataset[i][f"lead_{key}"]
                 single_article_dict[f"full_{key}"] = vectorized_dataset[i][f"full_{key}"]
 

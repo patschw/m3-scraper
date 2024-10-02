@@ -95,7 +95,28 @@ WEBSITE_STRATEGIES = {
         (By.XPATH, "/div/div/div[2]/div/div[2]/div/div[2]/div/div/div/button[2]"),
         ]
     },
-
+    't_online': {
+        'email_username': [
+            (By.ID, "email"),
+            (By.NAME, "email"),
+            (By.CSS_SELECTOR, "#email"),
+            (By.XPATH, """//*[@id="email"]"""),
+        ],
+        'password': [
+            (By.ID, "password"),
+            (By.NAME, "password"),
+            (By.CSS_SELECTOR, "#password"),
+            (By.XPATH, """//*[@id="password"]"""),
+        ],
+        'submit': [
+            (By.CSS_SELECTOR, "._1m8qs0s"),
+            (By.XPATH, """/html/body/div[1]/div/div[1]/main/div/div[1]/div[2]/div/form/button"""),
+        ],
+        'button_proceed_to_login': [
+            (By.CSS_SELECTOR, """._1bawsf8i"""),
+            (By.XPATH, """/html/body/div[1]/div/div[1]/main/div/div/div[2]/div/div[2]/div/div/button""")
+        ],
+    }
 }
 
 # Base URLs for the different websites
@@ -104,7 +125,8 @@ BASE_URLS = {"m3-api-base": "https://api.m3.ifkw.lmu.de/",
             "spiegel": "https://www.spiegel.de/", 
             "zeit": "https://www.zeit.de/", 
             "sueddeutsche": "https://www.sueddeutsche.de/",
-            "bayerischer_rundfunk": "https://www.br.de/nachrichten/"}
+            "bayerischer_rundfunk": "https://www.br.de/nachrichten/",
+            "t_online": "https://www.t-online.de/"}
 
 # Regex patterns for article and subpage URLs
 PATTERNS = {
@@ -132,7 +154,22 @@ PATTERNS = {
     'bayerischer_rundfunk': {
         'article_url': '^https:\/\/www\.br\.de\/nachrichten\/(?!autoren\/)(?!themen\/)(?:[a-z]+(?:-[a-z]+)*)\/[a-z0-9-]+,[A-Za-z0-9]+$',
         'subpage_url': '^https:\/\/www\.br\.de\/nachrichten\/(?!autoren\/)(?!credits$)(?!suche$)(?:[a-z]+(?:-[a-z]+)*)(?:,[A-Za-z0-9]+)?$'
-    }
+    },
+    "t_online": {
+    'article_url': '^https:\/\/www\.t-online\.de\/([a-zA-Z\-]+\/)*id_\d+\/[a-zA-Z0-9\-]+\.html$',
+    'subpage_url': '^https:\/\/www\.t-online\.de\/([a-zA-Z\-]+\/?)+$'
+    },
+}
+
+
+# Map website names to their respective scraper modules and classes
+SCRAPER_MAP = {
+    "Spiegel": "scrapers.SpiegelScraper.SpiegelScraper",
+    "Zeit": "scrapers.ZeitScraper.ZeitScraper",
+    "Sueddeutsche": "scrapers.SueddeutscheScraper.SueddeutscheScraper",
+    "BayerischerRundfunk": "scrapers.BayerischerRundfunkScraper.BayerischerRundfunkScraper",
+    "TOnline": "scrapers.TOnlineScraper.TOnlineScraper",
+    
 }
 
 
@@ -146,11 +183,12 @@ KEYCLOAK_CREDENTIALS_PATH = "credentials_keycloak.txt"
 # URLs for login pages
 LOGIN_URLS = {"spiegel": "https://gruppenkonto.spiegel.de/anmelden.html",
               "zeit": "https://meine.zeit.de/anmelden",
-              "sueddeutsche": "https://www.sueddeutsche.de/?piano-screen=login"}
+              "sueddeutsche": "https://www.sueddeutsche.de/?piano-screen=login",
+              "t_online": "https://pur.t-online.de"}
 
 
 # transformer models used for vectorisation
-TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION = {'bert': 'deepset/gbert-large', 
+TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION = {'bert': 'deepset/gbert-base', 
                                 'roberta': 'T-Systems-onsite/german-roberta-sentence-transformer-v2', 
                                 'gbert': 'deutsche-telekom/gbert-large-paraphrase-euclidean', 
                                 'xmlr': 'xlm-roberta-large', 
@@ -158,21 +196,23 @@ TRANSFORMER_MODEL_NAMES_DICT_VECTORIZATION = {'bert': 'deepset/gbert-large',
                                 'longformer': 'severinsimmler/xlm-roberta-longformer-large-16384'}
 
 
-TRANSFORMER_MODEL_NAMES_LIST_FAST_MODE_SUMMARIZATION = {'sentence-transformers/paraphrase-multilingual-mpnet-base-v2',
-                                                        'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
-                                                        'deutsche-telekom/gbert-large-paraphrase-cosine',
-                                                        'deutsche-telekom/gbert-large-paraphrase-euclidean',
-                                                        'Einmalumdiewelt/PegasusXSUM_GNAD',
-                                                        'LennartKeller/longformer-gottbert-base-8192-aw512',
-                                                        'hyperonym/xlm-roberta-longformer-base-16384',
-                                                        'severinsimmler/xlm-roberta-longformer-base-16384',
+TRANSFORMER_MODEL_NAMES_LIST_FAST_MODE_SUMMARIZATION = {
+                                                        #'sentence-transformers/paraphrase-multilingual-mpnet-base-v2',
+                                                        #'sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2',
+                                                        #'deutsche-telekom/gbert-large-paraphrase-cosine',
+                                                        #'deutsche-telekom/gbert-large-paraphrase-euclidean',
+                                                        #'Einmalumdiewelt/PegasusXSUM_GNAD',
+                                                        #'LennartKeller/longformer-gottbert-base-8192-aw512',
+                                                        #'hyperonym/xlm-roberta-longformer-base-16384',
+                                                        #'severinsimmler/xlm-roberta-longformer-base-16384',
                                                         'google/flan-t5-large',
                                                         'google-t5/t5-large',
-                                                        'dbmdz/german-gpt2',
-                                                        'Shahm/bart-german',
+                                                        #'dbmdz/german-gpt2',
+                                                        #'Shahm/bart-german',
                                                         'T-Systems-onsite/mt5-small-sum-de-en-v2',
-                                                        'google/mt5-xl',
+                                                        #'google/mt5-xl',
                                                         'LeoLM/leo-mistral-hessianai-7b',
                                                         'Einmalumdiewelt/DistilBART_CNN_GNAD_V3',
                                                         'mrm8488/bert2bert_shared-german-finetuned-summarization',
-                                                        'snipaid/gptj-title-teaser-10k'}
+                                                        #'snipaid/gptj-title-teaser-10k'
+}

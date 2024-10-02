@@ -1,93 +1,229 @@
-import json
-
 from database_handling.DataDownload import DataDownloader
-from database_handling.DataHandleAndOtherHelpers import DataHandler
 from database_handling.DataUpload import DataUploader
 from database_handling.KeycloakLogin import KeycloakLogin
 from scrapers.SueddeutscheScraper import SueddeutscheScraper
+
 from text_analysis.NEExtractor import NEExtractor
 from text_analysis.Summarizer import Summarizer
 from text_analysis.TopicExtractor import TopicExtractor
 from text_analysis.Vectorizers import Vectorizer
 
-# scrape the spiegel
-sueddeutsche_scraper = SueddeutscheScraper()
-sueddeutsche_scraper.start_browser()
-sueddeutsche_scraper.login()
-this_runs_articles = sueddeutsche_scraper.scrape_sueddeutsche()
+import transformers
+import json
+import gc
+import torch
+import logging
 
+# Configure logging settings to write to both console and a log file
+logging.basicConfig(
+    level=logging.INFO, 
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("process.log"),  # Writes logs to 'process.log'
+        logging.StreamHandler()  # Prints logs to the console
+    ]
+)
+logger = logging.getLogger(__name__)
 
-# get the token for the database
-keycloak_login = KeycloakLogin()
-token = keycloak_login.return_token()
+def clear_gpu_memory():
+    """Clears GPU memory and forces garbage collection."""
+    torch.cuda.empty_cache()
+    gc.collect()
+    logger.info("GPU memory cleared and garbage collection performed")
 
-# get all spiegel urls that are already in the database
-data_downloader = DataDownloader(token)
-sueddeutsche_articles_in_db = data_downloader.get_content(url="https://www.sueddeutsche.de/") # TODO: Durch config ersetzen
+def process_articles_in_batches(text_analysis_class, method_name, articles, batch_size):
+    """Process articles in batches using the specified text analysis class and method."""
+    processor = text_analysis_class()
+    method = getattr(processor, method_name)
 
-# print(spiegel_articles_in_db)
+    for i in range(0, len(articles), batch_size):
+        logger.info(f"Processing batch {i // batch_size + 1} of {method_name} for articles {i} to {i + batch_size}")
+        batch = articles[i:i + batch_size]
+        batch = method(batch)
 
+        # Reassign the processed batch back to the main list
+        articles[i:i + batch_size] = batch
 
-# instantiate all data anylysis classes
-# summarizer = Summarizer()
-entity_extractor = NEExtractor()
-topic_extractor = TopicExtractor()
-vectorizer = Vectorizer()
+        logger.info(f"Batch {i // batch_size + 1} of {method_name} completed")
+        clear_gpu_memory()  # Clear memory after each batch
 
+    del processor  # Delete the processor instance to free up GPU memory
+    clear_gpu_memory()
+    logger.info(f"{method_name} processing completed for all articles")
 
-# instantiate the data handler
-data_handler = DataHandler()
+try:
+    logger.info("Initializing scraper with headless mode")
+    scraper = SueddeutscheScraper(headless=True)
 
-# for the articles that are already in the database, only update the last_verification_date
-articles_for_last_verifcation_date_update = data_handler.find_scraped_articles_already_in_db(this_runs_articles, spiegel_articles_in_db)
-# safe the responses to the last verification date update
-responses_to_last_verifcation_date_update = data_handler.patch_last_online_verification_date(token, articles_for_last_verifcation_date_update)
-# get the articles that are not yet in the database
-spiegel_articles_not_yet_in_db = data_handler.find_scraped_articles_not_already_in_db(this_runs_articles, spiegel_articles_in_db)
-spiegel_articles_not_yet_in_db_list_of_dicts = [article for article in this_runs_articles if article['url'] in spiegel_articles_not_yet_in_db]
+    logger.info("Starting browser and logging in to scraper")
+    scraper.start_browser()
+    scraper.login()
 
-# Define the number of articles to process and upload per iteration
-articles_per_iteration = 30
+    logger.info("Getting all article URLs from the scraper")
+    all_found_urls = scraper.get_article_urls()
+    logger.info(f"Found {len(all_found_urls)} article URLs from the scraper")
 
-# Calculate the number of iterations
-iterations = len(spiegel_articles_not_yet_in_db_list_of_dicts) // articles_per_iteration + (len(spiegel_articles_not_yet_in_db_list_of_dicts) % articles_per_iteration > 0)
+    # Get the token for the database
+    logger.info("Attempting Keycloak login to obtain token")
+    keycloak_login = KeycloakLogin()
+    token = keycloak_login.get_token()
+    logger.info("Successfully retrieved token")
 
-responses = []
+    data_downloader = DataDownloader(token)
 
-for i in range(iterations):
-    print("Processing articles", i*articles_per_iteration, "to", (i+1)*articles_per_iteration, "from", len(spiegel_articles_not_yet_in_db_list_of_dicts))
-    # Get the articles for this iteration
-    articles = spiegel_articles_not_yet_in_db_list_of_dicts[i*articles_per_iteration:(i+1)*articles_per_iteration]
+    batch_size = 30
+    all_urls_already_in_db = []
 
-    print("Running text processing on articles", i*articles_per_iteration, "to", (i+1)*articles_per_iteration, "from", len(spiegel_articles_not_yet_in_db_list_of_dicts))
-    # Add the summaries, named entities, topics, and vectors to the articles dict
-    # articles = summarizer.summarize(articles)
-    articles = entity_extractor.extract_entities(articles)
-    articles = topic_extractor.extract_topics(articles)
-    articles = vectorizer.vectorize(articles)
+    logger.info(f"Processing URLs in batches of {batch_size}")
 
-    # Remove main_text and lead_text from articles
+    # Loop through all the URLs in chunks of batch_size
+    for i in range(0, len(all_found_urls), batch_size):
+        current_batch = all_found_urls[i:i + batch_size]
+        logger.info(f"Processing batch {i // batch_size + 1}: URLs {i} to {i + batch_size} out of {len(all_found_urls)}")
+
+        try:
+            # Fetch data for the current batch
+            response = data_downloader.get_content_rehydrate(url=current_batch)
+            logger.info(f"Received response for batch {i // batch_size + 1}")
+
+            # Extract URLs from the 'items' in the response
+            batch_urls = [item['url'] for item in response.get('items', [])]
+            all_urls_already_in_db.extend(batch_urls)
+            logger.info(f"Batch {i // batch_size + 1} processed. URLs in DB: {len(batch_urls)}")
+
+        except Exception as e:
+            logger.error(f"Error processing batch {i // batch_size + 1}: {str(e)}", exc_info=True)
+
+    logger.info(f"Total URLs already in the DB: {len(all_urls_already_in_db)}")
+
+    # Refresh the token
+    logger.info("Refreshing Keycloak token before data upload")
+    token = keycloak_login.get_token()
+
+    data_uploader = DataUploader(token)
+
+    # Patch the last online verification date for the URLs already in the DB
+    logger.info("Patching last online verification dates for URLs that are already in the database")
+    try:
+        responses_for_last_online_verification_date_patch = data_uploader.patch_last_online_verification_date(all_urls_already_in_db)
+        logger.info(f"Successfully patched last online verification dates for {len(all_urls_already_in_db)} URLs")
+    except Exception as e:
+        logger.error(f"Error during patching last online verification dates: {str(e)}", exc_info=True)
+
+    # Refresh the token again if necessary
+    logger.info("Refreshing Keycloak token again")
+    token = keycloak_login.get_token()
+
+    # Filter URLs for new scraping
+    logger.info("Filtering URLs for new scraping")
+    articles_list_for_new_scraping = [url for url in all_found_urls if url not in all_urls_already_in_db]
+    logger.info(f"Found {len(articles_list_for_new_scraping)} new articles to scrape")
+
+    # Scrape new articles
+    logger.info("Starting scraping for new articles")
+    try:
+        articles = scraper.scrape(articles_list_for_new_scraping)
+        logger.info(f"Successfully scraped {len(articles)} new articles")
+    except Exception as e:
+        logger.error(f"Error during scraping: {str(e)}", exc_info=True)
+
+    # Processing articles with NEExtractor
+    logger.info("Starting entity extraction...")
+    process_articles_in_batches(NEExtractor, 'extract_entities', articles, 100)
+    logger.info("Entity extraction completed")
+
+    # Processing articles with TopicExtractor
+    logger.info("Starting topic extraction...")
+    process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
+    logger.info("Topic extraction completed")
+
+    # Processing articles with Vectorizer and handling CUDA OOM errors without stopping the script
+    logger.info("Starting vectorization...")
+    vectorizer_processor = Vectorizer()
+    vectorize_method = getattr(vectorizer_processor, 'vectorize')
+
+    for idx, article in enumerate(articles):
+        try:
+            logger.info(f"Vectorizing article {idx + 1}/{len(articles)}: {article.get('url', 'N/A')}")
+            # Run vectorization for the current article
+            articles[idx] = vectorize_method([article])[0]
+        except RuntimeError as e:
+            if 'CUDA out of memory' in str(e):
+                logger.error(f"CUDA OOM error while vectorizing article {idx + 1} with URL: {article.get('url', 'N/A')}")
+                clear_gpu_memory()  # Clear GPU memory and log the event
+                # Skip to the next article without stopping
+            else:
+                logger.error(f"Unexpected error while vectorizing article {idx + 1} with URL: {article.get('url', 'N/A')}: {str(e)}")
+                clear_gpu_memory()  # Ensure memory is cleared even for non-OOM errors
+                # Continue with the next article without raising an error
+
+    # Clean up after vectorization
+    del vectorizer_processor
+    clear_gpu_memory()
+    logger.info("Vectorization completed.")
+
+    # Processing articles with Summarizer
+    logger.info("Starting summarization...")
+    summarizer_processor = Summarizer()
+    summarize_method = getattr(summarizer_processor, 'summarize')
+
+    for idx, article in enumerate(articles):
+        try:
+            logger.info(f"Summarizing article {idx + 1}/{len(articles)}: {article.get('url', 'N/A')}")
+            # Run summarization for the current article
+            articles[idx] = summarize_method([article])[0]
+        except RuntimeError as e:
+            if 'CUDA out of memory' in str(e):
+                logger.error(f"CUDA OOM error while summarizing article {idx + 1} with URL: {article.get('url', 'N/A')}")
+                clear_gpu_memory()  # Clear GPU memory and log the event
+                # Skip to the next article without stopping
+            else:
+                logger.error(f"Unexpected error while summarizing article {idx + 1} with URL: {article.get('url', 'N/A')}: {str(e)}")
+                clear_gpu_memory()  # Ensure memory is cleared even for non-OOM errors
+                # Continue with the next article without raising an error
+
+    # Clean up after summarization
+    del summarizer_processor
+    clear_gpu_memory()
+    logger.info("Summarization completed.")
+
+    # Remove main_text and lead_text from articles to save space before uploading
+    logger.info("Removing main_text and lead_text from articles to save space")
     for article in articles:
         article.pop('main_text', None)
         article.pop('lead_text', None)
-
-    print("Uploading articles", i*articles_per_iteration, "to", (i+1)*articles_per_iteration, "from", len(spiegel_articles_not_yet_in_db_list_of_dicts))
-    # Ensure that the token is still valid every n iterations
-    # TODO: Tell Mario chuncking was done because I get a new token every 30 uploads to make sure the token is always valid
-    # if we do that every 1 upload that takes much longer since it takes ~20 seconds to get a net token/ensure the token is valid
-    keycloak_login = KeycloakLogin()
-    token = keycloak_login.return_token()
-
-    # Loop over articles and put every article into the database
-    data_uploader = DataUploader(token)
-
-    for article in articles:
-        response = data_uploader.post_content(article)
-        responses.append(response)
-
-    print("Processed and uploaded articles", i*articles_per_iteration, "to", (i+1)*articles_per_iteration, "from", len(spiegel_articles_not_yet_in_db_list_of_dicts))
-
+        
+    logger.info("Saving articles to drive")
+    with open('articles.json', 'w') as f:
+        json.dump(articles, f)
     
-# save the responses to a json file
-with open('responses.json', 'w') as f:
-    json.dump(responses, f)
+    logger.info("Refreshing Keycloak token again")
+    token = keycloak_login.get_token()
+    # Upload each article to the database without batching
+    logger.info("Beginning article upload")
+    responses = []
+    data_uploader = DataUploader(token)
+    # TODO: Error chatching, check response code when uploading
+    for article in articles:
+        try:
+            response = data_uploader.post_content(article)
+            responses.append(response)
+            logger.info(f"Successfully uploaded article: {article.get('url', 'N/A')}")
+        except Exception as e:
+            logger.error(f"Error uploading article {article.get('url', 'N/A')}: {str(e)}", exc_info=True)
+   
+    # Save the responses to a JSON file
+    with open('responses.json', 'w') as f:
+        json.dump(responses, f)
+    
+    logger.info(f"Article upload completed. Total articles uploaded: {len(responses)}")
+
+
+except Exception as e:
+    logger.critical(f"Critical error in the process: {str(e)}", exc_info=True)
+
+finally:
+    # Cleanup and free up resources
+    logger.info("Performing garbage collection")
+    gc.collect()
+    logger.info("Process completed")

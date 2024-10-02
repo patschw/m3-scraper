@@ -4,7 +4,7 @@ import requests
 import json
 import logging
 import time
-
+from typing import List
 
 #TODO: Status code ausgeben, damit im final laufenden scraper script gechecked werden kann, ob der download erfolgreich war
 

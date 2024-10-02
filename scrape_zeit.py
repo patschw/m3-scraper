@@ -1,7 +1,7 @@
 from database_handling.DataDownload import DataDownloader
 from database_handling.DataUpload import DataUploader
 from database_handling.KeycloakLogin import KeycloakLogin
-from scrapers.SpiegelScraper import SpiegelScraper
+from scrapers.ZeitScraper import ZeitScraper
 
 from text_analysis.NEExtractor import NEExtractor
 from text_analysis.Summarizer import Summarizer
@@ -53,7 +53,7 @@ def process_articles_in_batches(text_analysis_class, method_name, articles, batc
 
 try:
     logger.info("Initializing scraper with headless mode")
-    scraper = SpiegelScraper(headless=True)
+    scraper = ZeitScraper(headless=True)
 
     logger.info("Starting browser and logging in to scraper")
     scraper.start_browser()
@@ -137,12 +137,32 @@ try:
     process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
     logger.info("Topic extraction completed")
 
-    # Processing articles with Vectorizer
+    # Processing articles with Vectorizer and handling CUDA OOM errors without stopping the script
     logger.info("Starting vectorization...")
-    process_articles_in_batches(Vectorizer, 'vectorize', articles, 100)
-    logger.info("Vectorization completed")
+    vectorizer_processor = Vectorizer()
+    vectorize_method = getattr(vectorizer_processor, 'vectorize')
 
-    # Processing articles with Summarizer and handling CUDA OOM errors without stopping the script
+    for idx, article in enumerate(articles):
+        try:
+            logger.info(f"Vectorizing article {idx + 1}/{len(articles)}: {article.get('url', 'N/A')}")
+            # Run vectorization for the current article
+            articles[idx] = vectorize_method([article])[0]
+        except RuntimeError as e:
+            if 'CUDA out of memory' in str(e):
+                logger.error(f"CUDA OOM error while vectorizing article {idx + 1} with URL: {article.get('url', 'N/A')}")
+                clear_gpu_memory()  # Clear GPU memory and log the event
+                # Skip to the next article without stopping
+            else:
+                logger.error(f"Unexpected error while vectorizing article {idx + 1} with URL: {article.get('url', 'N/A')}: {str(e)}")
+                clear_gpu_memory()  # Ensure memory is cleared even for non-OOM errors
+                # Continue with the next article without raising an error
+
+    # Clean up after vectorization
+    del vectorizer_processor
+    clear_gpu_memory()
+    logger.info("Vectorization completed.")
+
+    # Processing articles with Summarizer
     logger.info("Starting summarization...")
     summarizer_processor = Summarizer()
     summarize_method = getattr(summarizer_processor, 'summarize')
@@ -173,12 +193,17 @@ try:
         article.pop('main_text', None)
         article.pop('lead_text', None)
         
+    logger.info("Saving articles to drive")
+    with open('articles.json', 'w') as f:
+        json.dump(articles, f)
+    
     logger.info("Refreshing Keycloak token again")
     token = keycloak_login.get_token()
     # Upload each article to the database without batching
     logger.info("Beginning article upload")
     responses = []
     data_uploader = DataUploader(token)
+    # TODO: Error chatching, check response code when uploading
     for article in articles:
         try:
             response = data_uploader.post_content(article)
@@ -186,7 +211,7 @@ try:
             logger.info(f"Successfully uploaded article: {article.get('url', 'N/A')}")
         except Exception as e:
             logger.error(f"Error uploading article {article.get('url', 'N/A')}: {str(e)}", exc_info=True)
-
+   
     # Save the responses to a JSON file
     with open('responses.json', 'w') as f:
         json.dump(responses, f)
