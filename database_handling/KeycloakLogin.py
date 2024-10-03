@@ -48,7 +48,7 @@ class KeycloakLogin:
                     server_url=self.server_url, 
                     client_id=self.client_id,
                     realm_name=self.realm_name, 
-                    verify=True
+                    verify=False # TODO: Change to true
                 )
                 logging.debug("KeycloakOpenID client initialized")
             except Exception as e:

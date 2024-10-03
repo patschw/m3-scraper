@@ -290,8 +290,8 @@ class BaseScraper:
             List[str]: A list of article URLs found on the current page.
         """
         pattern = pattern or self.article_url_pattern
-        logger.info("Waiting for content to load")
-        time.sleep(5)
+        #logger.info("Waiting for content to load")
+        #time.sleep(2)
         self.driver.save_screenshot("screenshot.png")
 
         try:

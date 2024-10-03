@@ -1,183 +1,120 @@
-import argparse
-import importlib
-import logging
-import transformers
 import json
-import gc
-import torch
-
-from config import SCRAPER_MAP
+import os
+import logging
+import argparse
+from tqdm import tqdm
 from database_handling.DataDownload import DataDownloader
 from database_handling.DataUpload import DataUploader
 from database_handling.KeycloakLogin import KeycloakLogin
-from text_analysis.NEExtractor import NEExtractor
-from text_analysis.Summarizer import Summarizer
-from text_analysis.TopicExtractor import TopicExtractor
-from text_analysis.Vectorizers import Vectorizer
+from config import SCRAPER_MAP
+import importlib
 
 def configure_logging(log_level):
-    """Configures logging based on the specified log level."""
-    numeric_level = getattr(logging, log_level.upper(), logging.INFO)
     logging.basicConfig(
-        level=numeric_level,
+        level=getattr(logging, log_level.upper(), logging.INFO),
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
-            logging.FileHandler("process.log"),
+            logging.FileHandler("scraper.log"),
             logging.StreamHandler()
         ]
     )
-    logger = logging.getLogger(__name__)
-    return logger
 
 def get_scraper_class(website):
     """Dynamically imports and returns the scraper class based on the website name."""
-    if website not in SCRAPER_MAP:
-        raise ValueError(f"No scraper available for website: {website}")
-    
-    module_name, class_name = SCRAPER_MAP[website].rsplit('.', 1)
-    module = importlib.import_module(module_name)
-    scraper_class = getattr(module, class_name)
-    return scraper_class
-
-def clear_gpu_memory():
-    """Clears GPU memory and forces garbage collection."""
-    torch.cuda.empty_cache()
-    gc.collect()
-    logger.info("GPU memory cleared and garbage collection performed")
-
-def process_articles_in_batches(text_analysis_class, method_name, articles, batch_size):
-    """Process articles in batches using the specified text analysis class and method."""
-    processor = text_analysis_class()
-    method = getattr(processor, method_name)
-
-    for i in range(0, len(articles), batch_size):
-        logger.info(f"Processing batch {i // batch_size + 1} of {method_name} for articles {i} to {i + batch_size}")
-        batch = articles[i:i + batch_size]
-        
-        try:
-            batch = method(batch)
-        except RuntimeError as e:
-            if 'CUDA out of memory' in str(e):
-                logger.error(f"CUDA OOM error while processing batch {i // batch_size + 1} during {method_name}")
-                clear_gpu_memory()
-            else:
-                logger.error(f"Unexpected error during {method_name} in batch {i // batch_size + 1}: {str(e)}")
-                clear_gpu_memory()
-
-        articles[i:i + batch_size] = batch
-        clear_gpu_memory()
-
-    del processor
-    clear_gpu_memory()
-    logger.info(f"{method_name} processing completed for all articles")
-
-
-if __name__ == "__main__":
-    # Parse command line arguments
-    parser = argparse.ArgumentParser(description="Web scraper for various websites")
-    parser.add_argument(
-        "-w", "--website", required=True, choices=SCRAPER_MAP.keys(),
-        help="The website to scrape (e.g., Spiegel, TOnline)"
-    )
-    parser.add_argument(
-        "--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
-        help="Set the logging level (default: INFO)"
-    )
-    args = parser.parse_args()
-
-    # Configure logging
-    logger = configure_logging(args.log_level)
-
     try:
-        logger.info(f"Initializing scraper for {args.website}")
+        if website not in SCRAPER_MAP:
+            raise ValueError(f"No scraper available for website: {website}")
         
-        # Get the scraper class dynamically based on the website argument
-        scraper_class = get_scraper_class(args.website)
+        module_name, class_name = SCRAPER_MAP[website].rsplit('.', 1)
+        module = importlib.import_module(module_name)
+        scraper_class = getattr(module, class_name)
+        logging.info(f"Successfully loaded scraper class for {website}")
+        return scraper_class
+    except Exception as e:
+        logging.error(f"Error loading scraper class for {website}: {e}")
+        raise
+
+def check_and_download(website):
+    try:
+        logging.info(f"Starting URL gathering for {website}")
+        
+        # Initialize scraper
+        scraper_class = get_scraper_class(website)
         scraper = scraper_class(headless=True)
-        
-        logger.info(f"Starting browser and logging in to scraper for {args.website}")
         scraper.start_browser()
         scraper.login()
+        logging.info("Browser started and logged in")
 
-        logger.info(f"Getting all article URLs from {args.website} scraper")
-        all_found_urls = scraper.get_article_urls()[0:20]
-        logger.info(f"Found {len(all_found_urls)} article URLs from {args.website} scraper")
+        # Scrape URLs
+        all_found_urls = scraper.get_article_urls()[0:60]
+        logging.info(f"Found {len(all_found_urls)} URLs")
 
+        # Check which URLs are already in the database
+        logging.info("Checking for existing URLs in the database")
         keycloak_login = KeycloakLogin()
         token = keycloak_login.get_token()
-
         data_downloader = DataDownloader(token)
-
+        
         batch_size = 30
         all_urls_already_in_db = []
-
-        for i in range(0, len(all_found_urls), batch_size):
+        for i in tqdm(range(0, len(all_found_urls), batch_size), desc="Checking URL batches"):
             current_batch = all_found_urls[i:i + batch_size]
-            logger.info(f"Processing batch {i // batch_size + 1}: URLs {i} to {i + batch_size}")
-
             try:
                 response = data_downloader.get_content_rehydrate(url=current_batch)
                 batch_urls = [item['url'] for item in response.get('items', [])]
                 all_urls_already_in_db.extend(batch_urls)
-                logger.info(f"Batch {i // batch_size + 1} processed.")
             except Exception as e:
-                logger.error(f"Error processing batch {i // batch_size + 1}: {str(e)}", exc_info=True)
+                logging.error(f"Error checking batch {i // batch_size + 1}: {e}")
 
-        logger.info(f"Total URLs already in the DB: {len(all_urls_already_in_db)}")
+        logging.info(f"Found {len(all_urls_already_in_db)} existing URLs in the database")
 
         token = keycloak_login.get_token()
 
         data_uploader = DataUploader(token)
 
-        logger.info("Patching last online verification dates for URLs already in DB")
+        logging.info("Patching last online verification dates for URLs already in DB")
         try:
             data_uploader.patch_last_online_verification_date(all_urls_already_in_db)
-            logger.info("Successfully patched last online verification dates")
+            logging.info("Successfully patched last online verification dates")
         except Exception as e:
-            logger.error(f"Error during patching last online verification dates: {str(e)}", exc_info=True)
+            logging.error(f"Error during patching last online verification dates: {str(e)}", exc_info=True)
 
         token = keycloak_login.get_token()
 
         articles_list_for_new_scraping = [url for url in all_found_urls if url not in all_urls_already_in_db]
-        logger.info(f"Found {len(articles_list_for_new_scraping)} new articles to scrape")
 
+        # Filter new URLs
+        new_urls = [url for url in all_found_urls if url not in all_urls_already_in_db]
+        logging.info(f"Found {len(new_urls)} new URLs to scrape")
+
+        # Download content for new URLs
+        new_content = []
         try:
-            articles = scraper.scrape(articles_list_for_new_scraping)
-            logger.info(f"Successfully scraped {len(articles)} new articles")
+            # Scrape content for new URLs
+            new_content = scraper.scrape(new_urls)
+            logging.debug(f"Scraped content for {len(new_urls)} URLs")
+            
+            # Prepare the content for JSON output
+            #new_content = [{"url": url, "content": content} for url, content in zip(new_urls, new_content)]
         except Exception as e:
-            logger.error(f"Error during scraping: {str(e)}", exc_info=True)
+            logging.error(f"Error scraping new URLs: {e}")
 
-        process_articles_in_batches(NEExtractor, 'extract_entities', articles, 100)
-        process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
-
-        # Catch CUDA OOM errors specifically during vectorization
-        process_articles_in_batches(Vectorizer, 'vectorize', articles, 100)
-
-        process_articles_in_batches(Summarizer, 'summarize', articles, 100)
-
-        for article in articles:
-            article.pop('main_text', None)
-            article.pop('lead_text', None)
-
-        token = keycloak_login.get_token()
-        data_uploader = DataUploader(token)
-        responses = []
-        for article in articles:
-            try:
-                response = data_uploader.post_content(article)
-                responses.append(response)
-                logger.info(f"Successfully uploaded article: {article.get('url', 'N/A')}")
-            except Exception as e:
-                logger.error(f"Error uploading article {article.get('url', 'N/A')}: {str(e)}", exc_info=True)
-
-        with open('responses.json', 'w') as f:
-            json.dump(responses, f)
-
-        logger.info("Article upload completed.")
+        # Write new content to JSON file
+        with open('queue/content.json', 'w') as f:
+            json.dump(new_content, f)
+        logging.info("New content written to queue/content.json")
 
     except Exception as e:
-        logger.critical(f"Critical error in the process: {str(e)}", exc_info=True)
+        logging.error(f"Error in check_and_download: {e}")
 
-    finally:
-        gc.collect()
-        logger.info("Process completed")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Scrape articles from a specified website.")
+    parser.add_argument("-w", "--website", required=True, help="The website to scrape.")
+    parser.add_argument("-l", "--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"], help="Set the logging level (default: INFO)")
+    args = parser.parse_args()
+
+    configure_logging(args.log_level)
+    try:
+        check_and_download(args.website)
+    except Exception as e:
+        logging.critical(f"Critical error in main: {e}")
