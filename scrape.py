@@ -15,17 +15,19 @@ from text_analysis.Summarizer import Summarizer
 from text_analysis.TopicExtractor import TopicExtractor
 from text_analysis.Vectorizers import Vectorizer
 
-# Configure logging settings
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler("process.log"),
-        logging.StreamHandler()
-    ]
-)
-logger = logging.getLogger(__name__)
-
+def configure_logging(log_level):
+    """Configures logging based on the specified log level."""
+    numeric_level = getattr(logging, log_level.upper(), logging.INFO)
+    logging.basicConfig(
+        level=numeric_level,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        handlers=[
+            logging.FileHandler("process.log"),
+            logging.StreamHandler()
+        ]
+    )
+    logger = logging.getLogger(__name__)
+    return logger
 
 def get_scraper_class(website):
     """Dynamically imports and returns the scraper class based on the website name."""
@@ -51,7 +53,17 @@ def process_articles_in_batches(text_analysis_class, method_name, articles, batc
     for i in range(0, len(articles), batch_size):
         logger.info(f"Processing batch {i // batch_size + 1} of {method_name} for articles {i} to {i + batch_size}")
         batch = articles[i:i + batch_size]
-        batch = method(batch)
+        
+        try:
+            batch = method(batch)
+        except RuntimeError as e:
+            if 'CUDA out of memory' in str(e):
+                logger.error(f"CUDA OOM error while processing batch {i // batch_size + 1} during {method_name}")
+                clear_gpu_memory()
+            else:
+                logger.error(f"Unexpected error during {method_name} in batch {i // batch_size + 1}: {str(e)}")
+                clear_gpu_memory()
+
         articles[i:i + batch_size] = batch
         clear_gpu_memory()
 
@@ -67,7 +79,14 @@ if __name__ == "__main__":
         "-w", "--website", required=True, choices=SCRAPER_MAP.keys(),
         help="The website to scrape (e.g., Spiegel, TOnline)"
     )
+    parser.add_argument(
+        "--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"],
+        help="Set the logging level (default: INFO)"
+    )
     args = parser.parse_args()
+
+    # Configure logging
+    logger = configure_logging(args.log_level)
 
     try:
         logger.info(f"Initializing scraper for {args.website}")
@@ -81,7 +100,7 @@ if __name__ == "__main__":
         scraper.login()
 
         logger.info(f"Getting all article URLs from {args.website} scraper")
-        all_found_urls = scraper.get_article_urls()
+        all_found_urls = scraper.get_article_urls()[0:20]
         logger.info(f"Found {len(all_found_urls)} article URLs from {args.website} scraper")
 
         keycloak_login = KeycloakLogin()
@@ -130,25 +149,11 @@ if __name__ == "__main__":
 
         process_articles_in_batches(NEExtractor, 'extract_entities', articles, 100)
         process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
+
+        # Catch CUDA OOM errors specifically during vectorization
         process_articles_in_batches(Vectorizer, 'vectorize', articles, 100)
 
-        summarizer_processor = Summarizer()
-        summarize_method = getattr(summarizer_processor, 'summarize')
-
-        for idx, article in enumerate(articles):
-            try:
-                logger.info(f"Summarizing article {idx + 1}/{len(articles)}: {article.get('url', 'N/A')}")
-                articles[idx] = summarize_method([article])[0]
-            except RuntimeError as e:
-                if 'CUDA out of memory' in str(e):
-                    logger.error(f"CUDA OOM error while summarizing article {idx + 1}")
-                    clear_gpu_memory()
-                else:
-                    logger.error(f"Unexpected error while summarizing article {idx + 1}: {str(e)}")
-                    clear_gpu_memory()
-
-        del summarizer_processor
-        clear_gpu_memory()
+        process_articles_in_batches(Summarizer, 'summarize', articles, 100)
 
         for article in articles:
             article.pop('main_text', None)

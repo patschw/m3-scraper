@@ -156,7 +156,7 @@ PATTERNS = {
         'subpage_url': '^https:\/\/www\.br\.de\/nachrichten\/(?!autoren\/)(?!credits$)(?!suche$)(?:[a-z]+(?:-[a-z]+)*)(?:,[A-Za-z0-9]+)?$'
     },
     "t_online": {
-    'article_url': '^https:\/\/www\.t-online\.de\/([a-zA-Z\-]+\/)*id_\d+\/[a-zA-Z0-9\-]+\.html$',
+    'article_url': 'https:\/\/www\.t-online\.de\/(?!(spiele|quiz|browsergames|ratgeber|shopping-events|deals|tv|lottozahlen|leben\/quiz))(?:[a-zA-Z0-9\-]+\/)+id_',
     'subpage_url': '^https:\/\/www\.t-online\.de\/([a-zA-Z\-]+\/?)+$'
     },
 }

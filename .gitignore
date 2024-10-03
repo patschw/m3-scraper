@@ -1,3 +1,4 @@
+*.txt
 credentials.txt
 credentials_keycloak.txt
 transformers_cache_dir
@@ -13,4 +14,9 @@ screenshot.png
 responses.json
 articles.json
 *.zip
+scrapers/.ipynb_checkpoints/
+database_handling/.ipybn_checkpoints/
+text_analysis/.ipynb_checkpoints/
+geo_inference_country_names.txt
+main_texts_for_geo_focus_inference.txt
 .ipynb_checkpoints/
