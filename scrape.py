@@ -8,6 +8,7 @@ from database_handling.DataUpload import DataUploader
 from database_handling.KeycloakLogin import KeycloakLogin
 from config import SCRAPER_MAP
 import importlib
+from kafka_queue.kafka_manager import KafkaQueue  # Import the KafkaQueue class
 
 def configure_logging(log_level):
     logging.basicConfig(
@@ -46,7 +47,7 @@ def check_and_download(website):
         logging.info("Browser started and logged in")
 
         # Scrape URLs
-        all_found_urls = scraper.get_article_urls()[0:60]
+        all_found_urls = scraper.get_article_urls()[0:20]
         logging.info(f"Found {len(all_found_urls)} URLs")
 
         # Check which URLs are already in the database
@@ -69,7 +70,6 @@ def check_and_download(website):
         logging.info(f"Found {len(all_urls_already_in_db)} existing URLs in the database")
 
         token = keycloak_login.get_token()
-
         data_uploader = DataUploader(token)
 
         logging.info("Patching last online verification dates for URLs already in DB")
@@ -79,13 +79,14 @@ def check_and_download(website):
         except Exception as e:
             logging.error(f"Error during patching last online verification dates: {str(e)}", exc_info=True)
 
-        token = keycloak_login.get_token()
-
         articles_list_for_new_scraping = [url for url in all_found_urls if url not in all_urls_already_in_db]
 
         # Filter new URLs
         new_urls = [url for url in all_found_urls if url not in all_urls_already_in_db]
         logging.info(f"Found {len(new_urls)} new URLs to scrape")
+
+        # Initialize Kafka queue
+        kafka_queue = KafkaQueue()
 
         # Download content for new URLs
         new_content = []
@@ -93,16 +94,13 @@ def check_and_download(website):
             # Scrape content for new URLs
             new_content = scraper.scrape(new_urls)
             logging.debug(f"Scraped content for {len(new_urls)} URLs")
-            
-            # Prepare the content for JSON output
-            #new_content = [{"url": url, "content": content} for url, content in zip(new_urls, new_content)]
+
+            # Send the entire batch of scraped articles to Kafka
+            kafka_queue.enqueue(new_content)  # Send the entire list of articles to Kafka
+            logging.info(f"New content sent to Kafka: {len(new_content)} articles")
+
         except Exception as e:
             logging.error(f"Error scraping new URLs: {e}")
-
-        # Write new content to JSON file
-        with open('queue/content.json', 'w') as f:
-            json.dump(new_content, f)
-        logging.info("New content written to queue/content.json")
 
     except Exception as e:
         logging.error(f"Error in check_and_download: {e}")

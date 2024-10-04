@@ -1,7 +1,7 @@
 import json
 import logging
 from database_handling.DataUpload import DataUploader
-
+from database_handling.KeycloakLogin import KeycloakLogin
 # configure logging
 def configure_logging(log_level):
     logging.basicConfig(
@@ -25,12 +25,25 @@ def upload_data():
 
         logger.info(f"Loaded {len(articles)} processed items for upload")
 
+        responses = []
+        # initialize keycloak login
+        keycloak_login = KeycloakLogin()
+        token = keycloak_login.get_token()
         # Initialize DataUploader
-        uploader = DataUploader()
+        data_uploader = DataUploader(token)
 
         for article in articles:
-            response = uploader.post_content(article)  # Implement your upload logic
-            logger.info(f"Uploaded article: {article.get('url', 'N/A')}. Response: {response}")
+            try:
+                response = data_uploader.post_content(article)
+                responses.append(response)
+                logger.info(f"Successfully uploaded article: {article.get('url', 'N/A')}")
+            except Exception as e:
+                logger.error(f"Error uploading article {article.get('url', 'N/A')}: {str(e)}", exc_info=True)
+
+        with open('responses.json', 'w') as f:
+            json.dump(responses, f)
+
+        logger.info("Article upload completed.")
 
     except Exception as e:
         logger.error(f"Error during upload: {str(e)}")

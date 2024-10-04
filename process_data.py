@@ -5,10 +5,10 @@ import gc
 import torch
 from tqdm import tqdm
 
-from text_analysis.NEExtractor import NEExtractor
-from text_analysis.Summarizer import Summarizer
-from text_analysis.TopicExtractor import TopicExtractor
-from text_analysis.Vectorizers import Vectorizer
+# from text_analysis.NEExtractor import NEExtractor
+# from text_analysis.Summarizer import Summarizer
+# from text_analysis.TopicExtractor import TopicExtractor
+# from text_analysis.Vectorizers import Vectorizer
 
 def configure_logging(log_level="INFO"):
     numeric_level = getattr(logging, log_level.upper(), logging.INFO)
@@ -67,10 +67,10 @@ def process_queue():
         logger.info(f"Loaded {len(articles)} items from queue")
 
         # Process articles
-        process_articles_in_batches(NEExtractor, 'extract_entities', articles, 100)
-        process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
-        process_articles_in_batches(Vectorizer, 'vectorize', articles, 100)
-        process_articles_in_batches(Summarizer, 'summarize', articles, 100)
+        # process_articles_in_batches(NEExtractor, 'extract_entities', articles, 100)
+        # process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
+        # process_articles_in_batches(Vectorizer, 'vectorize', articles, 100)
+        # process_articles_in_batches(Summarizer, 'summarize', articles, 100)
 
         # Remove unnecessary fields
         for article in articles:
