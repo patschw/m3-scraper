@@ -84,8 +84,8 @@ class DataUploader:
         new_last_online_verification_date = datetime.now().isoformat()
         
         # Iterate over each URL and patch the content
-        for url in scraped_urls_already_in_db:
-            response = self.patch_content(data={"last_online_verification_date": new_last_online_verification_date}, url=url)
-            responses.append(response)
+        # for url in scraped_urls_already_in_db:
+        response = self.patch_content(data={"last_online_verification_date": new_last_online_verification_date}, url=scraped_urls_already_in_db)
+        responses.append(response)
 
         return responses
