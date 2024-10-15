@@ -4,6 +4,7 @@ import logging
 import gc
 import torch
 from tqdm import tqdm
+from kafka_queue.kafka_manager import KafkaQueue  # Import KafkaQueue
 
 # from text_analysis.NEExtractor import NEExtractor
 # from text_analysis.Summarizer import Summarizer
@@ -59,14 +60,30 @@ def process_queue():
     logger.info("Starting queue processing")
 
     try:
-        # Read content from the queue file
-        queue_file_path = 'queue/content.json'
-        with open(queue_file_path, 'r') as f:
-            articles = json.load(f)
-        
-        logger.info(f"Loaded {len(articles)} items from queue")
+        # Initialize KafkaQueue to consume from 'article_queue'
+        kafka_queue = KafkaQueue(topic='article_queue')
 
         # Process articles
+        articles = []
+        message_limit = 5  # Set a limit for the number of messages to process
+
+        # Use a loop to consume messages from the generator
+        for _ in range(message_limit):
+            message = next(kafka_queue.dequeue())  # Get the next message from the generator
+            if message:
+                articles.append(message)  # Ensure message is added to the list
+                logger.info(f"Received message: {message}")
+            else:
+                logger.info("No more messages to process.")
+                break
+
+        logger.info(f"Loaded {len(articles)} items from Kafka queue")
+
+        # Ensure articles is a list of dictionaries
+        # articles = list(articles)  # This line is not needed anymore
+
+        # Process articles
+        # Uncomment and adjust the following lines as needed
         # process_articles_in_batches(NEExtractor, 'extract_entities', articles, 100)
         # process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
         # process_articles_in_batches(Vectorizer, 'vectorize', articles, 100)
@@ -83,8 +100,12 @@ def process_queue():
             json.dump(articles, f)
         logger.info(f"Processed content written to {processed_file_path}")
 
+    except StopIteration:
+        logger.info("No more messages to process.")
     except Exception as e:
         logger.error(f"Error in process_queue: {str(e)}")
+    finally:
+        kafka_queue.close()  # Ensure the Kafka consumer is closed
 
 if __name__ == "__main__":
     process_queue()

@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO)
 
 def main():
     # Create an instance of KafkaQueue
-    kafka_queue = KafkaQueue()
+    kafka_queue = KafkaQueue(topic='test-topic')
 
     # Sending messages to the 'article_queue'
     messages_to_send = [
@@ -20,8 +20,8 @@ def main():
         kafka_queue.enqueue(message)
 
     # Receiving messages from the 'article_queue'
-    logging.info("Receiving messages from the article_queue:")
-    for message in kafka_queue.dequeue():
+    logging.info("Receiving messages from the test topic:")
+    for message in kafka_queue.dequeue():  # This will now consume from 'test-topic'
         logging.info(f"Received message: {message}")
 
     # Optionally, send processed messages to the 'processed_article_queue'
@@ -38,4 +38,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

@@ -28,6 +28,7 @@ from abc import ABC, abstractmethod
 import re
 import hashlib
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import tempfile
 
 # Configure logging
 logger = logging.getLogger(__name__)
@@ -65,6 +66,13 @@ class BaseScraper:
             
             firefox_options = Options()
             
+            # Set Firefox binary path explicitly if needed
+            firefox_binary_path = "/usr/bin/firefox"  # Adjust this path if necessary
+            if os.path.exists(firefox_binary_path):
+                firefox_options.binary_location = firefox_binary_path
+            else:
+                logger.warning(f"Firefox binary not found at {firefox_binary_path}. Using default.")
+            
             # Set Firefox preferences
             firefox_options.set_preference("browser.download.folderList", 2)
             firefox_options.set_preference("browser.download.manager.showWhenStarting", False)
@@ -84,9 +92,15 @@ class BaseScraper:
             if self.headless:
                 firefox_options.add_argument("--headless")
             
+            # Create a temporary profile directory
+            temp_profile_dir = tempfile.mkdtemp()
+            firefox_options.set_preference("profile", temp_profile_dir)
+            
             # Create the WebDriver instance using GeckoDriverManager
+            service = FirefoxService(GeckoDriverManager().install())
+            
             self.driver = webdriver.Firefox(
-                service=FirefoxService(GeckoDriverManager().install()),
+                service=service,
                 options=firefox_options
             )
             
@@ -100,7 +114,7 @@ class BaseScraper:
             # Maximize browser window
             self.driver.maximize_window()
             
-        except WebDriverException as e:
+        except Exception as e:
             logger.error(f"Failed to start browser: {e}")
             raise
 

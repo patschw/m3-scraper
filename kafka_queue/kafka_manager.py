@@ -28,9 +28,12 @@ class KafkaQueue:
         )
 
     def enqueue(self, message):
-        self.producer.send(self.topic, message)
-        self.producer.flush()
-        logging.info(f"Enqueued message: {message}")
+       try:
+           self.producer.send(self.topic, message)
+           self.producer.flush()
+           logging.info(f"Enqueued message: {message}")
+       except Exception as e:
+           logging.error(f"Failed to enqueue message: {e}")
 
     def dequeue(self):
         for message in self.consumer:

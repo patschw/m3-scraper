@@ -37,63 +37,76 @@ def get_scraper_class(website):
 
 def check_and_download(website):
     try:
-        logging.info(f"Starting URL gathering for {website}")
+        # logging.info(f"Starting URL gathering for {website}")
         
-        # Initialize scraper
-        scraper_class = get_scraper_class(website)
-        scraper = scraper_class(headless=True)
-        scraper.start_browser()
-        scraper.login()
-        logging.info("Browser started and logged in")
+        # # Initialize scraper
+        # scraper_class = get_scraper_class(website)
+        # scraper = scraper_class(headless=True)
+        # scraper.start_browser()
+        # scraper.login()
+        # logging.info("Browser started and logged in")
 
-        # Scrape URLs
-        all_found_urls = scraper.get_article_urls()[0:20]
-        logging.info(f"Found {len(all_found_urls)} URLs")
+        # # Scrape URLs
+        # all_found_urls = scraper.get_article_urls()[0:20]
+        # logging.info(f"Found {len(all_found_urls)} URLs")
 
         # Check which URLs are already in the database
-        logging.info("Checking for existing URLs in the database")
-        keycloak_login = KeycloakLogin()
-        token = keycloak_login.get_token()
-        data_downloader = DataDownloader(token)
+        # logging.info("Checking for existing URLs in the database")
+        # keycloak_login = KeycloakLogin()
+        # token = keycloak_login.get_token()
+        # data_downloader = DataDownloader(token)
         
-        batch_size = 30
-        all_urls_already_in_db = []
-        for i in tqdm(range(0, len(all_found_urls), batch_size), desc="Checking URL batches"):
-            current_batch = all_found_urls[i:i + batch_size]
-            try:
-                response = data_downloader.get_content_rehydrate(url=current_batch)
-                batch_urls = [item['url'] for item in response.get('items', [])]
-                all_urls_already_in_db.extend(batch_urls)
-            except Exception as e:
-                logging.error(f"Error checking batch {i // batch_size + 1}: {e}")
+        # batch_size = 30
+        # all_urls_already_in_db = []
+        # for i in tqdm(range(0, len(all_found_urls), batch_size), desc="Checking URL batches"):
+        #     current_batch = all_found_urls[i:i + batch_size]
+        #     try:
+        #         response = data_downloader.get_content_rehydrate(url=current_batch)
+        #         batch_urls = [item['url'] for item in response.get('items', [])]
+        #         all_urls_already_in_db.extend(batch_urls)
+        #     except Exception as e:
+        #         logging.error(f"Error checking batch {i // batch_size + 1}: {e}")
 
-        logging.info(f"Found {len(all_urls_already_in_db)} existing URLs in the database")
+        # logging.info(f"Found {len(all_urls_already_in_db)} existing URLs in the database")
 
-        token = keycloak_login.get_token()
-        data_uploader = DataUploader(token)
+        # token = keycloak_login.get_token()
+        # data_uploader = DataUploader(token)
 
-        logging.info("Patching last online verification dates for URLs already in DB")
-        try:
-            data_uploader.patch_last_online_verification_date(all_urls_already_in_db)
-            logging.info("Successfully patched last online verification dates")
-        except Exception as e:
-            logging.error(f"Error during patching last online verification dates: {str(e)}", exc_info=True)
+        # logging.info("Patching last online verification dates for URLs already in DB")
+        
+        # if all_urls_already_in_db:
+        #     try:
+        #         data_uploader.patch_last_online_verification_date(all_urls_already_in_db)
+        #         logging.info("Successfully patched last online verification dates")
+        #     except Exception as e:
+        #         logging.error(f"Error during patching last online verification dates: {str(e)}", exc_info=True)
+        # else:
+        #     logging.info("No URLs to patch for last online verification dates")
 
-        articles_list_for_new_scraping = [url for url in all_found_urls if url not in all_urls_already_in_db]
+        # articles_list_for_new_scraping = [url for url in all_found_urls if url not in all_urls_already_in_db]
+        
 
         # Filter new URLs
-        new_urls = [url for url in all_found_urls if url not in all_urls_already_in_db]
-        logging.info(f"Found {len(new_urls)} new URLs to scrape")
+        # new_urls = [url for url in all_found_urls if url not in all_urls_already_in_db]
+        # logging.info(f"Found {len(new_urls)} new URLs to scrape")
 
         # Initialize Kafka queue
         kafka_queue = KafkaQueue()
 
         # Download content for new URLs
-        new_content = []
+        # new_content = []
         try:
             # Scrape content for new URLs
-            new_content = scraper.scrape(new_urls)
-            logging.debug(f"Scraped content for {len(new_urls)} URLs")
+            # new_content = scraper.scrape(new_urls)
+
+            #logging.debug(f"Scraped content for {len(new_urls)} URLs")
+
+            # Prepare test data
+            new_content = [
+                {'main_text': 'Test article 1', 'lead_text': 'Lead text for article 1', 'url': 'http://testurl1.com'},
+                {'main_text': 'Test article 2', 'lead_text': 'Lead text for article 2', 'url': 'http://testurl2.com'},
+                {'main_text': 'Test article 3', 'lead_text': 'Lead text for article 3', 'url': 'http://testurl3.com'}
+            ]
 
             # Send the entire batch of scraped articles to Kafka
             kafka_queue.enqueue(new_content)  # Send the entire list of articles to Kafka
