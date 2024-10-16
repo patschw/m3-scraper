@@ -3,8 +3,10 @@ import os
 import logging
 import gc
 import torch
-from tqdm import tqdm
+import threading
+from queue import Queue
 from kafka_queue.kafka_manager import KafkaQueue  # Import KafkaQueue
+import time
 
 # from text_analysis.NEExtractor import NEExtractor
 # from text_analysis.Summarizer import Summarizer
@@ -55,57 +57,77 @@ def process_articles_in_batches(text_analysis_class, method_name, articles, batc
     clear_gpu_memory()
     logging.info(f"{method_name} processing completed for all articles")
 
-def process_queue():
+def process_queue(kafka_queue, processing_queue):
     logger = configure_logging()
     logger.info("Starting queue processing")
 
     try:
-        # Initialize KafkaQueue to consume from 'article_queue'
-        kafka_queue = KafkaQueue(topic='article_queue')
+        while True:  # Continuous loop to keep processing messages
+            articles = []
+            message_limit = 1  # Set a limit for the number of messages to process
 
-        # Process articles
-        articles = []
-        message_limit = 5  # Set a limit for the number of messages to process
+            # Use a loop to consume messages from the generator
+            for _ in range(message_limit):
+                try:
+                    message = next(kafka_queue.dequeue())  # Get the next message from the generator
+                    if message:
+                        articles.append(message)  # Ensure message is added to the list
+                        logger.info(f"Received message: {message}")
+                    else:
+                        logger.info("No more messages to process.")
+                        break
+                except StopIteration:
+                    logger.info("No more messages in the queue.")
+                    break
 
-        # Use a loop to consume messages from the generator
-        for _ in range(message_limit):
-            message = next(kafka_queue.dequeue())  # Get the next message from the generator
-            if message:
-                articles.append(message)  # Ensure message is added to the list
-                logger.info(f"Received message: {message}")
+            if articles:
+                logger.info(f"Loaded {len(articles)} items from Kafka queue")
+                # Add articles to the processing queue
+                for article in articles:
+                    processing_queue.put(article)
             else:
-                logger.info("No more messages to process.")
-                break
+                logger.info("No articles to process. Waiting for new messages...")
+                time.sleep(5)  # Wait for 5 seconds before checking again
 
-        logger.info(f"Loaded {len(articles)} items from Kafka queue")
-
-        # Ensure articles is a list of dictionaries
-        # articles = list(articles)  # This line is not needed anymore
-
-        # Process articles
-        # Uncomment and adjust the following lines as needed
-        # process_articles_in_batches(NEExtractor, 'extract_entities', articles, 100)
-        # process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 100)
-        # process_articles_in_batches(Vectorizer, 'vectorize', articles, 100)
-        # process_articles_in_batches(Summarizer, 'summarize', articles, 100)
-
-        # Remove unnecessary fields
-        for article in articles:
-            article.pop('main_text', None)
-            article.pop('lead_text', None)
-
-        # Write processed articles back to the queue folder
-        processed_file_path = 'queue/processed_content.json'
-        with open(processed_file_path, 'w') as f:
-            json.dump(articles, f)
-        logger.info(f"Processed content written to {processed_file_path}")
-
-    except StopIteration:
-        logger.info("No more messages to process.")
     except Exception as e:
         logger.error(f"Error in process_queue: {str(e)}")
     finally:
         kafka_queue.close()  # Ensure the Kafka consumer is closed
 
+def process_articles(processing_queue):
+    logger = configure_logging()
+    logger.info("Starting article processing")
+
+    while True:
+        articles = processing_queue.get()  # Get an article from the processing queue
+        if articles is None:  # Check for termination signal
+            break
+
+        # Process the article
+        # Uncomment and adjust the following lines as needed
+        # processed_article = process_articles_in_batches(NEExtractor, 'extract_entities', articles, 1)
+        # processed_article = process_articles_in_batches(Summarizer, 'summarize', articles, 1)
+        # processed_article = process_articles_in_batches(TopicExtractor, 'extract_topics', articles, 1)
+        # processed_article = process_articles_in_batches(Vectorizer, 'vectorize', articles, 1)
+
+        # Remove unnecessary fields
+        articles = [{k: v for k, v in art.items() if k not in ['main_text', 'lead_text']} for art in articles]
+        # Produce processed articles back to the processed topic
+        kafka_queue.enqueue_processed(articles)
+        logger.info(f"Processed articles sent to {kafka_queue.processed_topic}")
+        logger.info(f"Processed articles: {articles}")
+
 if __name__ == "__main__":
-    process_queue()
+    kafka_queue = KafkaQueue(topic='article_queue')
+    processing_queue = Queue()  # Create a queue for processing articles
+
+    # Start the processing thread
+    processing_thread = threading.Thread(target=process_articles, args=(processing_queue,))
+    processing_thread.start()
+
+    # Start the main queue processing
+    process_queue(kafka_queue, processing_queue)
+
+    # Signal the processing thread to terminate
+    processing_queue.put(None)  # Send termination signal
+    processing_thread.join()  # Wait for the processing thread to finish
