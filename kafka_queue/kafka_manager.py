@@ -3,7 +3,7 @@ import json
 import logging
 
 class KafkaQueue:
-    def __init__(self, topic='article_queue', processed_topic='processed_article_queue', bootstrap_servers='localhost:9092'):
+    def __init__(self, topic='raw_articles', processed_topic='processed_article_queue', bootstrap_servers='localhost:9092'):
         self.topic = topic
         self.processed_topic = processed_topic
         self.producer = KafkaProducer(

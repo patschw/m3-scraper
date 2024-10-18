@@ -85,6 +85,7 @@ def process_queue(kafka_queue, processing_queue):
                 # Add articles to the processing queue
                 for article in articles:
                     processing_queue.put(article)
+                    print(article)
             else:
                 logger.info("No articles to process. Waiting for new messages...")
                 time.sleep(5)  # Wait for 5 seconds before checking again
@@ -118,7 +119,7 @@ def process_articles(processing_queue):
         logger.info(f"Processed articles: {articles}")
 
 if __name__ == "__main__":
-    kafka_queue = KafkaQueue(topic='article_queue')
+    kafka_queue = KafkaQueue(topic='raw_articles')
     processing_queue = Queue()  # Create a queue for processing articles
 
     # Start the processing thread
